@@ -119,7 +119,7 @@
                             </a>
                             </li>
                             <li>
-                                <a href="auth-sign-in-social.html">
+                            <a href="{{ route('login') }}">
                                 <i class="feather icon-log-out"></i> Logout
 
                             </a>
