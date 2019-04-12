@@ -32,6 +32,10 @@
         </div>
     </div>
     @include('layouts.cms.footer')
+    @include('layouts.message.notification')
     @yield('footer-src')
+
+   
+    
 </body>
 </html>

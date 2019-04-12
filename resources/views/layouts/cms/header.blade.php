@@ -23,3 +23,4 @@
 <!-- Style.css -->
 <link rel="stylesheet" type="text/css" href="{{ asset('plugin/cms/assets/css/style.css') }}">
 <link rel="stylesheet" type="text/css" href="{{ asset('plugin/cms/assets/css/widget.css') }}">
+

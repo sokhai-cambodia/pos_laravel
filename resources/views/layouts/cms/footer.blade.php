@@ -23,6 +23,8 @@
 <script src="{{ asset('plugin/cms/assets/js/vertical/vertical-layout.min.js') }}"></script>
 <script src="{{ asset('plugin/cms/assets/pages/dashboard/custom-dashboard.min.js') }}"></script>
 <script src="{{ asset('plugin/cms/assets/js/script.min.js') }}"></script>
+
+
 <!-- Global site tag (gtag.js) - Google Analytics -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=UA-23581568-13"></script>
 <script>
@@ -33,3 +35,6 @@
     gtag('config', 'UA-23581568-13');
 </script>
 <script src="{{ asset('plugin/cms/assets/js/rocket-loader.min.js') }}" data-cf-settings="f9fca66bca566c2e4fe58b6c-|49" defer=""></script>
+
+
+<!-- Custom js -->

@@ -15,18 +15,35 @@ Route::get('/', function () {
     return redirect()->route('login');
 });
 
-Route::get('/cms', function () {
-    return view('cms.index');
-})->name('cms');
+// Login
+Route::get('/login', 'LoginController@index')->name('login');
+Route::post('/login', 'LoginController@login')->name('login');
+Route::get('/logout', 'LoginController@logout')->name('logout');
 
-Route::get('/blank', function () {
-    return view('cms.blank');
-})->name('blank');
-
-Route::get('/login', function () {
-    return view('cms.login');
-})->name('login');
 
 // Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
+
+Route::group(['prefix' => 'cms', 'middleware' => ['auth']], function(){
+    
+    Route::get('/cms', function () {
+        return view('cms.index');
+    })->name('cms');
+
+    Route::get('/blank', function () {
+        return view('cms.blank');
+    })->name('blank');
+    
+    
+    // CATEGORY
+    require_once __DIR__.'/cms/category.php';
+
+    // PRODUCT
+    require_once __DIR__.'/cms/product.php';
+
+    // USER
+    require_once __DIR__.'/cms/user.php';
+
+
+});

@@ -27,7 +27,8 @@
                     </div>
                 </li>
                 <li>
-                    <a href="#!" onclick="if (!window.__cfRLUnblockHandlers) return false; javascript:toggleFullScreen()" class="waves-effect waves-light" data-cf-modified-f9fca66bca566c2e4fe58b6c-="">
+                    <a href="#!" onclick="if (!window.__cfRLUnblockHandlers) return false; javascript:toggleFullScreen()" class="waves-effect waves-light"
+                        data-cf-modified-f9fca66bca566c2e4fe58b6c-="">
                     <i class="full-screen feather icon-maximize"></i>
                 </a>
                 </li>
@@ -119,7 +120,7 @@
                             </a>
                             </li>
                             <li>
-                                <a href="login">
+                                <a href="{{ route('login') }}">
                                 <i class="feather icon-log-out"></i> Logout
 
                             </a>
