@@ -24,9 +24,11 @@ Route::get('/blank', function () {
     return view('cms.blank');
 })->name('blank');
 
-Route::get('/login', function () {
-    return view('cms.login');
-})->name('login');
+// Login
+Route::get('/login', 'LoginController@index')->name('login');
+Route::post('/login', 'LoginController@login')->name('login');
+Route::get('/logout', 'LoginController@logout')->name('logout');
+
 
 // Auth::routes();
 
