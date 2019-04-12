@@ -23,3 +23,14 @@
 <!-- Style.css -->
 <link rel="stylesheet" type="text/css" href="{{ asset('plugin/cms/assets/css/style.css') }}">
 <link rel="stylesheet" type="text/css" href="{{ asset('plugin/cms/assets/css/widget.css') }}">
+
+<!-- font awesome -->
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
+
+<link rel="stylesheet" type="text/css" href="{{ asset('plugin/cms/assets/css/widget.css') }}">
+
+<link rel="stylesheet" type="text/css" href="{{ asset('plugin/cms/bower_components/datatables.net-bs4/css/dataTables.bootstrap4.min.css')}}">
+<link rel="stylesheet" type="text/css" href="{{ asset('plugin/cms/assets/pages/data-table/css/buttons.dataTables.min.css')}}">
+<link rel="stylesheet" type="text/css" href="{{ asset('plugin/cms/bower_components/datatables.net-responsive-bs4/css/responsive.bootstrap4.min.css')}}">
+
+
