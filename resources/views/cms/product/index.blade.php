@@ -34,105 +34,97 @@
                    
 
                         {{-- table --}}
-
-                            <div class="card">
-                          <div class="card-header">
-                            <h5>Edit With Button</h5>
-                            <span>Click on buttons to perform actions</span>
-                          </div>
-                          <div class="card-block">
-                            <div class="table-responsive">
-                              <table class="table table-striped table-bordered" id="example-2">
-                                <thead>
-                                  <tr>
-                                    <th>#</th>
-                                    <th>First</th>
-                                    <th>Last</th>
-                                    <th>Nickname</th>
-                                  <th class="tabledit-toolbar-column"></th></tr>
-                                </thead>
-                                <tbody>
-                                  <tr>
-                                    <th scope="row">1</th>
-                                    <td class="tabledit-view-mode"><span class="tabledit-span">Mark
-                                      
-                                    </span><input class="tabledit-input form-control input-sm" name="First Name" value="Mark
-                                      
-                                    " style="display: none;" disabled="" type="text"></td>
-                                    <td class="tabledit-view-mode"><span class="tabledit-span">Otto
-                                      
-                                    </span><input class="tabledit-input form-control input-sm" name="Last Name" value="Otto
-                                      
-                                    " style="display: none;" disabled="" type="text"></td>
-                                    <td class="tabledit-view-mode"><span class="tabledit-span">@mdo</span>
-                                      <select class="tabledit-input form-control input-sm" name="Nickname" disabled="" style="display:none;">
-                                        <option value="1">@mdo</option>
-                                        <option value="2">@fat</option>
-                                        <option value="3">@twitter</option>
-                                      </select>
-                                    </td>
-                                  <td style="white-space: nowrap; width: 1%;"><div class="tabledit-toolbar btn-toolbar" style="text-align: left;">
-                                           <div class="btn-group btn-group-sm" style="float: none;"><button type="button" class="tabledit-edit-button btn btn-primary waves-effect waves-light" style="float: none;margin: 5px;"><span class="icofont icofont-ui-edit"></span></button><button type="button" class="tabledit-delete-button btn btn-danger waves-effect waves-light" style="float: none;margin: 5px;"><span class="icofont icofont-ui-delete"></span></button></div>
-                                           <button type="button" class="tabledit-save-button btn btn-sm btn-success" style="display: none; float: none;">Save</button>
-                                           <button type="button" class="tabledit-confirm-button btn btn-sm btn-danger" style="display: none; float: none;">Confirm</button>
-                                           <button type="button" class="tabledit-restore-button btn btn-sm btn-warning" style="display: none; float: none;">Restore</button>
-                                       </div></td></tr>
-                                  <tr>
-                                    <th scope="row">2</th>
-                                    <td class="tabledit-view-mode"><span class="tabledit-span">Jacob
-                                      
-                                    </span><input class="tabledit-input form-control input-sm" name="First Name" value="Jacob
-                                      
-                                    " style="display: none;" disabled="" type="text"></td>
-                                    <td class="tabledit-view-mode"><span class="tabledit-span">Thorntonkk
-                                      
-                                    </span><input class="tabledit-input form-control input-sm" name="Last Name" value="Thorntonkk
-                                      
-                                    " style="display: none;" disabled="" type="text"></td>
-                                    <td class="tabledit-view-mode"><span class="tabledit-span">@mdo</span>
-                                      <select class="tabledit-input form-control input-sm" name="Nickname" disabled="" style="display:none;">
-                                        <option value="1">@mdo</option>
-                                        <option value="2">@fat</option>
-                                        <option value="3">@twitter</option>
-                                      </select>
-                                    </td>
-                                  <td style="white-space: nowrap; width: 1%;"><div class="tabledit-toolbar btn-toolbar" style="text-align: left;">
-                                           <div class="btn-group btn-group-sm" style="float: none;"><button type="button" class="tabledit-edit-button btn btn-primary waves-effect waves-light" style="float: none;margin: 5px;"><span class="icofont icofont-ui-edit"></span></button><button type="button" class="tabledit-delete-button btn btn-danger waves-effect waves-light" style="float: none;margin: 5px;"><span class="icofont icofont-ui-delete"></span></button></div>
-                                           <button type="button" class="tabledit-save-button btn btn-sm btn-success" style="display: none; float: none;">Save</button>
-                                           <button type="button" class="tabledit-confirm-button btn btn-sm btn-danger" style="display: none; float: none;">Confirm</button>
-                                           <button type="button" class="tabledit-restore-button btn btn-sm btn-warning" style="display: none; float: none;">Restore</button>
-                                       </div></td></tr>
-                                  <tr>
-                                    <th scope="row">3</th>
-                                    <td class="tabledit-view-mode"><span class="tabledit-span">Larry
-                                      
-                                    </span><input class="tabledit-input form-control input-sm" name="First Name" value="Larry
-                                      
-                                    " style="display: none;" disabled="" type="text"></td>
-                                    <td class="tabledit-view-mode"><span class="tabledit-span">the Bird
-                                      
-                                    </span><input class="tabledit-input form-control input-sm" name="Last Name" value="the Bird
-                                      
-                                    " style="display: none;" disabled="" type="text"></td>
-                                    <td class="tabledit-view-mode"><span class="tabledit-span">@mdo</span>
-                                      <select class="tabledit-input form-control input-sm" name="Nickname" disabled="" style="display:none;">
-                                        <option value="1">@mdo</option>
-                                        <option value="2">@fat</option>
-                                        <option value="3">@twitter</option>
-                                      </select>
-                                    </td>
-                                  <td style="white-space: nowrap; width: 1%;"><div class="tabledit-toolbar btn-toolbar" style="text-align: left;">
-                                           <div class="btn-group btn-group-sm" style="float: none;"><button type="button" class="tabledit-edit-button btn btn-primary waves-effect waves-light" style="float: none;margin: 5px;"><span class="icofont icofont-ui-edit"></span></button><button type="button" class="tabledit-delete-button btn btn-danger waves-effect waves-light" style="float: none;margin: 5px;"><span class="icofont icofont-ui-delete"></span></button></div>
-                                           <button type="button" class="tabledit-save-button btn btn-sm btn-success" style="display: none; float: none;">Save</button>
-                                           <button type="button" class="tabledit-confirm-button btn btn-sm btn-danger" style="display: none; float: none;">Confirm</button>
-                                           <button type="button" class="tabledit-restore-button btn btn-sm btn-warning" style="display: none; float: none;">Restore</button>
-                                       </div></td></tr>
-                                </tbody>
-                              </table>
+                        <div class="card">
+                            <div class="card-header">
+                              <h5>Simple Initialization</h5>
+                              <span>Scroller is a plug-in for DataTables which enhances built-in scrolling features to allow large amounts of data to be rendered on page very quickly. This is done by Scroller through the use of a virtual rendering technique that will render only the part of the table that is actually required for the current view. Scroller assumes that all rows are of the same height (in order to preform the required calculations). Demo data in this example has 2,500 rows.</span>
+                            </div>
+                            <div class="card-block">
+                              <div class="dt-responsive table-responsive">
+                                <div id="single-select_wrapper" class="dataTables_wrapper dt-bootstrap4"><div class="row"><div class="col-xs-12 col-sm-12 col-sm-12 col-md-6"><div class="dataTables_length" id="single-select_length"><label>Show <select name="single-select_length" aria-controls="single-select" class="form-control input-sm"><option value="10">10</option><option value="25">25</option><option value="50">50</option><option value="100">100</option></select> entries</label></div></div><div class="col-xs-12 col-sm-12 col-md-6"><div id="single-select_filter" class="dataTables_filter"><label>Search:<input class="form-control input-sm" placeholder="" aria-controls="single-select" type="search"></label></div></div></div><div class="row"><div class="col-xs-12 col-sm-12"><table id="single-select" class="table table-striped table-bordered nowrap dataTable" role="grid" aria-describedby="single-select_info">
+                                  <thead>
+                                    <tr role="row"><th class="sorting_asc" tabindex="0" aria-controls="single-select" rowspan="1" colspan="1" style="width: 305.8px;" aria-sort="ascending" aria-label="Name: activate to sort column descending">Name</th><th class="sorting" tabindex="0" aria-controls="single-select" rowspan="1" colspan="1" style="width: 481.233px;" aria-label="Position: activate to sort column ascending">Position</th><th class="sorting" tabindex="0" aria-controls="single-select" rowspan="1" colspan="1" style="width: 226.267px;" aria-label="Office: activate to sort column ascending">Office</th><th class="sorting" tabindex="0" aria-controls="single-select" rowspan="1" colspan="1" style="width: 113.383px;" aria-label="Age: activate to sort column ascending">Age</th><th class="sorting" tabindex="0" aria-controls="single-select" rowspan="1" colspan="1" style="width: 213.583px;" aria-label="Start date: activate to sort column ascending">Start date</th><th class="sorting" tabindex="0" aria-controls="single-select" rowspan="1" colspan="1" style="width: 181.733px;" aria-label="Salary: activate to sort column ascending">Salary</th></tr>
+                                  </thead>
+                                  <tbody>
+                                     
+                                  <tr role="row" class="odd">
+                                      <td class="sorting_1">Airi Satou</td>
+                                      <td>Accountant</td>
+                                      <td>Tokyo</td>
+                                      <td>33</td>
+                                      <td>2008/11/28</td>
+                                      <td>$162,700</td>
+                                    </tr><tr role="row" class="even">
+                                      <td class="sorting_1">Angelica Ramos</td>
+                                      <td>Chief Executive Officer (CEO)</td>
+                                      <td>London</td>
+                                      <td>47</td>
+                                      <td>2009/10/09</td>
+                                      <td>$1,200,000</td>
+                                    </tr><tr role="row" class="odd">
+                                      <td class="sorting_1">Ashton Cox</td>
+                                      <td>Junior Technical Author</td>
+                                      <td>San Francisco</td>
+                                      <td>66</td>
+                                      <td>2009/01/12</td>
+                                      <td>$86,000</td>
+                                    </tr><tr role="row" class="even">
+                                      <td class="sorting_1">Bradley Greer</td>
+                                      <td>Software Engineer</td>
+                                      <td>London</td>
+                                      <td>41</td>
+                                      <td>2012/10/13</td>
+                                      <td>$132,000</td>
+                                    </tr><tr role="row" class="odd">
+                                      <td class="sorting_1">Brenden Wagner</td>
+                                      <td>Software Engineer</td>
+                                      <td>San Francisco</td>
+                                      <td>28</td>
+                                      <td>2011/06/07</td>
+                                      <td>$206,850</td>
+                                    </tr><tr role="row" class="even">
+                                      <td class="sorting_1">Brielle Williamson</td>
+                                      <td>Integration Specialist</td>
+                                      <td>New York</td>
+                                      <td>61</td>
+                                      <td>2012/12/02</td>
+                                      <td>$372,000</td>
+                                    </tr><tr role="row" class="odd">
+                                      <td class="sorting_1">Bruno Nash</td>
+                                      <td>Software Engineer</td>
+                                      <td>London</td>
+                                      <td>38</td>
+                                      <td>2011/05/03</td>
+                                      <td>$163,500</td>
+                                    </tr><tr role="row" class="even">
+                                      <td class="sorting_1">Caesar Vance</td>
+                                      <td>Pre-Sales Support</td>
+                                      <td>New York</td>
+                                      <td>21</td>
+                                      <td>2011/12/12</td>
+                                      <td>$106,450</td>
+                                    </tr><tr role="row" class="odd">
+                                      <td class="sorting_1">Cara Stevens</td>
+                                      <td>Sales Assistant</td>
+                                      <td>New York</td>
+                                      <td>46</td>
+                                      <td>2011/12/06</td>
+                                      <td>$145,600</td>
+                                    </tr><tr role="row" class="even">
+                                      <td class="sorting_1">Cedric Kelly</td>
+                                      <td>Senior Javascript Developer</td>
+                                      <td>Edinburgh</td>
+                                      <td>22</td>
+                                      <td>2012/03/29</td>
+                                      <td>$433,060</td>
+                                    </tr></tbody>
+                                  <tfoot>
+                                    <tr><th rowspan="1" colspan="1">Name</th><th rowspan="1" colspan="1">Position</th><th rowspan="1" colspan="1">Office</th><th rowspan="1" colspan="1">Age</th><th rowspan="1" colspan="1">Start date</th><th rowspan="1" colspan="1">Salary</th></tr>
+                                  </tfoot>
+                                </table></div></div><div class="row"><div class="col-xs-12 col-sm-12 col-md-5"><div class="dataTables_info" id="single-select_info" role="status" aria-live="polite">Showing 1 to 10 of 57 entries</div></div><div class="col-xs-12 col-sm-12 col-md-7"><div class="dataTables_paginate paging_simple_numbers" id="single-select_paginate"><ul class="pagination"><li class="paginate_button page-item previous disabled" id="single-select_previous"><a href="#" aria-controls="single-select" data-dt-idx="0" tabindex="0" class="page-link">Previous</a></li><li class="paginate_button page-item active"><a href="#" aria-controls="single-select" data-dt-idx="1" tabindex="0" class="page-link">1</a></li><li class="paginate_button page-item "><a href="#" aria-controls="single-select" data-dt-idx="2" tabindex="0" class="page-link">2</a></li><li class="paginate_button page-item "><a href="#" aria-controls="single-select" data-dt-idx="3" tabindex="0" class="page-link">3</a></li><li class="paginate_button page-item "><a href="#" aria-controls="single-select" data-dt-idx="4" tabindex="0" class="page-link">4</a></li><li class="paginate_button page-item "><a href="#" aria-controls="single-select" data-dt-idx="5" tabindex="0" class="page-link">5</a></li><li class="paginate_button page-item "><a href="#" aria-controls="single-select" data-dt-idx="6" tabindex="0" class="page-link">6</a></li><li class="paginate_button page-item next" id="single-select_next"><a href="#" aria-controls="single-select" data-dt-idx="7" tabindex="0" class="page-link">Next</a></li></ul></div></div></div></div>
+                              </div>
                             </div>
                           </div>
-                        </div>
-
 
                         {{-- end table --}}
 

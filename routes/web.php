@@ -36,3 +36,7 @@ Route::get('/home', 'HomeController@index')->name('home');
 
 // CATEGORY
 require_once __DIR__.'/cms/category.php';
+
+
+// PRODUCT
+require_once __DIR__.'/cms/product.php';
