@@ -19,6 +19,7 @@ Route::get('/cms', function () {
     return view('cms.index');
 })->name('cms');
 
+
 Route::get('/blank', function () {
     return view('cms.blank');
 })->name('blank');
@@ -30,3 +31,8 @@ Route::get('/login', function () {
 // Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
+
+
+
+// CATEGORY
+require_once __DIR__.'/cms/category.php';
