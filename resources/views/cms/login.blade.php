@@ -166,5 +166,6 @@
   gtag('config', 'UA-23581568-13');
 </script>
 <script src="{{ asset('plugin/cms/assets/js/rocket-loader.min.js') }}" data-cf-settings="f9fca66bca566c2e4fe58b6c-|49" defer=""></script>
+@include('layouts.message.notification')
 </body>
 </html>
