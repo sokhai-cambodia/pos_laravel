@@ -277,68 +277,68 @@
                     </a>
                 </li>
 
-            </ul>
-            </li>
-            <li class="pcoded-hasmenu">
-                <a href="javascript:void(0)" class="waves-effect waves-dark">
+                </ul>
+                </li>
+                <li class="pcoded-hasmenu">
+                    <a href="javascript:void(0)" class="waves-effect waves-dark">
                     <span class="pcoded-micon">
                         <i class="feather icon-package"></i>
                     </span>
                     <span class="pcoded-mtext">Extra</span>
                 </a>
-                <ul class="pcoded-submenu">
-                    <li class=" ">
-                        <a href="session-timeout.html" class="waves-effect waves-dark">
+                    <ul class="pcoded-submenu">
+                        <li class=" ">
+                            <a href="session-timeout.html" class="waves-effect waves-dark">
                             <span class="pcoded-mtext">Session Timeout</span>
                         </a>
-                    </li>
-                    <li class=" ">
-                        <a href="session-idle-timeout.html" class="waves-effect waves-dark">
+                        </li>
+                        <li class=" ">
+                            <a href="session-idle-timeout.html" class="waves-effect waves-dark">
                             <span class="pcoded-mtext">Session Idle Timeout</span>
                         </a>
-                    </li>
-                    <li class=" ">
-                        <a href="offline.html" class="waves-effect waves-dark">
+                        </li>
+                        <li class=" ">
+                            <a href="offline.html" class="waves-effect waves-dark">
                             <span class="pcoded-mtext">Offline</span>
                         </a>
-                    </li>
-                </ul>
-            </li>
-            <li class=" ">
-                <a href="animation.html" class="waves-effect waves-dark">
+                        </li>
+                    </ul>
+                </li>
+                <li class=" ">
+                    <a href="animation.html" class="waves-effect waves-dark">
                     <span class="pcoded-micon">
                         <i class="feather icon-aperture rotate-refresh"></i>
                     </span>
                     <span class="pcoded-mtext">Animations</span>
                 </a>
-            </li>
+                </li>
 
-            <li class="pcoded-hasmenu">
-                <a href="javascript:void(0)" class="waves-effect waves-dark">
+                <li class="pcoded-hasmenu">
+                    <a href="javascript:void(0)" class="waves-effect waves-dark">
                     <span class="pcoded-micon">
                         <i class="feather icon-command"></i>
                     </span>
                     <span class="pcoded-mtext">Icons</span>
                 </a>
-                <ul class="pcoded-submenu">
-                    <li class=" ">
-                        <a href="icon-font-awesome.html" class="waves-effect waves-dark">
+                    <ul class="pcoded-submenu">
+                        <li class=" ">
+                            <a href="icon-font-awesome.html" class="waves-effect waves-dark">
                             <span class="pcoded-mtext">Font Awesome</span>
                         </a>
-                    </li>
-                    <li class=" ">
-                        <a href="icon-themify.html" class="waves-effect waves-dark">
+                        </li>
+                        <li class=" ">
+                            <a href="icon-themify.html" class="waves-effect waves-dark">
                             <span class="pcoded-mtext">Themify</span>
                         </a>
-                    </li>
-                    <li class=" ">
-                        <a href="icon-simple-line.html" class="waves-effect waves-dark">
+                        </li>
+                        <li class=" ">
+                            <a href="icon-simple-line.html" class="waves-effect waves-dark">
                             <span class="pcoded-mtext">Simple Line Icon</span>
                         </a>
-                    </li>
+                        </li>
 
-                </ul>
-            </li>
+                    </ul>
+                </li>
             </ul>
             <div class="pcoded-navigation-label">Forms</div>
             <ul class="pcoded-item pcoded-left-item">
