@@ -47,9 +47,31 @@
                             <a href="javascript:void(0)" class="waves-effect waves-dark">
                                 <span class="pcoded-mtext">List Category</span>
                             </a>
-                           
+
                         </li>
-                       
+
+                    </ul>
+                </li>
+                {{-- category --}}
+                <li class="pcoded-hasmenu">
+                    <a href="javascript:void(0)" class="waves-effect waves-dark">
+                        <span class="pcoded-micon"><i class="feather icon-sidebar"></i></span>
+                        <span class="pcoded-mtext">Users</span>
+                        {{-- <span class="pcoded-badge label label-warning">NEW</span> --}}
+                    </a>
+                    <ul class="pcoded-submenu">
+                        <li class="">
+                            <a  href="{{ route('user') }}" class="waves-effect waves-dark">
+                                <span class="pcoded-mtext">List User</span>
+                            </a>
+                        </li>
+                        <li class=" ">
+                            <a href="#" class="waves-effect waves-dark">
+                                <span class="pcoded-mtext">Add User</span>
+                            </a>
+
+                        </li>
+
                     </ul>
                 </li>
 
@@ -64,7 +86,7 @@
                     </a>
                 </li>
 
-                
+
                 <li class="pcoded-hasmenu">
                     <a href="javascript:void(0)" class="waves-effect waves-dark">
                         <span class="pcoded-micon">
@@ -796,7 +818,7 @@
                         </span>
                         <span class="pcoded-mtext">To-Do</span>
                     </a>
-                    
+
                 </li>
 
 
@@ -925,7 +947,7 @@
                     </a>
                 </li>
             </ul>
-            
+
         </div>
     </div>
 </nav>

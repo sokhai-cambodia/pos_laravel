@@ -40,3 +40,7 @@ require_once __DIR__.'/cms/category.php';
 
 // PRODUCT
 require_once __DIR__.'/cms/product.php';
+
+
+// USER
+require_once __DIR__.'/cms/user.php';
