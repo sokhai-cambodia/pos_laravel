@@ -36,14 +36,44 @@
                         {{-- table --}}
                         <div class="card">
                             <div class="card-header">
-                              <h5>Simple Initialization</h5>
-                              <span>Scroller is a plug-in for DataTables which enhances built-in scrolling features to allow large amounts of data to be rendered on page very quickly. This is done by Scroller through the use of a virtual rendering technique that will render only the part of the table that is actually required for the current view. Scroller assumes that all rows are of the same height (in order to preform the required calculations). Demo data in this example has 2,500 rows.</span>
+                              <h5>List Product</h5>
+                              
                             </div>
                             <div class="card-block">
                               <div class="dt-responsive table-responsive">
-                                <div id="single-select_wrapper" class="dataTables_wrapper dt-bootstrap4"><div class="row"><div class="col-xs-12 col-sm-12 col-sm-12 col-md-6"><div class="dataTables_length" id="single-select_length"><label>Show <select name="single-select_length" aria-controls="single-select" class="form-control input-sm"><option value="10">10</option><option value="25">25</option><option value="50">50</option><option value="100">100</option></select> entries</label></div></div><div class="col-xs-12 col-sm-12 col-md-6"><div id="single-select_filter" class="dataTables_filter"><label>Search:<input class="form-control input-sm" placeholder="" aria-controls="single-select" type="search"></label></div></div></div><div class="row"><div class="col-xs-12 col-sm-12"><table id="single-select" class="table table-striped table-bordered nowrap dataTable" role="grid" aria-describedby="single-select_info">
+                                <div id="single-select_wrapper" class="dataTables_wrapper dt-bootstrap4">
+									<div class="row"><div class="col-xs-12 col-sm-12 col-sm-12 col-md-6">
+										<div class="dataTables_length" id="single-select_length">
+											<label>Show <select name="single-select_length" aria-controls="single-select" class="form-control input-sm">
+												<option value="10">10</option>
+												<option value="25">25</option>
+												<option value="50">50</option>
+												<option value="100">100</option>
+											</select> entries</label>
+										</div>
+									</div>
+									<div class="col-xs-12 col-sm-12 col-md-6">
+										<div id="single-select_filter" class="dataTables_filter">
+											<label>Search:
+												<input class="form-control input-sm" placeholder="" aria-controls="single-select" type="search">
+											</label>
+										</div>
+									</div>
+								</div>
+								<div class="row">
+									<div class="col-xs-12 col-sm-12">
+									<table id="single-select" class="table table-striped table-bordered table-responsive nowrap dataTable" role="grid" aria-describedby="single-select_info">
                                   <thead>
-                                    <tr role="row"><th class="sorting_asc" tabindex="0" aria-controls="single-select" rowspan="1" colspan="1" style="width: 305.8px;" aria-sort="ascending" aria-label="Name: activate to sort column descending">Name</th><th class="sorting" tabindex="0" aria-controls="single-select" rowspan="1" colspan="1" style="width: 481.233px;" aria-label="Position: activate to sort column ascending">Position</th><th class="sorting" tabindex="0" aria-controls="single-select" rowspan="1" colspan="1" style="width: 226.267px;" aria-label="Office: activate to sort column ascending">Office</th><th class="sorting" tabindex="0" aria-controls="single-select" rowspan="1" colspan="1" style="width: 113.383px;" aria-label="Age: activate to sort column ascending">Age</th><th class="sorting" tabindex="0" aria-controls="single-select" rowspan="1" colspan="1" style="width: 213.583px;" aria-label="Start date: activate to sort column ascending">Start date</th><th class="sorting" tabindex="0" aria-controls="single-select" rowspan="1" colspan="1" style="width: 181.733px;" aria-label="Salary: activate to sort column ascending">Salary</th></tr>
+                                    <tr role="row">
+										<th class="sorting_asc" tabindex="0" aria-controls="single-select" rowspan="1" colspan="1" style="width: 60.8px;" aria-sort="ascending" aria-label="Name: activate to sort column descending">Code</th>
+										<th class="sorting" tabindex="0" aria-controls="single-select" rowspan="1" colspan="1" style="width: 226.267px;" aria-label="Position: activate to sort column ascending">Category</th>
+										<th class="sorting" tabindex="0" aria-controls="single-select" rowspan="1" colspan="1" style="width: 226.267px;" aria-label="Office: activate to sort column ascending">Product Name</th>
+										<th class="sorting" tabindex="0" aria-controls="single-select" rowspan="1" colspan="1" style="width: 100.383px;" aria-label="Age: activate to sort column ascending">Quantity</th>
+										<th class="sorting" tabindex="0" aria-controls="single-select" rowspan="1" colspan="1" style="width: 213.583px;" aria-label="Start date: activate to sort column ascending">Price </th>
+										<th class="sorting" tabindex="0" aria-controls="single-select" rowspan="1" colspan="1" style="width: 226.267px;" aria-label="Salary: activate to sort column ascending">Image</th>
+										<th class="sorting" tabindex="0" aria-controls="single-select" rowspan="1" colspan="1" style="width: 181.733px;" aria-label="Salary: activate to sort column ascending">Action</th>
+
+									</tr>
                                   </thead>
                                   <tbody>
                                      
