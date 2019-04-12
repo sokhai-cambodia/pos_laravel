@@ -10,13 +10,13 @@
     <meta name="author" content="colorlib" />
     <!-- Favicon icon -->
     <link rel="icon" href="https://colorlib.com/polygon/admindek/plugin/assets/images/favicon.ico" type="image/x-icon">
-    <!-- Google font-->     
+    <!-- Google font-->
     <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700,800" rel="stylesheet"><link href="https://fonts.googleapis.com/css?family=Quicksand:500,700" rel="stylesheet">
     <!-- Required Fremwork -->
     <link rel="stylesheet" type="text/css" href="{{ asset('plugin/cms/bower_components/bootstrap/css/bootstrap.min.css') }}">
    <!-- waves.css -->
     <link rel="stylesheet" href="{{ asset('plugin/cms/assets/pages/waves/css/waves.min.css') }}" type="text/css" media="all">
-    <!-- feather icon --> 
+    <!-- feather icon -->
     <link rel="stylesheet" type="text/css" href="{{ asset('plugin/cms/assets/icon/feather/css/feather.css') }}">
     <!-- themify-icons line icon -->
     <link rel="stylesheet" type="text/css" href="{{ asset('plugin/cms/assets/icon/themify-icons/themify-icons.css') }}">
@@ -56,7 +56,7 @@
                       <div class="circle"></div>
                   </div>
               </div>
-            
+
               <div class="spinner-layer spinner-yellow">
                   <div class="circle-clipper left">
                       <div class="circle"></div>
@@ -68,7 +68,7 @@
                       <div class="circle"></div>
                   </div>
               </div>
-            
+
               <div class="spinner-layer spinner-green">
                   <div class="circle-clipper left">
                       <div class="circle"></div>
@@ -155,7 +155,7 @@
         </div>
         <!-- end of container-fluid -->
     </section>
-   
+
 <!-- Required Jquery -->
 <script src="{{ asset('plugin/cms/bower_components/jquery/js/jquery.min.js') }}"></script>
 <script src="{{ asset('plugin/cms/bower_components/jquery-ui/js/jquery-ui.min.js') }}"></script>
