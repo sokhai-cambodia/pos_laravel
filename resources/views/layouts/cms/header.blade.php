@@ -16,6 +16,8 @@
 <link rel="stylesheet" href="{{ asset('plugin/cms/assets/pages/waves/css/waves.min.css') }}" type="text/css" media="all">
 <!-- feather icon -->
 <link rel="stylesheet" type="text/css" href="{{ asset('plugin/cms/assets/icon/feather/css/feather.css') }}">
+<!-- ico font -->
+<link rel="stylesheet" type="text/css" href="{{ asset('plugin/cms/assets/icon/icofont/css/icofont.css') }}">
 <!-- font-awesome-n -->
 <link rel="stylesheet" type="text/css" href="{{ asset('plugin/cms/assets/css/font-awesome-n.min.css') }}">
 <!-- Chartlist chart css -->

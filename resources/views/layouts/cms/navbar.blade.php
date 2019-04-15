@@ -30,6 +30,29 @@
                     </ul>
                 </li>
 
+                {{-- Branch --}}
+                <li class="pcoded-hasmenu">
+                    <a href="javascript:void(0)" class="waves-effect waves-dark">
+                        <span class="pcoded-micon"><i class="feather icon-sidebar"></i></span>
+                        <span class="pcoded-mtext">Branch</span>
+                        {{-- <span class="pcoded-badge label label-warning">NEW</span> --}}
+                    </a>
+                    <ul class="pcoded-submenu">
+                        <li class="">
+                            <a href="{{ route('branch.create') }}" class="waves-effect waves-dark">
+                                <span class="pcoded-mtext">Add Branch</span>
+                            </a>
+                        </li>
+                        <li class=" ">
+                            <a href="{{ route('category') }}" class="waves-effect waves-dark">
+                                <span class="pcoded-mtext">List Category</span>
+                            </a>
+
+                        </li>
+
+                    </ul>
+                </li>
+                
                 {{-- category --}}
                 <li class="pcoded-hasmenu">
                     <a href="javascript:void(0)" class="waves-effect waves-dark">
@@ -39,12 +62,12 @@
                     </a>
                     <ul class="pcoded-submenu">
                         <li class="">
-                            <a href="javascript:void(0)" class="waves-effect waves-dark">
+                            <a href="{{ route('category.create') }}" class="waves-effect waves-dark">
                                 <span class="pcoded-mtext">Add Category</span>
                             </a>
                         </li>
                         <li class=" ">
-                            <a href="javascript:void(0)" class="waves-effect waves-dark">
+                            <a href="{{ route('category') }}" class="waves-effect waves-dark">
                                 <span class="pcoded-mtext">List Category</span>
                             </a>
 
@@ -52,51 +75,7 @@
 
                     </ul>
                 </li>
-
-                {{-- Product --}}
-                <li class="pcoded-hasmenu">
-                    <a href="javascript:void(0)" class="waves-effect waves-dark">
-                        <span class="pcoded-micon"><i class="feather icon-sidebar"></i></span>
-                        <span class="pcoded-mtext">Product</span>
-                        {{-- <span class="pcoded-badge label label-warning">NEW</span> --}}
-                    </a>
-                    <ul class="pcoded-submenu">
-                        <li class="">
-                            <a href="javascript:void(0)" class="waves-effect waves-dark">
-                                <span class="pcoded-mtext">Add Product</span>
-                            </a>
-                        </li>
-                        <li class=" ">
-                            <a href="javascript:void(0)" class="waves-effect waves-dark">
-                                <span class="pcoded-mtext">List Product</span>
-                            </a>
-
-                        </li>
-
-                    </ul>
-                </li>
-                {{-- User --}}
-                <li class="pcoded-hasmenu">
-                    <a href="javascript:void(0)" class="waves-effect waves-dark">
-                        <span class="pcoded-micon"><i class="feather icon-sidebar"></i></span>
-                        <span class="pcoded-mtext">User</span>
-                        {{-- <span class="pcoded-badge label label-warning">NEW</span> --}}
-                    </a>
-                    <ul class="pcoded-submenu">
-                        <li class="">
-                            <a href="javascript:void(0)" class="waves-effect waves-dark">
-                                <span class="pcoded-mtext">User list</span>
-                            </a>
-                        </li>
-                        <li class=" ">
-                            <a href="javascript:void(0)" class="waves-effect waves-dark">
-                                <span class="pcoded-mtext">Create User</span>
-                            </a>
-
-                        </li>
-
-                    </ul>
-                </li>
+                
 
 
                 <li class="pcoded-hasmenu">
