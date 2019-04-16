@@ -77,7 +77,7 @@
     @include('layouts.message.notification')
     @include('layouts.message.delete-popup')
     @yield('footer-src')
-
+    
    
     
 </body>

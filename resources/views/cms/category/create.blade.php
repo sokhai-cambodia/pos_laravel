@@ -27,7 +27,7 @@
             <div class="form-group row">
                 <label class="col-sm-2 col-form-label">Photo</label>
                 <div class="col-sm-10">
-                    <input type="file" name="photo" class="form-control">
+                    <input type="file" name="photo" class="form-control dropify">
                 </div>
             </div>
             <button type="submit" class="btn btn-success waves-effect waves-light pull-right">Save</button>

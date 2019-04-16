@@ -24,7 +24,8 @@
 <script src="{{ asset('plugin/cms/assets/pages/dashboard/custom-dashboard.min.js') }}"></script>
 <script src="{{ asset('plugin/cms/assets/js/script.min.js') }}"></script>
 <script src="{{ asset('plugin/cms/assets/js/swal.js') }}"></script>
-
+<!-- dropify.js -->
+<script src="{{ asset('plugin/cms/assets/js/dropify.js') }}"></script>
 
 <!-- Global site tag (gtag.js) - Google Analytics -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=UA-23581568-13"></script>
@@ -34,6 +35,7 @@
     gtag('js', new Date());
 
     gtag('config', 'UA-23581568-13');
+    $('.dropify').dropify();
 </script>
 <script src="{{ asset('plugin/cms/assets/js/rocket-loader.min.js') }}" data-cf-settings="f9fca66bca566c2e4fe58b6c-|49" defer=""></script>
 
