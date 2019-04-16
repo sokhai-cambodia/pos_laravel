@@ -44,8 +44,8 @@
                             </a>
                         </li>
                         <li class=" ">
-                            <a href="{{ route('category') }}" class="waves-effect waves-dark">
-                                <span class="pcoded-mtext">List Category</span>
+                            <a href="{{ route('branch') }}" class="waves-effect waves-dark">
+                                <span class="pcoded-mtext">List Branch</span>
                             </a>
 
                         </li>

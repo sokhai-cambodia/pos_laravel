@@ -23,6 +23,7 @@
 <script src="{{ asset('plugin/cms/assets/js/vertical/vertical-layout.min.js') }}"></script>
 <script src="{{ asset('plugin/cms/assets/pages/dashboard/custom-dashboard.min.js') }}"></script>
 <script src="{{ asset('plugin/cms/assets/js/script.min.js') }}"></script>
+<script src="{{ asset('plugin/cms/assets/js/swal.js') }}"></script>
 
 
 <!-- Global site tag (gtag.js) - Google Analytics -->
