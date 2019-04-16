@@ -1,8 +1,4 @@
-@php 
-    $title = 'Edit Branch';
-@endphp
-
-@extends('layouts.cms.template', ['title' => $title])
+@extends('layouts.cms.template', compact('title','icon'))
 
 @section('content')
  <!-- Basic Form Inputs card start -->

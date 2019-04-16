@@ -50,6 +50,48 @@
                         </li>
                     </ul>
                 </li>
+
+                 {{-- Unit --}}
+                 <li class="pcoded-hasmenu">
+                    <a href="javascript:void(0)" class="waves-effect waves-dark">
+                        <span class="pcoded-micon"><i class="feather icon-sidebar"></i></span>
+                        <span class="pcoded-mtext">Unit</span>
+                        {{-- <span class="pcoded-badge label label-warning">NEW</span> --}}
+                    </a>
+                    <ul class="pcoded-submenu">
+                        <li class="">
+                            <a href="{{ route('unit.create') }}" class="waves-effect waves-dark">
+                                <span class="pcoded-mtext">Add Unit</span>
+                            </a>
+                        </li>
+                        <li class=" ">
+                            <a href="{{ route('unit') }}" class="waves-effect waves-dark">
+                                <span class="pcoded-mtext">List Branch</span>
+                            </a>
+                        </li>
+                    </ul>
+                </li>
+
+                {{-- Category --}}
+                <li class="pcoded-hasmenu">
+                    <a href="javascript:void(0)" class="waves-effect waves-dark">
+                        <span class="pcoded-micon"><i class="feather icon-sidebar"></i></span>
+                        <span class="pcoded-mtext">Category</span>
+                        {{-- <span class="pcoded-badge label label-warning">NEW</span> --}}
+                    </a>
+                    <ul class="pcoded-submenu">
+                        <li class="">
+                            <a href="{{ route('category.create') }}" class="waves-effect waves-dark">
+                                <span class="pcoded-mtext">Add Category</span>
+                            </a>
+                        </li>
+                        <li class=" ">
+                            <a href="{{ route('category') }}" class="waves-effect waves-dark">
+                                <span class="pcoded-mtext">List Branch</span>
+                            </a>
+                        </li>
+                    </ul>
+                </li>
                 
                 <li class="pcoded-hasmenu">
                     <a href="javascript:void(0)" class="waves-effect waves-dark">

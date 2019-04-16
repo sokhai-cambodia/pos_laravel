@@ -8,7 +8,7 @@
         <span>Add class of <code>.form-control</code> with <code>&lt;input&gt;</code> tag</span>
     </div>
     <div class="card-block">
-        <form action="{{ route('branch.store') }}" method="POST">
+        <form action="{{ route('unit.store') }}" method="POST">
             @csrf
             <div class="form-group row">
                 <label class="col-sm-2 col-form-label">Name</label>
@@ -22,13 +22,6 @@
                 <div class="col-sm-10">
                     <textarea rows="5" cols="5" name="description" class="form-control"
                         placeholder="Enter Description"></textarea>
-                </div>
-            </div>
-            <div class="form-group row">
-                <label class="col-sm-2 col-form-label">Address</label>
-                <div class="col-sm-10">
-                    <textarea rows="5" cols="5" name="address" class="form-control"
-                        placeholder="Enter Address"></textarea>
                 </div>
             </div>
             <button type="submit" class="btn btn-success waves-effect waves-light pull-right">Save</button>

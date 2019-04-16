@@ -13,12 +13,17 @@ use FileHelper;
 
 
 class CategoryController extends Controller
-{
-    private $PATH = 'assets/uploads/categories';
-    
+{   
+    private $icon = 'icon-layers';
+
+
     public function index()
     {
-        return view('cms.category.index');
+        $data = [
+            'title' => 'List Category',
+            'icon' => $this->icon
+        ];
+        return view('cms.category.index')->with($data);
     }
 
     public function getCategoryLists()
@@ -28,7 +33,11 @@ class CategoryController extends Controller
 
     public function create()
     {
-        return view('cms.category.create');
+        $data = [
+            'title' => 'Create New Category',
+            'icon' => $this->icon
+        ];
+        return view('cms.category.create')->with($data);
     }
 
     public function store(Request $request)
@@ -42,7 +51,7 @@ class CategoryController extends Controller
         {   
             $photo = null;
             if($request->hasFile('photo')) {
-                $photo = FileHelper::upload($this->PATH, $request->photo);
+                $photo = FileHelper::upload($request->photo);
             }
            
             Category::create([
@@ -68,6 +77,10 @@ class CategoryController extends Controller
 
     public function edit($id)
     {
+        $data = [
+            'title' => 'Edit Category',
+            'icon' => $this->icon
+        ];
         $data['category'] = Category::findOrFail($id);
         return view('cms.category.edit')->with($data);
     }
@@ -86,7 +99,7 @@ class CategoryController extends Controller
         {
             $category = Category::findOrFail($id);
             if($request->hasFile('photo')) {
-                $category->photo = FileHelper::updateImage($this->PATH, $request->photo, $category->photo);
+                $category->photo = FileHelper::updateImage($request->photo, $category->photo, '');
             }
             $category->name = $request->name;
             $category->description = $request->description;

@@ -15,7 +15,7 @@
                     <tr>
                         <th>#</th>
                         <th>Name</th>
-                        <th>Address</th>
+                        <th>Photo</th>
                         <th>Description</th>
                         <th>Actions</th>
                     </tr>
@@ -36,11 +36,11 @@
                 serverSide: true,
                 processing: true,
                 responsive: true,
-                ajax: "{{ route('branch.lists') }}",
+                ajax: "{{ route('category.lists') }}",
                 columns: [
                     { name: 'id' },
                     { name: 'name' },
-                    { name: 'address', orderable: false, searchable: false },
+                    { name: 'thumbnail', orderable: false, searchable: false },
                     { name: 'description', orderable: false, searchable: false },
                     { name: 'action', orderable: false, searchable: false },
                 ],

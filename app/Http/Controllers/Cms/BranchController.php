@@ -13,10 +13,15 @@ use UtilHelper;
 
 class BranchController extends Controller
 {
+    private $icon = 'icon-home';
     
     public function index()
     {
-        return view('cms.branch.index');
+        $data = [
+            'title' => 'List Branch',
+            'icon' => $this->icon
+        ];
+        return view('cms.branch.index')->with($data);
     }
 
     public function getBranchLists()
@@ -26,7 +31,11 @@ class BranchController extends Controller
 
     public function create()
     {
-        return view('cms.branch.create');
+        $data = [
+            'title' => 'Create New Branch',
+            'icon' => $this->icon
+        ];
+        return view('cms.branch.create')->with($data);
     }
 
     public function store(Request $request)
@@ -55,6 +64,10 @@ class BranchController extends Controller
 
     public function edit($id)
     {
+        $data = [
+            'title' => 'Edit Branch',
+            'icon' => $this->icon
+        ];
         $data['branch'] = Branch::findOrFail($id);
         return view('cms.branch.edit')->with($data);
     }

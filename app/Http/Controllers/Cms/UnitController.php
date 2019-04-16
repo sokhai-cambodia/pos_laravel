@@ -13,10 +13,15 @@ use UtilHelper;
 
 class UnitController extends Controller
 {
+    private $icon = 'icon-home';
     
     public function index()
     {
-        return view('cms.unit.index');
+        $data = [
+            'title' => 'List Unit',
+            'icon' => $this->icon
+        ];
+        return view('cms.unit.index')->with($data);
     }
 
     public function getUnitLists()
@@ -26,7 +31,11 @@ class UnitController extends Controller
 
     public function create()
     {
-        return view('cms.unit.create');
+        $data = [
+            'title' => 'Create New Unit',
+            'icon' => $this->icon
+        ];
+        return view('cms.unit.create')->with($data);
     }
 
     public function store(Request $request)
@@ -59,6 +68,10 @@ class UnitController extends Controller
 
     public function edit($id)
     {
+        $data = [
+            'title' => 'Edit Unit',
+            'icon' => $this->icon
+        ];
         $data['unit'] = Unit::findOrFail($id);
         return view('cms.unit.edit')->with($data);
     }

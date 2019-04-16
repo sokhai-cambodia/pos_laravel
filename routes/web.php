@@ -39,8 +39,11 @@ Route::group(['prefix' => 'cms', 'middleware' => ['auth']], function(){
 
     // BRANCH
     require_once __DIR__.'/cms/branch.php';
-    
-    // CATEGORY
+
+    // BRANCH
     require_once __DIR__.'/cms/category.php';
+
+    // UNIT
+    require_once __DIR__.'/cms/unit.php';
 
 });

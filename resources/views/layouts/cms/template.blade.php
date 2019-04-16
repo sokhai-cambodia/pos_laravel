@@ -1,3 +1,8 @@
+@php 
+    $icon = isset($icon) ? 'feather '.$icon.' bg-c-blue' : 'feather icon-clipboard bg-c-blue';
+    $title = isset($title) ? $title : 'Empty Name';
+@endphp
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -28,11 +33,8 @@
                             <div class="row align-items-end">
                                 <div class="col-lg-8">
                                     <div class="page-header-title">
-                                        <i class="feather icon-clipboard bg-c-blue"></i>
+                                        <i class="{{ $icon }}"></i>
                                         <div class="d-inline">
-                                        @php 
-                                            $title = isset($title) ? $title : 'Empty Name';
-                                        @endphp
                                         <h5>{{ $title }}</h5>
                                             {{-- <span>lorem ipsum dolor sit amet, consectetur adipisicing elit</span> --}}
                                         </div>

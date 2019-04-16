@@ -4,6 +4,7 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use FileHelper;
 
 class Category extends Model
 {
@@ -12,9 +13,6 @@ class Category extends Model
     protected $table = 'categories';
 
     protected $guarded = [];
-
-    private $PATH = 'assets/uploads/categories';
-    // User
    
     public function userCreatedBy()
     {
@@ -41,7 +39,7 @@ class Category extends Model
 
     public function getPhoto()
     {
-        return asset($this->PATH.'/'.$this->photo);
+        return asset(FileHelper::getDefaultPathName().'/'.$this->photo);
     }
 
     public static function laratablesAdditionalColumns()
