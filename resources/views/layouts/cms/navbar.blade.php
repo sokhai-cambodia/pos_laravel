@@ -51,8 +51,8 @@
                     </ul>
                 </li>
 
-                 {{-- Unit --}}
-                 <li class="pcoded-hasmenu">
+                {{-- Unit --}}
+                <li class="pcoded-hasmenu">
                     <a href="javascript:void(0)" class="waves-effect waves-dark">
                         <span class="pcoded-micon"><i class="feather icon-sidebar"></i></span>
                         <span class="pcoded-mtext">Unit</span>
@@ -66,7 +66,28 @@
                         </li>
                         <li class=" ">
                             <a href="{{ route('unit') }}" class="waves-effect waves-dark">
-                                <span class="pcoded-mtext">List Branch</span>
+                                <span class="pcoded-mtext">List Unit</span>
+                            </a>
+                        </li>
+                    </ul>
+                </li>
+
+                {{-- Role --}}
+                <li class="pcoded-hasmenu">
+                    <a href="javascript:void(0)" class="waves-effect waves-dark">
+                        <span class="pcoded-micon"><i class="feather icon-sidebar"></i></span>
+                        <span class="pcoded-mtext">Role</span>
+                        {{-- <span class="pcoded-badge label label-warning">NEW</span> --}}
+                    </a>
+                    <ul class="pcoded-submenu">
+                        <li class="">
+                            <a href="{{ route('role.create') }}" class="waves-effect waves-dark">
+                                <span class="pcoded-mtext">Add Role</span>
+                            </a>
+                        </li>
+                        <li class=" ">
+                            <a href="{{ route('role') }}" class="waves-effect waves-dark">
+                                <span class="pcoded-mtext">List Role</span>
                             </a>
                         </li>
                     </ul>
@@ -87,7 +108,7 @@
                         </li>
                         <li class=" ">
                             <a href="{{ route('category') }}" class="waves-effect waves-dark">
-                                <span class="pcoded-mtext">List Branch</span>
+                                <span class="pcoded-mtext">List Category</span>
                             </a>
                         </li>
                     </ul>

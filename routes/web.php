@@ -46,4 +46,7 @@ Route::group(['prefix' => 'cms', 'middleware' => ['auth']], function(){
     // UNIT
     require_once __DIR__.'/cms/unit.php';
 
+    // ROLE
+    require_once __DIR__.'/cms/role.php';
+
 });

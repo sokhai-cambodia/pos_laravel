@@ -3,24 +3,25 @@
 namespace App\Http\Controllers\Cms;
 
 use App\Http\Controllers\Controller;
+use Illuminate\Validation\Rule;
 use Illuminate\Http\Request;
 use Freshbitsweb\Laratables\Laratables;
-use DB;
+use App\Role;
 use Auth;
 use UtilHelper;
-use App\Role;   
-use App\Permission;
+
 
 class RoleController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+    private $icon = 'icon-home';
+    
     public function index()
     {
-        return view('cms.role.index');
+        $data = [
+            'title' => 'List Role',
+            'icon' => $this->icon
+        ];
+        return view('cms.role.index')->with($data);
     }
 
     public function getRoleLists()
@@ -28,41 +29,29 @@ class RoleController extends Controller
         return Laratables::recordsOf(Role::class);
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function create()
     {
-        $data['permissions'] = Permission::whereNull('permission_id')->get();
+        $data = [
+            'title' => 'Create New Role',
+            'icon' => $this->icon
+        ];
         return view('cms.role.create')->with($data);
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
     public function store(Request $request)
     {
         $request->validate([
             'name' => 'required|unique:roles|max:255',
-            'permissions' => 'required'
         ]);
-        
+
         try 
         {
-            DB::transaction(function () use($request) {
-                $role = Role::create([
-                    'name' => $request->name,
-                    'description' => $request->description,
-                    'created_by' => Auth::id(), 
-                ]);
-                $role->permissions()->attach($request->permissions);
-            });
-            UtilHelper::setSuccessNotification('created_success');
+            Role::create([
+                'name' => $request->name,
+                'description' => $request->description,
+                'created_by' => Auth::id(),
+            ]);
+            UtilHelper::setSuccessNotification('Created Success...!', true);
             return back();
         } 
         catch (\Exception $e) 
@@ -70,51 +59,67 @@ class RoleController extends Controller
             UtilHelper::errorNotification($e);
             return back()->withInput();
         }
-        
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Role  $role
-     * @return \Illuminate\Http\Response
-     */
     public function show(Role $role)
     {
         //
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Role  $role
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(Role $role)
+    public function edit($id)
     {
-        //
+        $data = [
+            'title' => 'Edit Role',
+            'icon' => $this->icon
+        ];
+        $data['role'] = Role::findOrFail($id);
+        return view('cms.role.edit')->with($data);
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Role  $role
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, Role $role)
+    public function update(Request $request, $id)
     {
-        //
+        $request->validate([
+            'name' =>  [
+                'required',
+                'max:255',
+                Rule::unique('roles')->ignore($id),
+            ],
+        ]);
+
+        try 
+        {
+            $role = Role::findOrFail($id);
+            $role->name = $request->name;
+            $role->description = $request->description;
+            $role->updated_by = Auth::id();
+            $role->save();
+
+            UtilHelper::setSuccessNotification('updated_success');
+            return redirect()->route('role');
+        } 
+        catch (\Exception $e) 
+        {
+            UtilHelper::errorNotification($e);
+            return back()->withInput();
+        }
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\Role  $role
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy(Role $role)
+    public function destroy($id)
     {
-        //
+        $role = Role::findOrFail($id);
+        try 
+        {
+            $role->deleted_at = date("Y-m-d H:i:s");
+            $role->deleted_by = Auth::id();
+            $role->save();
+
+            UtilHelper::setDeletedPopUp('deleted_success');
+            return redirect()->route('role');
+        } 
+        catch (\Exception $e) 
+        {
+            UtilHelper::errorNotification($e);
+            return redirect()->route('role');
+        }
     }
 }
