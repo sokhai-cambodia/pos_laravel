@@ -47,37 +47,10 @@
                             <a href="{{ route('branch') }}" class="waves-effect waves-dark">
                                 <span class="pcoded-mtext">List Branch</span>
                             </a>
-
                         </li>
-
                     </ul>
                 </li>
                 
-                {{-- category --}}
-                <li class="pcoded-hasmenu">
-                    <a href="javascript:void(0)" class="waves-effect waves-dark">
-                        <span class="pcoded-micon"><i class="feather icon-sidebar"></i></span>
-                        <span class="pcoded-mtext">Category</span>
-                        {{-- <span class="pcoded-badge label label-warning">NEW</span> --}}
-                    </a>
-                    <ul class="pcoded-submenu">
-                        <li class="">
-                            <a href="{{ route('category.create') }}" class="waves-effect waves-dark">
-                                <span class="pcoded-mtext">Add Category</span>
-                            </a>
-                        </li>
-                        <li class=" ">
-                            <a href="{{ route('category') }}" class="waves-effect waves-dark">
-                                <span class="pcoded-mtext">List Category</span>
-                            </a>
-
-                        </li>
-
-                    </ul>
-                </li>
-                
-
-
                 <li class="pcoded-hasmenu">
                     <a href="javascript:void(0)" class="waves-effect waves-dark">
                         <span class="pcoded-micon">
