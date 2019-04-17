@@ -100,21 +100,34 @@ class UserController extends Controller
 
     public function edit($id)
     {
+        $user = User::findOrFail($id);
+        $roles = Role::all();
         $data = [
             'title' => 'Edit User',
-            'icon' => $this->icon
+            'icon' => $this->icon,
+            'gender' => $this->gender,
+            'roles'  => $roles,
+            'user'  => $user
         ];
-        $data['user'] = User::findOrFail($id);
+        
         return view('cms.user.edit')->with($data);
     }
 
     public function update(Request $request, $id)
     {
         $request->validate([
-            'name' =>  [
+            'last_name' => 'required|max:255',
+            'first_name' => 'required|max:255',
+            'gender' => [
+                'required',
+                Rule::in(['male', 'female']),
+            ],
+            'dob' => 'required|date',
+            'role_id' => 'required',
+            'username' =>  [
                 'required',
                 'max:255',
-                Rule::unique('categories')->ignore($id),
+                Rule::unique('users')->ignore($id),
             ],
         ]);
 
@@ -124,8 +137,17 @@ class UserController extends Controller
             if($request->hasFile('photo')) {
                 $user->photo = FileHelper::updateImage($request->photo, $user->photo, '');
             }
-            $user->name = $request->name;
-            $user->description = $request->description;
+            
+            $is_active = isset($request->is_active) ? 1 : 0;
+
+            $user->last_name = $request->last_name;
+            $user->first_name = $request->first_name;
+            $user->gender = $request->gender;
+            $user->dob = $request->dob;
+            $user->phone = $request->phone;
+            $user->username = $request->username;
+            $user->role_id = $request->role_id;
+            $user->is_active = $is_active;
             $user->updated_by = Auth::id();
             $user->save();
 

@@ -12,6 +12,10 @@ Class UtilHelper
         return  $value == $compareValue ? 'checked' : '';
     }
 
+    public static function hasValue($value, $defaultValue = '') {
+        return  ($value != '' && $value != null) ? $value : $defaultValue;
+    }
+
 }
 
 ?>

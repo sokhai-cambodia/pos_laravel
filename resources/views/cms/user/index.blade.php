@@ -3,6 +3,27 @@
 @include('layouts.cms.data-table-header')
 
 @section('content')
+ <!-- animation modal Dialogs start -->
+<div class="modal fade" id="view-info" tabindex="-1" role="dialog">
+    <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title">View User Information</h4>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <h5>Body will display here</h5>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default waves-effect " data-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+<!--animation modal  Dialogs ends -->
+
 <!-- Default ordering table start -->
 <div class="card">
     <div class="card-header">
@@ -32,6 +53,7 @@
 
 @section('footer-src')
     @include('layouts.cms.data-table-footer')
+
     <script>
         $(document).ready(function() {
             $('#listing').DataTable({
@@ -84,6 +106,12 @@
                 })
             });
 
+            // open modal
+            $('body').on('click', '.view-info', function() {
+                $('#view-info').modal('show');
+            });
+
         });
     </script>
 @endsection
+
