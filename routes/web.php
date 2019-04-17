@@ -27,6 +27,9 @@ Route::get('/logout', 'LoginController@logout')->name('logout');
 
 Route::get('/home', 'HomeController@index')->name('home');
 
+// AJAX
+require_once __DIR__.'/cms/ajax.php';
+
 Route::group(['prefix' => 'cms', 'middleware' => ['auth']], function(){
     
     Route::get('/cms', function () {

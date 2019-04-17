@@ -13,61 +13,8 @@
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
-            <div class="modal-body">
+            <div class="modal-body" id="model-body">
                 
-                <div class="card-sub">
-                    <img class="card-img-top" src="http://localhost:8000/assets/uploads/1555473507user.png" alt="Card image cap" style="width: 50%; margin: 0 auto;">
-                    <div class="card-block">
-                        <h3 class="card-title text-center">User Name</h3>
-                        <h6 class="card-title text-center">User Role</h6>
-                        <div class="col-sm-12">
-                                <h4 class="sub-title">User Detail</h4>
-                                <div class="row">
-                                    <div class="col-sm-6">
-                                        <div class="input-group input-group-warning">
-                                            <span class="input-group-prepend"><label class="input-group-text"><i class="icofont icofont-queen"></i></label></span>
-                                            <input type="text" class="form-control" placeholder="input-group-warning">
-                                        </div>
-                                    </div>
-                                    <div class="col-sm-6">
-                                        <div class="input-group input-group-default">
-                                            <span class="input-group-prepend"><label class="input-group-text"><i class="icofont icofont-shield"></i></label></span>
-                                            <input type="text" class="form-control" placeholder="input-group-default">
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="row">
-                                    <div class="col-sm-6">
-                                        <div class="input-group input-group-danger">
-                                            <span class="input-group-prepend"><label class="input-group-text"><i class="icofont icofont-volume-down"></i></label></span>
-                                            <input type="text" class="form-control" placeholder="input-group-danger">
-                                        </div>
-                                    </div>
-                                    <div class="col-sm-6">
-                                        <div class="input-group input-group-success">
-                                            <span class="input-group-prepend"><label class="input-group-text"><i class="icofont icofont-volume-off"></i></label></span>
-                                            <input type="text" class="form-control" placeholder="input-group-success">
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="row">
-                                    <div class="col-sm-6">
-                                        <div class="input-group input-group-inverse">
-                                            <span class="input-group-prepend"><label class="input-group-text"><i class="icofont icofont-wifi"></i></label></span>
-                                            <input type="text" class="form-control" placeholder="input-group-inverse">
-                                        </div>
-                                    </div>
-                                    <div class="col-sm-6">
-                                        <div class="input-group input-group-info">
-                                            <span class="input-group-prepend"><label class="input-group-text"><i class="icofont icofont-signal"></i></label></span>
-                                            <input type="text" class="form-control" placeholder="input-group-info">
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                       
-                    </div>
-                </div>
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-default waves-effect " data-dismiss="modal">Close</button>
@@ -160,9 +107,25 @@
             });
 
             // open modal
-            $('#view-info').modal('show');
+            //$('#view-info').modal('show');
             $('body').on('click', '.view-info', function() {
-                $('#view-info').modal('show');
+                var _token = "{{ csrf_token() }}";
+                var user_id = $(this).attr('data-id');
+                $.ajax({
+                    type:'POST',
+                    url:"{{ route('ajax.find-user-info') }}",
+                    data: {
+                        _token: _token,
+                        user_id: user_id
+                    },
+                    success:function(data) {
+                        if(data.status == 1) {
+                            $('#model-body').html(data.data);
+                            $('#view-info').modal('show');
+                        }
+                    }
+                });  
+                
             });
 
         });

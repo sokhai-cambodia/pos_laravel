@@ -10,6 +10,8 @@
             data-url="{{ route('user.delete', ['id' => $user->id ]) }}">Delete
         </a>
         <div class="dropdown-divider"></div>
-        <a class="dropdown-item waves-light waves-effect view-info" href="javascript:void(0)">View Info</a>
+        <a class="dropdown-item waves-light waves-effect view-info" 
+            href="javascript:void(0)"
+            data-id="{{ $user->id }}">View Info</a>
     </div>
 </div>

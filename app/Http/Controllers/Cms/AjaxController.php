@@ -8,6 +8,7 @@ use App\Role;
 use App\Permission;
 use App\Product;
 use App\Unit;
+use App\User;
 
 class AjaxController extends Controller
 {
@@ -101,6 +102,22 @@ class AjaxController extends Controller
         ]);
 
     }
+
+
+    public function findUserInfo(Request $request) {
+        $user = User::find($request->user_id);
+        if($user == null) {
+            return response()->json([ 'status' => 0 ]);
+        }
+
+        $data = view('cms.ajax.user-info')->with(['user' => $user])->render();
+        return response()->json([
+            'status' => 1,
+            'data' => $data,
+        ]);
+
+    }
+
     
     
 }
