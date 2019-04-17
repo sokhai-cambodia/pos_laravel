@@ -10,7 +10,7 @@ use Auth;
 use DB;
 
 // Use Helper
-use UtilHelper;
+use NotificationHelper;
 use FileHelper;
 
 // Use Model
@@ -102,12 +102,12 @@ class ProductController extends Controller
                     ProductIngredient::insert($productIngredients);
                 }
             });
-            UtilHelper::setSuccessNotification('created_success');
+            NotificationHelper::setSuccessNotification('created_success');
             return back();
         } 
         catch (\Exception $e) 
         {
-            UtilHelper::errorNotification($e);
+            NotificationHelper::errorNotification($e);
             return back()->withInput();
         }
     }
@@ -190,12 +190,12 @@ class ProductController extends Controller
                     ProductIngredient::insert($productIngredients);
                 }
             });
-            UtilHelper::setSuccessNotification('updated_success');
+            NotificationHelper::setSuccessNotification('updated_success');
             return redirect()->route('product');
         } 
         catch (\Exception $e) 
         {
-            UtilHelper::errorNotification($e);
+            NotificationHelper::errorNotification($e);
             return back()->withInput();
         }
         
@@ -210,12 +210,12 @@ class ProductController extends Controller
             $product->deleted_by = Auth::id();
             $product->save();
 
-            UtilHelper::setDeletedPopUp('deleted_success');
+            NotificationHelper::setDeletedPopUp('deleted_success');
             return redirect()->route('product');
         } 
         catch (\Exception $e) 
         {
-            UtilHelper::errorNotification($e);
+            NotificationHelper::errorNotification($e);
             return redirect()->route('product');
         }
     }

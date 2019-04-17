@@ -8,7 +8,7 @@ use Illuminate\Http\Request;
 use Freshbitsweb\Laratables\Laratables;
 use App\Branch;
 use Auth;
-use UtilHelper;
+use NotificationHelper;
 
 
 class BranchController extends Controller
@@ -52,12 +52,12 @@ class BranchController extends Controller
                 'description' => $request->description,
                 'created_by' => Auth::id(),
             ]);
-            UtilHelper::setSuccessNotification('created_success');
+            NotificationHelper::setSuccessNotification('created_success');
             return back();
         } 
         catch (\Exception $e) 
         {
-            UtilHelper::errorNotification($e);
+            NotificationHelper::errorNotification($e);
             return back()->withInput();
         }
     }
@@ -91,12 +91,12 @@ class BranchController extends Controller
             $branch->updated_by = Auth::id();
             $branch->save();
 
-            UtilHelper::setSuccessNotification('updated_success');
+            NotificationHelper::setSuccessNotification('updated_success');
             return redirect()->route('branch');
         } 
         catch (\Exception $e) 
         {
-            UtilHelper::errorNotification($e);
+            NotificationHelper::errorNotification($e);
             return back()->withInput();
         }
     }
@@ -110,12 +110,12 @@ class BranchController extends Controller
             $branch->deleted_by = Auth::id();
             $branch->save();
 
-            UtilHelper::setDeletedPopUp('deleted_success');
+            NotificationHelper::setDeletedPopUp('deleted_success');
             return redirect()->route('branch');
         } 
         catch (\Exception $e) 
         {
-            UtilHelper::errorNotification($e);
+            NotificationHelper::errorNotification($e);
             return redirect()->route('branch');
         }
     }

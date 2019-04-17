@@ -8,7 +8,7 @@ use Illuminate\Http\Request;
 use Freshbitsweb\Laratables\Laratables;
 use App\Category;
 use Auth;
-use UtilHelper;
+use NotificationHelper;
 use FileHelper;
 
 
@@ -60,12 +60,12 @@ class CategoryController extends Controller
                 'photo' => $photo,
                 'created_by' => Auth::id(),
             ]);
-            UtilHelper::setSuccessNotification('created_success');
+            NotificationHelper::setSuccessNotification('created_success');
             return back();
         } 
         catch (\Exception $e) 
         {
-            UtilHelper::errorNotification($e);
+            NotificationHelper::errorNotification($e);
             return back()->withInput();
         }
     }
@@ -106,12 +106,12 @@ class CategoryController extends Controller
             $category->updated_by = Auth::id();
             $category->save();
 
-            UtilHelper::setSuccessNotification('updated_success');
+            NotificationHelper::setSuccessNotification('updated_success');
             return redirect()->route('category');
         } 
         catch (\Exception $e) 
         {
-            UtilHelper::errorNotification($e);
+            NotificationHelper::errorNotification($e);
             return back()->withInput();
         }
     }
@@ -125,12 +125,12 @@ class CategoryController extends Controller
             $category->deleted_by = Auth::id();
             $category->save();
 
-            UtilHelper::setDeletedPopUp('deleted_success');
+            NotificationHelper::setDeletedPopUp('deleted_success');
             return redirect()->route('category');
         } 
         catch (\Exception $e) 
         {
-            UtilHelper::errorNotification($e);
+            NotificationHelper::errorNotification($e);
             return redirect()->route('category');
         }
     }

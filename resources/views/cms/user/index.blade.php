@@ -14,9 +14,11 @@
                 <thead>
                     <tr>
                         <th>#</th>
-                        <th>Name</th>
                         <th>Photo</th>
-                        <th>Description</th>
+                        <th>Name</th>
+                        <th>Username</th>
+                        <th>Gender</th>
+                        <th>DOB</th>
                         <th>Actions</th>
                     </tr>
                 </thead>
@@ -36,12 +38,14 @@
                 serverSide: true,
                 processing: true,
                 responsive: true,
-                ajax: "{{ route('category.lists') }}",
+                ajax: "{{ route('user.lists') }}",
                 columns: [
                     { name: 'id' },
-                    { name: 'name' },
                     { name: 'thumbnail', orderable: false, searchable: false },
-                    { name: 'description', orderable: false, searchable: false },
+                    { name: 'name' },
+                    { name: 'username' },
+                    { name: 'gender', searchable: false},
+                    { name: 'dob', orderable: false, searchable: false },
                     { name: 'action', orderable: false, searchable: false },
                 ],
             });

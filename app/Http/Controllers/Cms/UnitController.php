@@ -8,7 +8,7 @@ use Illuminate\Http\Request;
 use Freshbitsweb\Laratables\Laratables;
 use App\Unit;
 use Auth;
-use UtilHelper;
+use NotificationHelper;
 
 
 class UnitController extends Controller
@@ -51,12 +51,12 @@ class UnitController extends Controller
                 'description' => $request->description,
                 'created_by' => Auth::id(),
             ]);
-            UtilHelper::setSuccessNotification('Created Success...!', true);
+            NotificationHelper::setSuccessNotification('Created Success...!', true);
             return back();
         } 
         catch (\Exception $e) 
         {
-            UtilHelper::errorNotification($e);
+            NotificationHelper::errorNotification($e);
             return back()->withInput();
         }
     }
@@ -94,12 +94,12 @@ class UnitController extends Controller
             $unit->updated_by = Auth::id();
             $unit->save();
 
-            UtilHelper::setSuccessNotification('updated_success');
+            NotificationHelper::setSuccessNotification('updated_success');
             return redirect()->route('unit');
         } 
         catch (\Exception $e) 
         {
-            UtilHelper::errorNotification($e);
+            NotificationHelper::errorNotification($e);
             return back()->withInput();
         }
     }
@@ -113,12 +113,12 @@ class UnitController extends Controller
             $unit->deleted_by = Auth::id();
             $unit->save();
 
-            UtilHelper::setDeletedPopUp('deleted_success');
+            NotificationHelper::setDeletedPopUp('deleted_success');
             return redirect()->route('unit');
         } 
         catch (\Exception $e) 
         {
-            UtilHelper::errorNotification($e);
+            NotificationHelper::errorNotification($e);
             return redirect()->route('unit');
         }
     }

@@ -8,7 +8,7 @@ use Illuminate\Http\Request;
 use Freshbitsweb\Laratables\Laratables;
 use App\Role;
 use Auth;
-use UtilHelper;
+use NotificationHelper;
 
 
 class RoleController extends Controller
@@ -51,12 +51,12 @@ class RoleController extends Controller
                 'description' => $request->description,
                 'created_by' => Auth::id(),
             ]);
-            UtilHelper::setSuccessNotification('Created Success...!', true);
+            NotificationHelper::setSuccessNotification('Created Success...!', true);
             return back();
         } 
         catch (\Exception $e) 
         {
-            UtilHelper::errorNotification($e);
+            NotificationHelper::errorNotification($e);
             return back()->withInput();
         }
     }
@@ -94,12 +94,12 @@ class RoleController extends Controller
             $role->updated_by = Auth::id();
             $role->save();
 
-            UtilHelper::setSuccessNotification('updated_success');
+            NotificationHelper::setSuccessNotification('updated_success');
             return redirect()->route('role');
         } 
         catch (\Exception $e) 
         {
-            UtilHelper::errorNotification($e);
+            NotificationHelper::errorNotification($e);
             return back()->withInput();
         }
     }
@@ -113,12 +113,12 @@ class RoleController extends Controller
             $role->deleted_by = Auth::id();
             $role->save();
 
-            UtilHelper::setDeletedPopUp('deleted_success');
+            NotificationHelper::setDeletedPopUp('deleted_success');
             return redirect()->route('role');
         } 
         catch (\Exception $e) 
         {
-            UtilHelper::errorNotification($e);
+            NotificationHelper::errorNotification($e);
             return redirect()->route('role');
         }
     }

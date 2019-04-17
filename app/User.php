@@ -6,6 +6,8 @@ use Illuminate\Notifications\Notifiable;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use DB;
+use FileHelper;
 
 class User extends Authenticatable
 {
@@ -204,12 +206,12 @@ class User extends Authenticatable
     // Data Table Customize Method
     public function getPhoto()
     {
-        return asset($this->PATH.'/'.$this->photo);
+        return asset(FileHelper::getDefaultPathName().'/'.$this->photo);
     }
 
     public static function laratablesAdditionalColumns()
     {
-        return ['photo'];
+        return ['photo', 'first_name', 'last_name'];
     }
 
     public static function laratablesCustomAction($user)
@@ -220,6 +222,21 @@ class User extends Authenticatable
     public static function laratablesCustomThumbnail($user)
     {
         return view('cms.user.data-table.photo', compact('user'))->render();
+    }
+
+    public static function laratablesCustomName($user)
+    {
+        return $user->last_name.' '.$user->first_name;
+    }
+
+    public static function laratablesSearchName($query, $searchValue)
+    {
+        return $query->orWhere(DB::raw("CONCAT(`last_name`, ' ', `first_name`)"), 'like', '%'. $searchValue. '%');
+    }
+
+    public static function laratablesOrderRawName($direction)
+    {
+        return 'last_name '.$direction.', first_name '.$direction;
     }
 
 }

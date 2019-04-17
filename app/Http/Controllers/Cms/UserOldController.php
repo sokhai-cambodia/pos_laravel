@@ -9,13 +9,13 @@ use App\RolePermission;
 use App\BranchUser;
 use App\Branch;
 use Auth;
-use UtilHelper;
+use NotificationHelper;
 use FileHelper;
 use Illuminate\Http\Request;
 use Freshbitsweb\Laratables\Laratables;
 use Illuminate\Support\Facades\Hash;
 
-class UserController extends Controller
+class UserOldController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -77,12 +77,12 @@ class UserController extends Controller
                 'photo' => $photo,
                 'created_by' => Auth::id(),
             ]);
-            UtilHelper::setSuccessNotification('created_success');
+            NotificationHelper::setSuccessNotification('created_success');
             return redirect()->route('user');
         } 
         catch (\Exception $e) 
         {
-            UtilHelper::errorNotification($e);
+            NotificationHelper::errorNotification($e);
             return back()->withInput();
         }
     }
@@ -136,12 +136,12 @@ class UserController extends Controller
             $user->updated_by = Auth::id();
             $user->save();
 
-            UtilHelper::setSuccessNotification('updated_success');
+            NotificationHelper::setSuccessNotification('updated_success');
             return redirect()->route('user');
         } 
         catch (\Exception $e) 
         {
-            UtilHelper::errorNotification($e);
+            NotificationHelper::errorNotification($e);
             return back()->withInput();
         }
     }
@@ -161,12 +161,12 @@ class UserController extends Controller
             $user->deleted_by = Auth::id();
             $user->save();
 
-            UtilHelper::setDeletedPopUp('deleted_success');
+            NotificationHelper::setDeletedPopUp('deleted_success');
             return redirect()->route('user');
         } 
         catch (\Exception $e) 
         {
-            UtilHelper::errorNotification($e);
+            NotificationHelper::errorNotification($e);
             return redirect()->route('user');
         }
     }
@@ -192,12 +192,12 @@ class UserController extends Controller
                 'created_by' => Auth::id(),
             ]);
 
-            UtilHelper::setSuccessNotification('added_success');
+            NotificationHelper::setSuccessNotification('added_success');
             return redirect()->route('user');
         } 
         catch (\Exception $e) 
         {
-            UtilHelper::errorNotification($e);
+            NotificationHelper::errorNotification($e);
             return redirect()->route('user');
         }
     }

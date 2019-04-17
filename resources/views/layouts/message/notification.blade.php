@@ -7,10 +7,10 @@
 @if(Session::has('message'))
     var type = "{{ Session::get('type', 'info') }}";
     var message = '{{ Session::get("message") }}';
-    var info = '{{ UtilHelper::NOTIFICATION_INFO }}';
-    var warning = '{{ UtilHelper::NOTIFICATION_WARNING }}';
-    var success = '{{ UtilHelper::NOTIFICATION_SUCCESS }}';
-    var error = '{{ UtilHelper::NOTIFICATION_ERROR }}';
+    var info = '{{ NotificationHelper::NOTIFICATION_INFO }}';
+    var warning = '{{ NotificationHelper::NOTIFICATION_WARNING }}';
+    var success = '{{ NotificationHelper::NOTIFICATION_SUCCESS }}';
+    var error = '{{ NotificationHelper::NOTIFICATION_ERROR }}';
     switch(type){
         case info:
             showToast(

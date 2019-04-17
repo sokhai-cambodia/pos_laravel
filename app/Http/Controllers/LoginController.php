@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Auth;
-use UtilHelper;
+use NotificationHelper;
 
 use App\User;
 
@@ -32,13 +32,13 @@ class LoginController extends Controller
         
         if($user === null) 
         {
-            UtilHelper::setErrorNotification('incorrect_username');
+            NotificationHelper::setErrorNotification('incorrect_username');
             return $this->unauthorized();
         }
 
         if($user->is_active != 1) 
         {
-            UtilHelper::setWarningNotification('inactive_user');
+            NotificationHelper::setWarningNotification('inactive_user');
             return $this->unauthorized();
         }
 
@@ -46,19 +46,19 @@ class LoginController extends Controller
         $hashedPassword = $user->password;
         if (!Hash::check($password, $hashedPassword)) 
         {
-            UtilHelper::setErrorNotification('incorrect_password');
+            NotificationHelper::setErrorNotification('incorrect_password');
             return $this->unauthorized();
         }
         
         Auth::login($user, true);
-        UtilHelper::setSuccessNotification('login success', true);
+        NotificationHelper::setSuccessNotification('login success', true);
         return $this->authorized();
     }
 
     public function logout()
     {
         Auth::logout();
-        UtilHelper::setSuccessNotification('logout success', true);
+        NotificationHelper::setSuccessNotification('logout success', true);
         return $this->unauthorized();
     }
 

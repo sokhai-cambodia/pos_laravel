@@ -7,7 +7,7 @@ use App\Permission;
 use Illuminate\Http\Request;
 use Freshbitsweb\Laratables\Laratables;
 use Auth;
-use UtilHelper;
+use NotificationHelper;
 
 class PermissionController extends Controller
 {
@@ -69,12 +69,12 @@ class PermissionController extends Controller
                 'route_name' => $routeName,
                 'created_by' => Auth::id(),
             ]);
-            UtilHelper::setSuccessNotification('created_success');
+            NotificationHelper::setSuccessNotification('created_success');
             return back();
         } 
         catch (\Exception $e) 
         {
-            UtilHelper::errorNotification($e);
+            NotificationHelper::errorNotification($e);
             return back()->withInput();
         }
         

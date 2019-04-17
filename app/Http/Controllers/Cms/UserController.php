@@ -5,17 +5,20 @@ namespace App\Http\Controllers\Cms;
 use App\Http\Controllers\Controller;
 use Illuminate\Validation\Rule;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Hash;
 use Freshbitsweb\Laratables\Laratables;
-use App\User;
+
 use Auth;
-use UtilHelper;
+use App\User;
+use App\Role;
+use NotificationHelper;
 use FileHelper;
 
 
 class UserController extends Controller
 {   
     private $icon = 'icon-layers';
-
+    private $gender = ['male', 'female'];
 
     public function index()
     {
@@ -23,7 +26,7 @@ class UserController extends Controller
             'title' => 'List User',
             'icon' => $this->icon
         ];
-        return view('cms.category.index')->with($data);
+        return view('cms.user.index')->with($data);
     }
 
     public function getUserLists()
@@ -33,11 +36,14 @@ class UserController extends Controller
 
     public function create()
     {
+        $roles = Role::all();   
         $data = [
             'title' => 'Create New User',
-            'icon' => $this->icon
+            'icon' => $this->icon,
+            'gender' => $this->gender,
+            'roles'  => $roles
         ];
-        return view('cms.category.create')->with($data);
+        return view('cms.user.create')->with($data);
     }
 
     public function store(Request $request)
@@ -77,17 +83,17 @@ class UserController extends Controller
                 'is_active' => $is_active,
                 'created_by' => Auth::id(),
             ]);
-            UtilHelper::setSuccessNotification('created_success');
+            NotificationHelper::setSuccessNotification('created_success');
             return back();
         } 
         catch (\Exception $e) 
         {
-            UtilHelper::errorNotification($e);
+            NotificationHelper::errorNotification($e);
             return back()->withInput();
         }
     }
 
-    public function show(User $category)
+    public function show(User $user)
     {
         //
     }
@@ -98,8 +104,8 @@ class UserController extends Controller
             'title' => 'Edit User',
             'icon' => $this->icon
         ];
-        $data['category'] = User::findOrFail($id);
-        return view('cms.category.edit')->with($data);
+        $data['user'] = User::findOrFail($id);
+        return view('cms.user.edit')->with($data);
     }
 
     public function update(Request $request, $id)
@@ -114,41 +120,41 @@ class UserController extends Controller
 
         try 
         {
-            $category = User::findOrFail($id);
+            $user = User::findOrFail($id);
             if($request->hasFile('photo')) {
-                $category->photo = FileHelper::updateImage($request->photo, $category->photo, '');
+                $user->photo = FileHelper::updateImage($request->photo, $user->photo, '');
             }
-            $category->name = $request->name;
-            $category->description = $request->description;
-            $category->updated_by = Auth::id();
-            $category->save();
+            $user->name = $request->name;
+            $user->description = $request->description;
+            $user->updated_by = Auth::id();
+            $user->save();
 
-            UtilHelper::setSuccessNotification('updated_success');
-            return redirect()->route('category');
+            NotificationHelper::setSuccessNotification('updated_success');
+            return redirect()->route('user');
         } 
         catch (\Exception $e) 
         {
-            UtilHelper::errorNotification($e);
+            NotificationHelper::errorNotification($e);
             return back()->withInput();
         }
     }
 
     public function destroy($id)
     {
-        $category = User::findOrFail($id);
+        $user = User::findOrFail($id);
         try 
         {
-            $category->deleted_at = date("Y-m-d H:i:s");
-            $category->deleted_by = Auth::id();
-            $category->save();
+            $user->deleted_at = date("Y-m-d H:i:s");
+            $user->deleted_by = Auth::id();
+            $user->save();
 
-            UtilHelper::setDeletedPopUp('deleted_success');
-            return redirect()->route('category');
+            NotificationHelper::setDeletedPopUp('deleted_success');
+            return redirect()->route('user');
         } 
         catch (\Exception $e) 
         {
-            UtilHelper::errorNotification($e);
-            return redirect()->route('category');
+            NotificationHelper::errorNotification($e);
+            return redirect()->route('user');
         }
     }
 }
