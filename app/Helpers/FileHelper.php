@@ -9,6 +9,10 @@ Class FileHelper
         return  env('UPLOAD_PATH', 'assets/uploads');
     }
 
+    public static function getDefaultImage() {
+        return  env('DEFAULT_IMAGE_PATH', 'assets/uploads/default/default.jpg');
+    }
+
     public static function upload($file, $pathName = '') {
         $pathName = $pathName == '' ? FileHelper::getDefaultPathName() : $pathName;
         $fileNewName = time().$file->getClientOriginalName();
@@ -30,6 +34,14 @@ Class FileHelper
         if(File::exists($imagePath)) {
             File::delete($imagePath);
         }
+    }
+
+    public static function hasImage($image, $pathName = '') {
+        if($image == '' || $image == null) return FileHelper::getDefaultImage();
+        $pathName = $pathName == '' ? FileHelper::getDefaultPathName() : $pathName;
+        $imagePath = $pathName.'/'.$image;
+
+        return File::exists($imagePath) ? $imagePath : FileHelper::getDefaultImage();
     }
 
 }

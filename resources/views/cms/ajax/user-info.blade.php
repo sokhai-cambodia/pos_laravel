@@ -1,6 +1,9 @@
 <div class="card-sub">
-    <img class="card-img-top" src="{{ $user->getPhoto() }}" alt="Card image cap" style="width: 50%; margin: 0 auto;">
-    <div class="card-block">
+    <div class="text-center">
+            <img class="card-img-top" src="{{ $user->getPhoto() }}" alt="Card image cap" style="width: 50%; margin: 0 auto;">
+    </div>
+    
+    <div class="card-block" style="margin-top: 10px">
         <h3 class="card-title text-center">{{ $user->last_name.' '.$user->first_name }}</h3>
         <h6 class="card-title text-center">{{ $user->role->name }}</h6>
         <div class="col-sm-12">

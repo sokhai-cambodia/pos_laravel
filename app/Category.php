@@ -39,7 +39,7 @@ class Category extends Model
 
     public function getPhoto()
     {
-        return asset(FileHelper::getDefaultPathName().'/'.$this->photo);
+        return asset(FileHelper::hasImage($this->photo));
     }
 
     public static function laratablesAdditionalColumns()
