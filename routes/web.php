@@ -20,9 +20,6 @@ Route::get('/login', 'LoginController@index')->name('login');
 Route::post('/login', 'LoginController@login')->name('login');
 Route::get('/logout', 'LoginController@logout')->name('logout');
 
-
-
-
 // Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
@@ -43,7 +40,7 @@ Route::group(['prefix' => 'cms', 'middleware' => ['auth']], function(){
     // BRANCH
     require_once __DIR__.'/cms/branch.php';
 
-    // BRANCH
+    // CATEGORY
     require_once __DIR__.'/cms/category.php';
 
     // UNIT
@@ -54,5 +51,8 @@ Route::group(['prefix' => 'cms', 'middleware' => ['auth']], function(){
 
     // USER
     require_once __DIR__.'/cms/user.php';
+
+    // PRODUCT
+    require_once __DIR__.'/cms/product.php';
 
 });

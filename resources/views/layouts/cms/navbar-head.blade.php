@@ -90,17 +90,11 @@
 
                     <div class="dropdown-primary dropdown">
                         <div class="dropdown-toggle" data-toggle="dropdown">
-                            <img src="{{ asset('plugin/cms/assets/images/avatar-4.jpg') }}" class="img-radius" alt="User-Profile-Image">
-                            <span>John Doe</span>
+                            <img src="{{ Auth::user()->getPhoto() }}" class="img-radius" alt="User-Profile-Image">
+                            <span>{{ Auth::user()->getFullName() }}</span>
                             <i class="feather icon-chevron-down"></i>
                         </div>
                         <ul class="show-notification profile-notification dropdown-menu" data-dropdown-in="fadeIn" data-dropdown-out="fadeOut">
-                            <li>
-                                <a href="#!">
-                                <i class="feather icon-settings"></i> Settings
-
-                            </a>
-                            </li>
                             <li>
                                 <a href="#">
                                 <i class="feather icon-user"></i> Profile
@@ -108,14 +102,8 @@
                             </a>
                             </li>
                             <li>
-                                <a href="email-inbox.html">
-                                <i class="feather icon-mail"></i> My Messages
-
-                            </a>
-                            </li>
-                            <li>
                                 <a href="auth-lock-screen.html">
-                                <i class="feather icon-lock"></i> Lock Screen
+                                <i class="feather icon-lock"></i> Change Password
 
                             </a>
                             </li>
