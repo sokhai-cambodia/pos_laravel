@@ -135,15 +135,27 @@
                     </ul>
                 </li>
 
-
-
-            </ul>
-
-
-
-            <div class="pcoded-navigation-label">SETTING </div>
-            <ul class="pcoded-item pcoded-left-item">
-                {{-- Room --}}
+                {{-- Product --}}
+                <li class="pcoded-hasmenu">
+                    <a href="javascript:void(0)" class="waves-effect waves-dark">
+                        <span class="pcoded-micon"><i class="feather icon-sidebar"></i></span>
+                        <span class="pcoded-mtext">Product</span>
+                        {{-- <span class="pcoded-badge label label-warning">NEW</span> --}}
+                    </a>
+                    <ul class="pcoded-submenu">
+                        <li class="">
+                            <a href="{{ route('product.create') }}" class="waves-effect waves-dark">
+                                <span class="pcoded-mtext">Add Product</span>
+                            </a>
+                        </li>
+                        <li class=" ">
+                            <a href="{{ route('product') }}" class="waves-effect waves-dark">
+                                <span class="pcoded-mtext">List Product</span>
+                            </a>
+                        </li>
+                    </ul>
+                </li>
+                
                 <li class="pcoded-hasmenu">
                     <a href="javascript:void(0)" class="waves-effect waves-dark">
                         <span class="pcoded-micon"><i class="feather icon-sidebar"></i></span>

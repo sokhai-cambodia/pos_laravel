@@ -8,7 +8,7 @@
     <div class="modal-dialog modal-md" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h4 class="modal-title">View Product</h4>
+                <h4 class="modal-title">View User Information</h4>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
@@ -37,7 +37,9 @@
                         <th>#</th>
                         <th>Photo</th>
                         <th>Name</th>
-                        <th>Price</th>
+                        <th>Username</th>
+                        <th>Gender</th>
+                        <th>DOB</th>
                         <th>Actions</th>
                     </tr>
                 </thead>
@@ -58,13 +60,14 @@
                 serverSide: true,
                 processing: true,
                 responsive: true,
-                ajax: "{{ route('product.lists') }}",
+                ajax: "{{ route('user.lists') }}",
                 columns: [
                     { name: 'id' },
                     { name: 'thumbnail', orderable: false, searchable: false },
                     { name: 'name' },
-                    { name: 'photo' },
-                    { name: 'price' },
+                    { name: 'username' },
+                    { name: 'gender', searchable: false},
+                    { name: 'dob', orderable: false, searchable: false },
                     { name: 'action', orderable: false, searchable: false },
                 ],
             });

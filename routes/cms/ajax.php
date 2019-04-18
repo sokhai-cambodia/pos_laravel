@@ -6,4 +6,5 @@ Route::group(['prefix' => 'ajax'], function(){
     Route::post('/find-update-product-ingredient', 'Cms\AjaxController@findUpdateProductIngredient')->name('ajax.find-update-product-ingredient');
     Route::get('/find-product-ingredient', 'Cms\AjaxController@findProductIngredient')->name('ajax.find-product-ingredient');
     Route::post('/find-user-info', 'Cms\AjaxController@findUserInfo')->name('ajax.find-user-info');
+    Route::post('/find-room-info', 'Cms\AjaxController@findRoomInfo')->name('ajax.find-room-info');
 });

@@ -3,10 +3,31 @@
 @include('layouts.cms.data-table-header')
 
 @section('content')
+ <!-- animation modal Dialogs start -->
+<div class="modal fade" id="view-info" tabindex="-1" role="dialog">
+    <div class="modal-dialog modal-md" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title">View User Information</h4>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body" id="model-body">
+                
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default waves-effect " data-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+<!--animation modal  Dialogs ends -->
+
 <!-- Default ordering table start -->
 <div class="card">
     <div class="card-header">
-        <h5>{{ $title }}</h5>
+        {{-- <h5>{{ $title }}</h5> --}}
     </div>
     <div class="card-block">
         <div class="dt-responsive table-responsive">
@@ -14,7 +35,7 @@
                 <thead>
                     <tr>
                         <th>#</th>
-                        <th>Room No</th>
+                        <th>Room</th>
                         <th>Branch</th>
                         <th>Bed</th>
                         <th>Status</th>
@@ -31,6 +52,7 @@
 
 @section('footer-src')
     @include('layouts.cms.data-table-footer')
+
     <script>
         $(document).ready(function() {
             $('#listing').DataTable({
@@ -40,9 +62,10 @@
                 ajax: "{{ route('room.lists') }}",
                 columns: [
                     { name: 'id' },
-                    { name: 'room_no' },
-                    { name: 'branch_id', orderable: false, searchable: false },
-                    { name: 'bed', orderable: false, searchable: false },
+                    { name: 'thumbnail', orderable: false, searchable: false },
+                    { name: 'room_no'},
+                    { name: 'branch_id' },
+                    { name: 'bed', searchable: false},
                     { name: 'status', orderable: false, searchable: false },
                     { name: 'action', orderable: false, searchable: false },
                 ],
@@ -82,6 +105,29 @@
                 })
             });
 
+            // open modal
+            //$('#view-info').modal('show');
+            $('body').on('click', '.view-info', function() {
+                var _token = "{{ csrf_token() }}";
+                var user_id = $(this).attr('data-id');
+                $.ajax({
+                    type:'POST',
+                    url:"{{ route('ajax.find-room-info') }}",
+                    data: {
+                        _token: _token,
+                        user_id: user_id
+                    },
+                    success:function(data) {
+                        if(data.status == 1) {
+                            $('#model-body').html(data.data);
+                            $('#view-info').modal('show');
+                        }
+                    }
+                });  
+                
+            });
+
         });
     </script>
 @endsection
+

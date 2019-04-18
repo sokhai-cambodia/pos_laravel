@@ -21,9 +21,9 @@ use App\ProductIngredient;
 
 class ProductController extends Controller
 {
-    private $PATH = 'assets/uploads/products';
-    // protected $stockType = ['product', 'ingradient'];
-    
+    private $icon = 'icon-layers';
+    private $stock_types = ['product', 'ingredient'];
+
     public function index()
     {
         return view('cms.product.index');
@@ -40,11 +40,11 @@ class ProductController extends Controller
         $units = Unit::all();
         $data = [
             'title' => 'Create New Product',
+            'icon' => $this->icon,
+            'stock_types' => $this->stock_types,
             'categories' => $categories,
-            'units' => $units
+            'units'  => $units,
         ];
-        // $data['categories'] = Category::all();
-        // $data['units'] = Unit::all();
         return view('cms.product.create')->with($data);
     }
 
@@ -53,19 +53,19 @@ class ProductController extends Controller
         
         $request->validate([
             'name' => 'required|unique:products|max:255',
-            'stockType' => 'required',
-            'categoryId' => 'required',
-            'unitId' => 'required',
+            'stock_type' => 'required',
+            'category_id' => 'required',
+            'unit_id' => 'required',
             'price' => 'required',
-            'quanityForCutStock' => 'required'
+            'quanity_for_cut_stock' => 'required'
 
         ]);
         
-        if($request->stockType == 'ingredient') {
+        if($request->stock_type == 'ingredient') {
             $request->validate([
-                'iProductId' => 'required|min:1',
-                'iUnitId' => 'required|min:1',
-                'iQuanityForCutStock' => 'required|min:1',
+                'i_product_id' => 'required|min:1',
+                'i_unit_id' => 'required|min:1',
+                'i_quanity_for_cut_stock' => 'required|min:1',
     
             ]);
         }
@@ -73,13 +73,8 @@ class ProductController extends Controller
         try 
         {   
             DB::transaction(function () use($request) {
-                $stockType = $request->stockType;
-                $isIngredient = isset($request->isIngredient) ? 1 : 0;
-                // $photo = null;
-                // if($request->hasFile('photo')) {
-                //     $photo = FileHelper::upload($this->PATH, $request->photo);
-                // }
-
+                $stock_type = $request->stock_type;
+                $is_ingredient = isset($request->is_ingredient) ? 1 : 0;
                 $photo = null;
                 if($request->hasFile('photo')) {
                     $photo = FileHelper::upload($request->photo);
@@ -89,26 +84,26 @@ class ProductController extends Controller
                     'name' => $request->name,
                     'description' => $request->description,
                     'photo' => $photo,
-                    'stock_type' => $stockType,
-                    'is_ingredient' => $isIngredient,
+                    'stock_type' => $stock_type,
+                    'is_ingredient' => $is_ingredient,
                     'price' => $request->price,
-                    'quanity_for_cut_stock' => $request->quanityForCutStock,
-                    'unit_id' => $request->unitId,
-                    'category_id' => $request->categoryId,
+                    'quanity_for_cut_stock' => $request->quanity_for_cut_stock,
+                    'unit_id' => $request->unit_id,
+                    'category_id' => $request->category_id,
                     'created_by' => Auth::id(),
                 ]);
 
-                if($stockType == 'ingredient') {
+                if($stock_type == 'ingredient') {
                     $productIngredients = [];
-                    $iProductId = $request->iProductId;
-                    $iUnitId = $request->iUnitId;
-                    $iQuanityForCutStock = $request->iQuanityForCutStock;
-                    for($i = 0; $i < count($iProductId); $i++) {
+                    $i_product_id = $request->i_product_id;
+                    $i_unit_id = $request->i_unit_id;
+                    $i_quanity_for_cut_stock = $request->i_quanity_for_cut_stock;
+                    for($i = 0; $i < count($i_product_id); $i++) {
                         $productIngredients[] = [
                             'product_id' => $product->id,
-                            'ingredient_product_id' => $iProductId[$i],
-                            'unit_id' => $iUnitId[$i],
-                            'quanity_for_cut_stock' => $iQuanityForCutStock[$i],
+                            'ingredient_product_id' => $i_product_id[$i],
+                            'unit_id' => $i_unit_id[$i],
+                            'quanity_for_cut_stock' => $i_quanity_for_cut_stock[$i],
                             'created_by' => Auth::id(),
                         ];
                     }
@@ -156,19 +151,19 @@ class ProductController extends Controller
                 'max:255',
                 Rule::unique('products')->ignore($id),
             ],
-            'stockType' => 'required',
+            'stock_type' => 'required',
             'categoryId' => 'required',
-            'unitId' => 'required',
-            'price' => 'required',
-            'quanityForCutStock' => 'required'
+            'unit_id' => 'required',
+            'price' => 'r_iquired',
+            'quanity_for_cut_stock' => 'required'
 
         ]);
         
-        if($request->stockType == 'ingredient') {
+        if($request->stock_type == 'ingredient') {
             $request->validate([
-                'iProductId' => 'required|min:1',
-                'iUnitId' => 'required|min:1',
-                'iQuanityForCutStock' => 'required|min:1',
+                'i_product_id' => 'required|min:1',
+                'i_unit_id' => 'required|min:1',
+                'i_quanity_for_cut_stock' => 'required|min:1',
     
             ]);
         }
@@ -177,35 +172,35 @@ class ProductController extends Controller
         {   
             DB::transaction(function () use($request, $id) {
                 $product = Product::findOrFail($id);
-                $stockType = $request->stockType;
-                $isIngredient = isset($request->isIngredient) ? 1 : 0;
+                $stock_type = $request->stock_type;
+                $is_ingredient = isset($request->is_ingredient) ? 1 : 0;
                 if($request->hasFile('photo')) {
-                    $product->photo = FileHelper::updateImage($this->PATH, $request->photo, $product->photo);
+                    $product->photo = FileHelper::updateImage($request->photo, $product->photo);
                 }
                 $product->name = $request->name;
                 $product->description = $request->description;
-                $product->stock_type = $stockType;
-                $product->is_ingredient = $isIngredient;
+                $product->stock_type = $stock_type;
+                $product->is_ingredient = $is_ingredient;
                 $product->price = $request->price;
-                $product->quanity_for_cut_stock = $request->quanityForCutStock;
-                $product->unit_id = $request->unitId;
-                $product->category_id = $request->categoryId;
+                $product->quanity_for_cut_stock = $request->quanity_for_cut_stock;
+                $product->unit_id = $request->unit_id;
+                $product->category_id = $request->category_id;
                 $product->updated_by = Auth::id();
                 $product->save();
         
                 ProductIngredient::where('product_id', $product->id)->forceDelete();
                 
-                if($stockType == 'ingredient') {
+                if($stock_type == 'ingredient') {
                     $productIngredients = [];
-                    $iProductId = $request->iProductId;
-                    $iUnitId = $request->iUnitId;
-                    $iQuanityForCutStock = $request->iQuanityForCutStock;
-                    for($i = 0; $i < count($iProductId); $i++) {
+                    $i_product_id = $request->i_product_id;
+                    $i_unit_id = $request->i_unit_id;
+                    $i_quanity_for_cut_stock = $request->i_quanity_for_cut_stock;
+                    for($i = 0; $i < count($i_product_id); $i++) {
                         $productIngredients[] = [
                             'product_id' => $product->id,
-                            'ingredient_product_id' => $iProductId[$i],
-                            'unit_id' => $iUnitId[$i],
-                            'quanity_for_cut_stock' => $iQuanityForCutStock[$i],
+                            'ingredient_product_id' => $i_product_id[$i],
+                            'unit_id' => $i_unit_id[$i],
+                            'quanity_for_cut_stock' => $i_quanity_for_cut_stock[$i],
                             'created_by' => Auth::id(),
                         ];
                     }

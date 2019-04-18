@@ -203,6 +203,11 @@ class User extends Authenticatable
         return $this->hasMany('App\ProductIngredient', 'deleted_by');
     }
 
+    public function getFullName()
+    {
+        return $this->last_name.' '.$this->first_name;
+    }
+
     // Data Table Customize Method
     public function getPhoto()
     {

@@ -9,6 +9,7 @@ use App\Permission;
 use App\Product;
 use App\Unit;
 use App\User;
+use App\Room;
 
 class AjaxController extends Controller
 {
@@ -117,6 +118,24 @@ class AjaxController extends Controller
         ]);
 
     }
+
+
+    public function findRoomInfo(Request $request) {
+        $room = Room::find($request->id);
+        if($room == null) {
+            return response()->json([ 'status' => 0 ]);
+        }
+
+        $data = view('cms.ajax.room-info')->with(['room' => $room])->render();
+        return response()->json([
+            'status' => 1,
+            'data' => $data,
+        ]);
+
+        var_dump($data);
+    }
+
+
 
     
     
