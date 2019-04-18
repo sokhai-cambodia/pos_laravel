@@ -30,7 +30,91 @@
                     </ul>
                 </li>
 
-                {{-- category --}}
+                {{-- Branch --}}
+                <li class="pcoded-hasmenu">
+                    <a href="javascript:void(0)" class="waves-effect waves-dark">
+                        <span class="pcoded-micon"><i class="feather icon-sidebar"></i></span>
+                        <span class="pcoded-mtext">Branch</span>
+                        {{-- <span class="pcoded-badge label label-warning">NEW</span> --}}
+                    </a>
+                    <ul class="pcoded-submenu">
+                        <li class="">
+                            <a href="{{ route('branch.create') }}" class="waves-effect waves-dark">
+                                <span class="pcoded-mtext">Add Branch</span>
+                            </a>
+                        </li>
+                        <li class=" ">
+                            <a href="{{ route('branch') }}" class="waves-effect waves-dark">
+                                <span class="pcoded-mtext">List Branch</span>
+                            </a>
+                        </li>
+                    </ul>
+                </li>
+
+                {{-- Unit --}}
+                <li class="pcoded-hasmenu">
+                    <a href="javascript:void(0)" class="waves-effect waves-dark">
+                        <span class="pcoded-micon"><i class="feather icon-sidebar"></i></span>
+                        <span class="pcoded-mtext">Unit</span>
+                        {{-- <span class="pcoded-badge label label-warning">NEW</span> --}}
+                    </a>
+                    <ul class="pcoded-submenu">
+                        <li class="">
+                            <a href="{{ route('unit.create') }}" class="waves-effect waves-dark">
+                                <span class="pcoded-mtext">Add Unit</span>
+                            </a>
+                        </li>
+                        <li class=" ">
+                            <a href="{{ route('unit') }}" class="waves-effect waves-dark">
+                                <span class="pcoded-mtext">List Unit</span>
+                            </a>
+                        </li>
+                    </ul>
+                </li>
+
+                {{-- User --}}
+                <li class="pcoded-hasmenu">
+                    <a href="javascript:void(0)" class="waves-effect waves-dark">
+                        <span class="pcoded-micon"><i class="feather icon-sidebar"></i></span>
+                        <span class="pcoded-mtext">User</span>
+                        {{-- <span class="pcoded-badge label label-warning">NEW</span> --}}
+                    </a>
+                    <ul class="pcoded-submenu">
+                        <li class="">
+                            <a href="{{ route('user.create') }}" class="waves-effect waves-dark">
+                                <span class="pcoded-mtext">Add User</span>
+                            </a>
+                        </li>
+                        <li class=" ">
+                            <a href="{{ route('user') }}" class="waves-effect waves-dark">
+                                <span class="pcoded-mtext">List User</span>
+                            </a>
+                        </li>
+                    </ul>
+                </li>
+
+                {{-- Role --}}
+                <li class="pcoded-hasmenu">
+                    <a href="javascript:void(0)" class="waves-effect waves-dark">
+                        <span class="pcoded-micon"><i class="feather icon-sidebar"></i></span>
+                        <span class="pcoded-mtext">Role</span>
+                        {{-- <span class="pcoded-badge label label-warning">NEW</span> --}}
+                    </a>
+                    <ul class="pcoded-submenu">
+                        <li class="">
+                            <a href="{{ route('role.create') }}" class="waves-effect waves-dark">
+                                <span class="pcoded-mtext">Add Role</span>
+                            </a>
+                        </li>
+                        <li class=" ">
+                            <a href="{{ route('role') }}" class="waves-effect waves-dark">
+                                <span class="pcoded-mtext">List Role</span>
+                            </a>
+                        </li>
+                    </ul>
+                </li>
+
+                {{-- Category --}}
                 <li class="pcoded-hasmenu">
                     <a href="javascript:void(0)" class="waves-effect waves-dark">
                         <span class="pcoded-micon"><i class="feather icon-sidebar"></i></span>
@@ -39,66 +123,19 @@
                     </a>
                     <ul class="pcoded-submenu">
                         <li class="">
-                            <a href="javascript:void(0)" class="waves-effect waves-dark">
+                            <a href="{{ route('category.create') }}" class="waves-effect waves-dark">
                                 <span class="pcoded-mtext">Add Category</span>
                             </a>
                         </li>
                         <li class=" ">
-                            <a href="javascript:void(0)" class="waves-effect waves-dark">
+                            <a href="{{ route('category') }}" class="waves-effect waves-dark">
                                 <span class="pcoded-mtext">List Category</span>
                             </a>
-
                         </li>
-
-                    </ul>
-                </li>
-
-                {{-- Product --}}
-                <li class="pcoded-hasmenu">
-                    <a href="javascript:void(0)" class="waves-effect waves-dark">
-                        <span class="pcoded-micon"><i class="feather icon-sidebar"></i></span>
-                        <span class="pcoded-mtext">Product</span>
-                        {{-- <span class="pcoded-badge label label-warning">NEW</span> --}}
-                    </a>
-                    <ul class="pcoded-submenu">
-                        <li class="">
-                            <a href="javascript:void(0)" class="waves-effect waves-dark">
-                                <span class="pcoded-mtext">Add Product</span>
-                            </a>
-                        </li>
-                        <li class=" ">
-                            <a href="javascript:void(0)" class="waves-effect waves-dark">
-                                <span class="pcoded-mtext">List Product</span>
-                            </a>
-
-                        </li>
-
                     </ul>
                 </li>
 
 
-                  {{-- UNIT --}}
-                  <li class="pcoded-hasmenu">
-                    <a href="javascript:void(0)" class="waves-effect waves-dark">
-                        <span class="pcoded-micon"><i class="feather icon-sidebar"></i></span>
-                        <span class="pcoded-mtext">UNIT </span>
-                        {{-- <span class="pcoded-badge label label-warning">NEW</span> --}}
-                    </a>
-                    <ul class="pcoded-submenu">
-                        <li class="">
-                            <a href="javascript:void(0)" class="waves-effect waves-dark">
-                                <span class="pcoded-mtext">Add Unit</span>
-                            </a>
-                        </li>
-                        <li class=" ">
-                            <a href="javascript:void(0)" class="waves-effect waves-dark">
-                                <span class="pcoded-mtext">List Unit</span>
-                            </a>
-
-                        </li>
-
-                    </ul>
-                </li>
 
             </ul>
 
@@ -106,159 +143,117 @@
 
             <div class="pcoded-navigation-label">SETTING </div>
             <ul class="pcoded-item pcoded-left-item">
-                {{-- User --}}
+                {{-- Room --}}
                 <li class="pcoded-hasmenu">
                     <a href="javascript:void(0)" class="waves-effect waves-dark">
                         <span class="pcoded-micon"><i class="feather icon-sidebar"></i></span>
-                        <span class="pcoded-mtext">USER</span>
+                        <span class="pcoded-mtext">Rooms</span>
                         {{-- <span class="pcoded-badge label label-warning">NEW</span> --}}
                     </a>
                     <ul class="pcoded-submenu">
                         <li class="">
-                            <a href="javascript:void(0)" class="waves-effect waves-dark">
-                                <span class="pcoded-mtext">Add User</span>
+                            <a href="{{ route('room.create') }}" class="waves-effect waves-dark">
+                                <span class="pcoded-mtext">Add Room</span>
                             </a>
                         </li>
                         <li class=" ">
-                            <a href="javascript:void(0)" class="waves-effect waves-dark">
-                                <span class="pcoded-mtext">List User</span>
+                            <a href="{{ route('room') }}" class="waves-effect waves-dark">
+                                <span class="pcoded-mtext">List Room</span>
                             </a>
-
                         </li>
-
                     </ul>
                 </li>
 
+                {{-- Product --}}
                 <li class="pcoded-hasmenu">
                     <a href="javascript:void(0)" class="waves-effect waves-dark">
-                        <span class="pcoded-micon">
-                            <i class="feather icon-gitlab"></i>
-                        </span>
-                        <span class="pcoded-mtext">Advance</span>
-                    </a>
+                            <span class="pcoded-micon"><i class="feather icon-sidebar"></i></span>
+                            <span class="pcoded-mtext">Product</span>
+                            {{-- <span class="pcoded-badge label label-warning">NEW</span> --}}
+                        </a>
                     <ul class="pcoded-submenu">
-                        <li class=" ">
-                            <a href="draggable.html" class="waves-effect waves-dark">
-                                <span class="pcoded-mtext">Draggable</span>
-                            </a>
+                        <li class="">
+                            <a href="{{ route('product.create') }}" class="waves-effect waves-dark">
+                                    <span class="pcoded-mtext">Add Product</span>
+                                </a>
                         </li>
-
-
-                </li>
-                <li class=" ">
-                    <a href="modal.html" class="waves-effect waves-dark">
-                        <span class="pcoded-mtext">Modal</span>
-                    </a>
-                </li>
-                <li class=" ">
-                    <a href="notification.html" class="waves-effect waves-dark">
-                        <span class="pcoded-mtext">Notifications</span>
-                    </a>
+                        <li class=" ">
+                            <a href="{{ route('product') }}" class="waves-effect waves-dark">
+                                    <span class="pcoded-mtext">List Product</span>
+                                </a>
+                        </li>
+                    </ul>
                 </li>
 
-                <li class=" ">
-                    <a href="rating.html" class="waves-effect waves-dark">
-                        <span class="pcoded-mtext">Rating</span>
-                    </a>
-                </li>
-                <li class=" ">
-                    <a href="range-slider.html" class="waves-effect waves-dark">
-                        <span class="pcoded-mtext">Range Slider</span>
-                    </a>
-                </li>
-                <li class=" ">
-                    <a href="slider.html" class="waves-effect waves-dark">
-                        <span class="pcoded-mtext">Slider</span>
-                    </a>
-                </li>
-                <li class=" ">
-                    <a href="syntax-highlighter.html" class="waves-effect waves-dark">
-                        <span class="pcoded-mtext">Syntax Highlighter</span>
-                    </a>
-                </li>
-                <li class=" ">
-                    <a href="tour.html" class="waves-effect waves-dark">
-                        <span class="pcoded-mtext">Tour</span>
-                    </a>
-                </li>
-                <li class=" ">
-                    <a href="treeview.html" class="waves-effect waves-dark">
-                        <span class="pcoded-mtext">Tree View</span>
-                    </a>
-                </li>
-                <li class=" ">
-                    <a href="nestable.html" class="waves-effect waves-dark">
-                        <span class="pcoded-mtext">Nestable</span>
-                    </a>
-                </li>
-                <li class=" ">
-                    <a href="toolbar.html" class="waves-effect waves-dark">
-                        <span class="pcoded-mtext">Toolbar</span>
-                    </a>
-                </li>
 
-                </ul>
-                </li>
-                <li class="pcoded-hasmenu">
-                    <a href="javascript:void(0)" class="waves-effect waves-dark">
+
+
+
+
+
+
+            </ul>
+            </li>
+            <li class="pcoded-hasmenu">
+                <a href="javascript:void(0)" class="waves-effect waves-dark">
                     <span class="pcoded-micon">
                         <i class="feather icon-package"></i>
                     </span>
                     <span class="pcoded-mtext">Extra</span>
                 </a>
-                    <ul class="pcoded-submenu">
-                        <li class=" ">
-                            <a href="session-timeout.html" class="waves-effect waves-dark">
+                <ul class="pcoded-submenu">
+                    <li class=" ">
+                        <a href="session-timeout.html" class="waves-effect waves-dark">
                             <span class="pcoded-mtext">Session Timeout</span>
                         </a>
-                        </li>
-                        <li class=" ">
-                            <a href="session-idle-timeout.html" class="waves-effect waves-dark">
+                    </li>
+                    <li class=" ">
+                        <a href="session-idle-timeout.html" class="waves-effect waves-dark">
                             <span class="pcoded-mtext">Session Idle Timeout</span>
                         </a>
-                        </li>
-                        <li class=" ">
-                            <a href="offline.html" class="waves-effect waves-dark">
+                    </li>
+                    <li class=" ">
+                        <a href="offline.html" class="waves-effect waves-dark">
                             <span class="pcoded-mtext">Offline</span>
                         </a>
-                        </li>
-                    </ul>
-                </li>
-                <li class=" ">
-                    <a href="animation.html" class="waves-effect waves-dark">
+                    </li>
+                </ul>
+            </li>
+            <li class=" ">
+                <a href="animation.html" class="waves-effect waves-dark">
                     <span class="pcoded-micon">
                         <i class="feather icon-aperture rotate-refresh"></i>
                     </span>
                     <span class="pcoded-mtext">Animations</span>
                 </a>
-                </li>
+            </li>
 
-                <li class="pcoded-hasmenu">
-                    <a href="javascript:void(0)" class="waves-effect waves-dark">
+            <li class="pcoded-hasmenu">
+                <a href="javascript:void(0)" class="waves-effect waves-dark">
                     <span class="pcoded-micon">
                         <i class="feather icon-command"></i>
                     </span>
                     <span class="pcoded-mtext">Icons</span>
                 </a>
-                    <ul class="pcoded-submenu">
-                        <li class=" ">
-                            <a href="icon-font-awesome.html" class="waves-effect waves-dark">
+                <ul class="pcoded-submenu">
+                    <li class=" ">
+                        <a href="icon-font-awesome.html" class="waves-effect waves-dark">
                             <span class="pcoded-mtext">Font Awesome</span>
                         </a>
-                        </li>
-                        <li class=" ">
-                            <a href="icon-themify.html" class="waves-effect waves-dark">
+                    </li>
+                    <li class=" ">
+                        <a href="icon-themify.html" class="waves-effect waves-dark">
                             <span class="pcoded-mtext">Themify</span>
                         </a>
-                        </li>
-                        <li class=" ">
-                            <a href="icon-simple-line.html" class="waves-effect waves-dark">
+                    </li>
+                    <li class=" ">
+                        <a href="icon-simple-line.html" class="waves-effect waves-dark">
                             <span class="pcoded-mtext">Simple Line Icon</span>
                         </a>
-                        </li>
+                    </li>
 
-                    </ul>
-                </li>
+                </ul>
+            </li>
             </ul>
             <div class="pcoded-navigation-label">Forms</div>
             <ul class="pcoded-item pcoded-left-item">

@@ -1,34 +1,13 @@
 <?php
 
 Route::group(['prefix' => 'product'], function(){
-    Route::get('', [
-        'uses' => 'Cms\ProductController@index',
-        'as' => 'product'
-    ]);
-    
-    Route::get('/create', [
-        'uses' => 'Cms\ProductController@create',
-        'as' => 'product.create'
-    ]);
-    
-    Route::post('/store', [
-        'uses' => 'Cms\ProductController@store',
-        'as' => 'product.create'
-    ]);
-    
-    Route::post('/update/{id}', [
-        'uses' => 'Cms\ProductController@update',
-        'as' => 'product.update'
-    ]);
-    
-    Route::get('/edit/{id}', [
-        'uses' => 'Cms\ProductController@edit',
-        'as' => 'product.update'
-    ]);
-    
-    Route::get('/destroy/{id}', [
-        'uses' => 'Cms\ProductController@destroy',
-        'as' => 'product.destroy'
-    ]);
-    
+
+    Route::get('', 'Cms\ProductController@index')->name('product');
+    Route::get('/lists', 'Cms\ProductController@getProductLists')->name('product.lists');
+    Route::get('/create', 'Cms\ProductController@create')->name('product.create');
+    Route::post('/store', 'Cms\ProductController@store')->name('product.store');
+    Route::get('/edit/{id}', 'Cms\ProductController@edit')->name('product.edit');
+    Route::post('/update/{id}', 'Cms\ProductController@update')->name('product.update');
+    Route::get('/destroy/{id}', 'Cms\ProductController@destroy')->name('product.delete');
+
 });
