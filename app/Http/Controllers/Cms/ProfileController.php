@@ -26,7 +26,7 @@ class ProfileController extends Controller
             'gender' => $this->gender,
         ];
         
-        return view('cms.profile.update')->with($data);
+        return view('cms.profile.edit')->with($data);
     }
 
     public function update(Request $request)
