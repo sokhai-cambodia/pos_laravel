@@ -102,61 +102,20 @@
 
 <script>
 $(function(){
-    var productIngredientList = '';
-
-    function initProductIngredientList() {
-        getProductIngredientList();
-        
-    }
-
-    function addNewProductIngredientRow() {
-        $("#product-ingredient-list").append(productIngredientList);
-        refreshSelect2();
-    }
-
-    function refreshSelect2() {
-        $(".iProductIngredientList").select2();
-    }
-
-
-    function getProductIngredientList() {
-        var _token = "{{ csrf_token() }}";
-        $.ajax({
-            type:'POST',
-            url:"{{ route('ajax.find-product-ingredient') }}",
-            data: {
-                _token: _token
-            },
-            success:function(data) {
-                if(data.status == 1) {
-                    productIngredientList = data.data.row
-                    $("#product-ingredient").html(data.data.table);
-                    refreshSelect2();
-                }
-            }
-        });
-    }
-    
-
-    $('body').on('change', '.iProductId', function() {
-        // var val = $(this).val();
-        var src = $('.iProductId option:selected').attr('data-image');
-        var tr = $(this).closest('tr').find('img').attr('src', src);
-    });
 
     $('body').on('change', '#stock_type', function() {
         var val = $(this).val();
-        if(val == 'ingredient') {
-            initProductIngredientList();
-        } else {
-            $("#product-ingredient").html('');
-        }
+        // if(val == 'ingredient') {
+        //     initProductIngredientList();
+           
+        // } else {
+        //     $("#product-ingredient").html('');
+        // }
+        alert(val);
     });
 
 
-    $('body').on('click', '.btn-new-row', function() {
-        addNewProductIngredientRow();
-    });
+   
 
     $('body').on('click', '.btn-delete', function() {
         var tr = $(this).closest('tr')
