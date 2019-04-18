@@ -3,27 +3,6 @@
 @include('layouts.cms.data-table-header')
 
 @section('content')
- <!-- animation modal Dialogs start -->
-<div class="modal fade" id="view-info" tabindex="-1" role="dialog">
-    <div class="modal-dialog modal-md" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h4 class="modal-title">View User Information</h4>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-            </div>
-            <div class="modal-body" id="model-body">
-                
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-default waves-effect " data-dismiss="modal">Close</button>
-            </div>
-        </div>
-    </div>
-</div>
-<!--animation modal  Dialogs ends -->
-
 <!-- Default ordering table start -->
 <div class="card">
     <div class="card-header">
@@ -34,12 +13,12 @@
             <table id="listing" class="table table-striped table-bordered nowrap" style="width: 100%">
                 <thead>
                     <tr>
-                        <th>#</th>
-                        <th>Photo</th>
                         <th>Name</th>
-                        <th>Username</th>
-                        <th>Gender</th>
-                        <th>DOB</th>
+                        <th>Photo</th>
+                        <th>Category</th>
+                        <th>Cut Stock Qty</th>
+                        <th>Ingredient</th>
+                        <th>Price</th>
                         <th>Actions</th>
                     </tr>
                 </thead>
@@ -59,15 +38,14 @@
             $('#listing').DataTable({
                 serverSide: true,
                 processing: true,
-                responsive: true,
-                ajax: "{{ route('user.lists') }}",
+                ajax: "{{ route('product.lists') }}",
                 columns: [
-                    { name: 'id' },
-                    { name: 'thumbnail', orderable: false, searchable: false },
                     { name: 'name' },
-                    { name: 'username' },
-                    { name: 'gender', searchable: false},
-                    { name: 'dob', orderable: false, searchable: false },
+                    { name: 'thumbnail', orderable: false, searchable: false },
+                    { name: 'category', orderable: false, searchable: false },
+                    { name: 'stock', orderable: false, searchable: false },
+                    { name: 'ingredient', orderable: false, searchable: false},
+                    { name: 'price', orderable: false, searchable: false },
                     { name: 'action', orderable: false, searchable: false },
                 ],
             });

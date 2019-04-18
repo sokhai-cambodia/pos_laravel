@@ -26,7 +26,11 @@ class ProductController extends Controller
 
     public function index()
     {
-        return view('cms.product.index');
+        $data = [
+            'title' => 'List Product',
+            'icon' => $this->icon
+        ];
+        return view('cms.product.index')->with($data);
     }
 
     public function getProductLists()
@@ -127,9 +131,17 @@ class ProductController extends Controller
 
     public function edit($id)
     {
-        $data['product'] = Product::findOrFail($id);
-        $data['categories'] = Category::all();
-        $data['units'] = Unit::all();
+        $product = Product::findOrFail($id);
+        $categories = Category::all();
+        $units = Unit::all();
+        $data = [
+            'title' => 'Edit User',
+            'icon' => $this->icon,
+            'stock_types' => $this->stock_types,
+            'product' => $product,
+            'categories'  => $categories,
+            'units'  => $units
+        ];
         return view('cms.product.edit')->with($data);
     }
 
@@ -143,9 +155,9 @@ class ProductController extends Controller
                 Rule::unique('products')->ignore($id),
             ],
             'stock_type' => 'required',
-            'categoryId' => 'required',
+            'category_id' => 'required',
             'unit_id' => 'required',
-            'price' => 'r_iquired',
+            'price' => 'required',
             'quanity_for_cut_stock' => 'required'
 
         ]);

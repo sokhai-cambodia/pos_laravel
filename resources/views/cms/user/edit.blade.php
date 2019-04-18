@@ -80,7 +80,7 @@
             <div class="form-group row">
                 <label class="col-sm-2 col-form-label">Photo</label>
                 <div class="col-sm-10">
-                    <input type="file" name="photo" class="form-control dropify">
+                    <input type="file" name="photo" class="form-control dropify" data-default-file="{{ $user->getPhoto() }}">
                 </div>
             </div>
             <div class="form-group row">

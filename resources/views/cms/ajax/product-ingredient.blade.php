@@ -18,7 +18,7 @@
 placeholder="Enter Quanity" value="1">
     </td>
     <td style="vertical-align:middle">
-        <button class="btn waves-effect waves-light btn-danger btn-delete">
+        <button type="button" class="btn waves-effect waves-light btn-danger btn-delete">
            X
         </button>
     </td>
