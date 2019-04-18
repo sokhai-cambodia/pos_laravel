@@ -37,6 +37,12 @@ Route::group(['prefix' => 'cms', 'middleware' => ['auth']], function(){
         return view('cms.blank');
     })->name('blank');
 
+    // USER
+    require_once __DIR__.'/cms/user.php';
+
+    // PROFILE
+    require_once __DIR__.'/cms/profile.php';
+
     // BRANCH
     require_once __DIR__.'/cms/branch.php';
 
@@ -49,12 +55,9 @@ Route::group(['prefix' => 'cms', 'middleware' => ['auth']], function(){
     // ROLE
     require_once __DIR__.'/cms/role.php';
 
-    // USER
-    require_once __DIR__.'/cms/user.php';
-
     // PRODUCT
     require_once __DIR__.'/cms/product.php';
 
-     // Room
-     require_once __DIR__.'/cms/rooms.php';
+    // Room
+    require_once __DIR__.'/cms/rooms.php';
 });
