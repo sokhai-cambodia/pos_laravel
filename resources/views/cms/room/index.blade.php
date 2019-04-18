@@ -62,9 +62,9 @@
                 ajax: "{{ route('room.lists') }}",
                 columns: [
                     { name: 'id' },
-                    { name: 'thumbnail', orderable: false, searchable: false },
                     { name: 'room_no'},
-                    { name: 'branch_id' },
+                    { name: 'thumbnail', orderable: false, searchable: false },
+                    { name: 'branch_id', orderable: false, searchable: false },
                     { name: 'bed', searchable: false},
                     { name: 'status', orderable: false, searchable: false },
                     { name: 'action', orderable: false, searchable: false },

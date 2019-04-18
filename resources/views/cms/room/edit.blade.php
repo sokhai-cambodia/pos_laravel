@@ -13,17 +13,17 @@
             <div class="form-group row">
                 <label class="col-sm-2 col-form-label">Room No</label>
                 <div class="col-sm-10">
-                    <input type="text" name="roomno" class="form-control" placeholder="Enter Room" value="{{ $room->room_no }}">
+                    <input type="text" name="name" class="form-control" placeholder="Enter Room" value="{{ $room->room_no }}">
                 </div>
             </div>
 
             <div class="form-group row">
                 <label class="col-sm-2 col-form-label">Branch</label>
                 <div class="col-sm-10">
-                    <select class=" col-sm-12 border border-1 " name="Branch" tabindex="-1" aria-hidden="true" style="height:40px;" value="{{ $room->branch_id }}">
-                        <option value="available">Available</option>
-                        <option value="checked_in">Checked_in</option>
-                        <option value="blocked">Blocked</option>        
+                    <select class=" col-sm-12 border border-1 " name="branch" tabindex="-1" aria-hidden="true" style="height:40px;" value="{{ $room->branch_id }}">
+                        @foreach ($branch as $bh)
+                            <option value="{{ $bh->id }}" {{  UtilHelper::selected($bh->id, old('branch_id')) }}>{{$bh->name}}</option>
+                        @endforeach    
                     </select>
                 </div>
                 <span class="dropdown-wrapper" aria-hidden="true"></span>

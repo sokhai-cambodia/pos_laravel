@@ -83,7 +83,7 @@ class RoomController extends Controller
             'title' => 'Edit Room',
             'icon' => $this->icon,
             'branch_id'  => $branch,
-            'room'  => $room
+            'room_no'  => $room
         ];
         
         return view('cms.room.edit')->with($data);
@@ -92,21 +92,14 @@ class RoomController extends Controller
     public function update(Request $request, $id)
     {
         $request->validate([
-            'room_no' => 'required|max:255',
-            'branch_id' => 'required',
             'bed' => 'required',
-            'status' => [
-                'required',
-                Rule::in(['available', 'checked_in','blocked']),
-            ],
-        
         ]);
 
         try 
         {
             $room = Room::findOrFail($id);
     
-            $room->room_no = $request->roomno;
+            $room->room_no = $request->name;
             $room->branch_id = $request->branch;
             $room->bed = $request->bed;
             $room->status = $request->status;
