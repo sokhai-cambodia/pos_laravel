@@ -1,5 +1,4 @@
-@extends('layouts.cms.template')
-
+@extends('layouts.cms.template') 
 @section('content')
 <div class="pcoded-content">
     <!-- [ breadcrumb ] start -->
@@ -47,8 +46,7 @@
                                     <label class="col-sm-2 col-form-label">Category</label>
                                     <div class="col-sm-10">
 
-                                        <select class="form-control js-example-basic-single col-sm-12 select2-hidden-accessible"
-                                            tabindex="-1" aria-hidden="true">
+                                        <select class="form-control js-example-basic-single col-sm-12 select2-hidden-accessible" tabindex="-1" aria-hidden="true">
 
                                             <optgroup label="Category">
                                                 <option value="WY">Mother fuck Henry</option>
@@ -56,20 +54,18 @@
                                                 
                                             </optgroup>
                                         </select>
-                                        <span
-                                            class="select2 select2-container select2-container--default select2-container--below"
-                                            dir="ltr" style="width: 495px;">
+                                        <span class="select2 select2-container select2-container--default select2-container--below" dir="ltr" style="width: 495px;">
                                             <span class="selection">
                                                 <span class="select2-selection select2-selection--single"
                                                     role="combobox" aria-haspopup="true" aria-expanded="false"
                                                     tabindex="0" aria-labelledby="select2-6pwo-container">
-                                                    {{-- <span class="select2-selection__rendered" id="select2-6pwo-container" title="Peter">Peter</span> --}}
-                                                    <span class="select2-selection__arrow" role="presentation">
+                                                    {{-- <span class="select2-selection__rendered" id="select2-6pwo-container" title="Peter">Peter</span>                                        --}}
+                                        <span class="select2-selection__arrow" role="presentation">
                                                         <b role="presentation"></b>
                                                     </span>
-                                                </span>
-                                            </span>
-                                            <span class="dropdown-wrapper" aria-hidden="true"></span>
+                                        </span>
+                                        </span>
+                                        <span class="dropdown-wrapper" aria-hidden="true"></span>
                                         </span>
 
 
@@ -78,46 +74,105 @@
                                 <div class="form-group row">
                                     <label class="col-sm-2 col-form-label">Product</label>
                                     <div class="col-sm-10">
-                                        <input class="form-control" name="numeric" id="numeric"
-                                            placeholder="product Name" type="text">
+                                        <input class="form-control" name="numeric" id="numeric" placeholder="product Name" type="text">
                                         <span class="messages"></span>
                                     </div>
                                 </div>
+
+
+
+                                <div class="form-group row">
+                                    <label class="col-sm-2 col-form-label">Stock Type</label>
+                                    <div class="col-sm-10">
+
+                                        <select class="form-control js-example-basic-single col-sm-12 select2-hidden-accessible" tabindex="-1" aria-hidden="true">
+
+                                            <optgroup label="stockType">
+                                                <option value="WY">product</option>
+                                                <option value="WY">ingredient</option>
+                                                
+                                            </optgroup>
+                                        </select>
+                                        <span class="select2 select2-container select2-container--default select2-container--below" dir="ltr" style="width: 495px;">
+                                            <span class="selection">
+                                                <span class="select2-selection select2-selection--single"
+                                                    role="combobox" aria-haspopup="true" aria-expanded="false"
+                                                    tabindex="0" aria-labelledby="select2-6pwo-container">
+                                                    {{-- <span class="select2-selection__rendered" id="select2-6pwo-container" title="Peter">Peter</span>                                        --}}
+                                        <span class="select2-selection__arrow" role="presentation">
+                                                        <b role="presentation"></b>
+                                                    </span>
+                                        </span>
+                                        </span>
+                                        <span class="dropdown-wrapper" aria-hidden="true"></span>
+                                        </span>
+
+
+                                    </div>
+                                </div>
+
                                 <div class="form-group row">
                                     <label class="col-sm-2 col-form-label"> Quantity</label>
                                     <div class="col-sm-10">
-                                        <input class="form-control" name="Number" id="greater"
-                                            placeholder="Input number of product" type="text">
+                                        <input class="form-control" name="Number" id="greater" placeholder="Input number of product" type="text">
                                         <span class="messages"></span>
                                     </div>
                                 </div>
                                 <div class="form-group row">
                                     <label class="col-sm-2 col-form-label">UPIS</label>
                                     <div class="col-sm-10">
-                                        <input class="form-control" name="Numbers" id="less"
-                                            placeholder="Input price Import" type="text">
+                                        <input class="form-control" name="Numbers" id="less" placeholder="Input price Import" type="text">
                                         <span class="messages"></span>
                                     </div>
                                 </div>
                                 <div class="form-group row">
                                     <label class="col-sm-2 col-form-label">UPOS</label>
                                     <div class="col-sm-10">
-                                        <input class="form-control" name="Numbers" id="less"
-                                            placeholder="Input price for sale" type="text">
+                                        <input class="form-control" name="Numbers" id="less" placeholder="Input price for sale" type="text">
                                         <span class="messages"></span>
                                     </div>
                                 </div>
 
                                 <div class="form-group row">
-                                        <label class="col-sm-2 col-form-label">Image</label>
-                                        <div class="col-sm-10">
-                                           
-                                            <input class="form-control" name="Numbers" id="less"
-                                                placeholder="Input price for sale" type="file">
-                                            <span class="messages"></span>
-                                        </div>
+                                    <label class="col-sm-2 col-form-label">UNIT ID</label>
+                                    <div class="col-sm-10">
+
+                                        <select class="form-control js-example-basic-single col-sm-12 select2-hidden-accessible" tabindex="-1" aria-hidden="true">
+
+                                            <optgroup label="stockType">
+                                                <option value="WY">product</option>
+                                                <option value="WY">ingredient</option>
+                                                
+                                            </optgroup>
+                                        </select>
+                                        <span class="select2 select2-container select2-container--default select2-container--below" dir="ltr" style="width: 495px;">
+                                            <span class="selection">
+                                                <span class="select2-selection select2-selection--single"
+                                                    role="combobox" aria-haspopup="true" aria-expanded="false"
+                                                    tabindex="0" aria-labelledby="select2-6pwo-container">
+                                                    {{-- <span class="select2-selection__rendered" id="select2-6pwo-container" title="Peter">Peter</span>                                        --}}
+                                        <span class="select2-selection__arrow" role="presentation">
+                                                        <b role="presentation"></b>
+                                                    </span>
+                                        </span>
+                                        </span>
+                                        <span class="dropdown-wrapper" aria-hidden="true"></span>
+                                        </span>
+
+
                                     </div>
-                             
+                                </div>
+
+
+                                <div class="form-group row">
+                                    <label class="col-sm-2 col-form-label">Image</label>
+                                    <div class="col-sm-10">
+
+                                        <input class="form-control" name="Numbers" id="less" placeholder="Input price for sale" type="file">
+                                        <span class="messages"></span>
+                                    </div>
+                                </div>
+
 
 
                                 <div class="row">
@@ -129,7 +184,7 @@
 
 
 
-                               
+
 
 
 

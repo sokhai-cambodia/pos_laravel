@@ -77,116 +77,58 @@
                 </li>
 
 
-                <li class="pcoded-hasmenu">
+                  {{-- UNIT --}}
+                  <li class="pcoded-hasmenu">
                     <a href="javascript:void(0)" class="waves-effect waves-dark">
-                        <span class="pcoded-micon">
-                            <i class="feather icon-layers"></i>
-                        </span>
-                        <span class="pcoded-mtext">Widget</span>
-                        <span class="pcoded-badge label label-danger">100+</span>
+                        <span class="pcoded-micon"><i class="feather icon-sidebar"></i></span>
+                        <span class="pcoded-mtext">UNIT </span>
+                        {{-- <span class="pcoded-badge label label-warning">NEW</span> --}}
                     </a>
                     <ul class="pcoded-submenu">
                         <li class="">
-                            <a href="widget-statistic.html" class="waves-effect waves-dark">
-                                <span class="pcoded-mtext">Statistic</span>
-                            </a>
-                        </li>
-                        <li class="">
-                            <a href="widget-data.html" class="waves-effect waves-dark">
-                                <span class="pcoded-mtext">Data</span>
-                            </a>
-                        </li>
-                        <li class="">
-                            <a href="widget-chart.html" class="waves-effect waves-dark">
-                                <span class="pcoded-mtext">Chart Widget</span>
-                            </a>
-                        </li>
-                    </ul>
-                </li>
-            </ul>
-            <div class="pcoded-navigation-label">UI Element</div>
-            <ul class="pcoded-item pcoded-left-item">
-                <li class="pcoded-hasmenu">
-                    <a href="javascript:void(0)" class="waves-effect waves-dark">
-                        <span class="pcoded-micon">
-                            <i class="feather icon-box"></i>
-                        </span>
-                        <span class="pcoded-mtext">Basic</span>
-                    </a>
-                    <ul class="pcoded-submenu">
-                        <li class="">
-                            <a href="alert.html" class="waves-effect waves-dark">
-                                <span class="pcoded-mtext">Alert</span>
-                            </a>
-                        </li>
-                        <li class="">
-                            <a href="breadcrumb.html" class="waves-effect waves-dark">
-                                <span class="pcoded-mtext">Breadcrumbs</span>
-                            </a>
-                        </li>
-                        <li class="">
-                            <a href="button.html" class="waves-effect waves-dark">
-                                <span class="pcoded-mtext">Button</span>
-                            </a>
-                        </li>
-                        <li class="">
-                            <a href="box-shadow.html" class="waves-effect waves-dark">
-                                <span class="pcoded-mtext">Box-Shadow</span>
-                            </a>
-                        </li>
-                        <li class="">
-                            <a href="accordion.html" class="waves-effect waves-dark">
-                                <span class="pcoded-mtext">Accordion</span>
-                            </a>
-                        </li>
-                        <li class="">
-                            <a href="generic-class.html" class="waves-effect waves-dark">
-                                <span class="pcoded-mtext">Generic Class</span>
+                            <a href="javascript:void(0)" class="waves-effect waves-dark">
+                                <span class="pcoded-mtext">Add Unit</span>
                             </a>
                         </li>
                         <li class=" ">
-                            <a href="tabs.html" class="waves-effect waves-dark">
-                                <span class="pcoded-mtext">Tabs</span>
+                            <a href="javascript:void(0)" class="waves-effect waves-dark">
+                                <span class="pcoded-mtext">List Unit</span>
                             </a>
-                        </li>
-                        <li class=" ">
-                            <a href="color.html" class="waves-effect waves-dark">
-                                <span class="pcoded-mtext">Color</span>
-                            </a>
-                        </li>
-                        <li class=" ">
-                            <a href="label-badge.html" class="waves-effect waves-dark">
-                                <span class="pcoded-mtext">Label Badge</span>
-                            </a>
-                        </li>
-                        <li class=" ">
-                            <a href="progress-bar.html" class="waves-effect waves-dark">
-                                <span class="pcoded-mtext">Progress Bar</span>
-                            </a>
+
                         </li>
 
-                        <li class=" ">
-                            <a href="list.html" class="waves-effect waves-dark">
-                                <span class="pcoded-mtext">List</span>
-                            </a>
-                        </li>
-                        <li class=" ">
-                            <a href="tooltip.html" class="waves-effect waves-dark">
-                                <span class="pcoded-mtext">Tooltip And Popover</span>
-                            </a>
-                        </li>
-                        <li class=" ">
-                            <a href="typography.html" class="waves-effect waves-dark">
-                                <span class="pcoded-mtext">Typography</span>
-                            </a>
-                        </li>
-                        <li class=" ">
-                            <a href="other.html" class="waves-effect waves-dark">
-                                <span class="pcoded-mtext">Other</span>
-                            </a>
-                        </li>
                     </ul>
                 </li>
+
+            </ul>
+
+
+
+            <div class="pcoded-navigation-label">SETTING </div>
+            <ul class="pcoded-item pcoded-left-item">
+                {{-- User --}}
+                <li class="pcoded-hasmenu">
+                    <a href="javascript:void(0)" class="waves-effect waves-dark">
+                        <span class="pcoded-micon"><i class="feather icon-sidebar"></i></span>
+                        <span class="pcoded-mtext">USER</span>
+                        {{-- <span class="pcoded-badge label label-warning">NEW</span> --}}
+                    </a>
+                    <ul class="pcoded-submenu">
+                        <li class="">
+                            <a href="javascript:void(0)" class="waves-effect waves-dark">
+                                <span class="pcoded-mtext">Add User</span>
+                            </a>
+                        </li>
+                        <li class=" ">
+                            <a href="javascript:void(0)" class="waves-effect waves-dark">
+                                <span class="pcoded-mtext">List User</span>
+                            </a>
+
+                        </li>
+
+                    </ul>
+                </li>
+
                 <li class="pcoded-hasmenu">
                     <a href="javascript:void(0)" class="waves-effect waves-dark">
                         <span class="pcoded-micon">

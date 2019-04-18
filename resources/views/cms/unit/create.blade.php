@@ -9,7 +9,7 @@
                 <div class="page-header-title">
                     <i class="feather icon-home bg-c-blue"></i>
                     <div class="d-inline">
-                        <h5>Add Category</h5>
+                        <h5>Add Unit</h5>
                         {{-- <span>lorem ipsum dolor sit amet, consectetur adipisicing elit</span> --}}
                     </div>
                 </div>
@@ -20,7 +20,7 @@
                         <li class="breadcrumb-item">
                             <a href="index.html"><i class="feather icon-home"></i></a>
                         </li>
-                        <li class="breadcrumb-item"><a href="#!">Product </a> </li>
+                        <li class="breadcrumb-item"><a href="#!">Unit </a> </li>
                     </ul>
                 </div>
             </div>
@@ -40,10 +40,10 @@
                         <div class="col-12 col-sm-8 col-md-6 col-lg-6 border border-1 pt-4">
                             <form id="main" method="post" action="https://colorlib.com/" novalidate="">
                                 <div class="form-group row has-success">
-                                    <label class="col-sm-2 col-form-label">Category</label>
+                                    <label class="col-sm-2 col-form-label">Unit</label>
                                     <div class="col-sm-10">
                                         <input class="form-control fill" name="name" id="name"
-                                            placeholder="product category" type="text">
+                                            placeholder="Unit" type="text">
                                         <span class="messages"></span>
                                     </div>
                                 </div>
