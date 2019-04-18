@@ -23,8 +23,6 @@
 <!-- Style.css -->
 <link rel="stylesheet" type="text/css" href="{{ asset('plugin/cms/assets/css/style.css') }}">
 <link rel="stylesheet" type="text/css" href="{{ asset('plugin/cms/assets/css/widget.css') }}">
-<<<<<<< HEAD
-=======
 
 <!-- font awesome -->
 <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
@@ -36,4 +34,3 @@
 <link rel="stylesheet" type="text/css" href="{{ asset('plugin/cms/bower_components/datatables.net-responsive-bs4/css/responsive.bootstrap4.min.css')}}">
 
 
->>>>>>> d02509a7361479143db6ad12e4dc1855917e6bf5
