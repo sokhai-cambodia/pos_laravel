@@ -73,7 +73,7 @@ class UnitController extends Controller
             'icon' => $this->icon
         ];
         $data['unit'] = Unit::findOrFail($id);
-        return view('cms.unit.update')->with($data);
+        return view('cms.unit.edit')->with($data);
     }
 
     public function update(Request $request, $id)

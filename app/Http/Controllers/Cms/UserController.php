@@ -111,7 +111,7 @@ class UserController extends Controller
             'user'  => $user
         ];
         
-        return view('cms.user.update')->with($data);
+        return view('cms.user.edit')->with($data);
     }
 
     public function update(Request $request, $id)

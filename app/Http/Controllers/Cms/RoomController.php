@@ -86,7 +86,7 @@ class RoomController extends Controller
             'room_no'  => $room
         ];
         
-        return view('cms.room.update')->with($data);
+        return view('cms.room.edit')->with($data);
     }
 
     public function update(Request $request, $id)

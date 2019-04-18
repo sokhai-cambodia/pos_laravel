@@ -132,7 +132,7 @@
                     </a>
                     <ul class="pcoded-submenu">
                         <li class="">
-                            <a href="{{ route('product.store') }}" class="waves-effect waves-dark">
+                            <a href="{{ route('product.create') }}" class="waves-effect waves-dark">
                                 <span class="pcoded-mtext">Add Product</span>
                             </a>
                         </li>
