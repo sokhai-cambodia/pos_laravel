@@ -29,7 +29,7 @@ require_once __DIR__.'/cms/ajax.php';
 
 Route::group(['prefix' => 'cms', 'middleware' => ['auth']], function(){
     
-    Route::get('/cms', function () {
+    Route::get('', function () {
         return view('cms.index');
     })->name('cms');
 
