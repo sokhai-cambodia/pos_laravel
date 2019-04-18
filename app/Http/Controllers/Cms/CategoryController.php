@@ -82,7 +82,7 @@ class CategoryController extends Controller
             'icon' => $this->icon
         ];
         $data['category'] = Category::findOrFail($id);
-        return view('cms.category.edit')->with($data);
+        return view('cms.category.update')->with($data);
     }
 
     public function update(Request $request, $id)

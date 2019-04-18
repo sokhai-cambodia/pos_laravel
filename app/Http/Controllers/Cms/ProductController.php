@@ -49,7 +49,7 @@ class ProductController extends Controller
             'categories' => $categories,
             'units'  => $units,
         ];
-        return view('cms.product.create')->with($data);
+        return view('cms.product.store')->with($data);
     }
 
     public function store(Request $request)
@@ -142,7 +142,7 @@ class ProductController extends Controller
             'categories'  => $categories,
             'units'  => $units
         ];
-        return view('cms.product.edit')->with($data);
+        return view('cms.product.update')->with($data);
     }
 
     public function update(Request $request, $id)

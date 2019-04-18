@@ -8,7 +8,7 @@
         <span>Add class of <code>.form-control</code> with <code>&lt;input&gt;</code> tag</span>
     </div>
     <div class="card-block">
-        <form action="{{ route('user.store') }}" method="POST" enctype="multipart/form-data">
+        <form action="{{ route('user.create') }}" method="POST" enctype="multipart/form-data">
             @csrf
             <div class="form-group row">
                 <label class="col-sm-2 col-form-label">Last Name</label>

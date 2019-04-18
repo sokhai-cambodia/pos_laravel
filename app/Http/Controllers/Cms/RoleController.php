@@ -73,7 +73,7 @@ class RoleController extends Controller
             'icon' => $this->icon
         ];
         $data['role'] = Role::findOrFail($id);
-        return view('cms.role.edit')->with($data);
+        return view('cms.role.update')->with($data);
     }
 
     public function update(Request $request, $id)

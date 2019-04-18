@@ -26,7 +26,7 @@ class ProfileController extends Controller
             'gender' => $this->gender,
         ];
         
-        return view('cms.profile.edit')->with($data);
+        return view('cms.profile.update')->with($data);
     }
 
     public function update(Request $request)
@@ -63,7 +63,7 @@ class ProfileController extends Controller
             $user->save();
 
             NotificationHelper::setSuccessNotification('updated_success');
-            return redirect()->route('profile.edit');
+            return redirect()->route('profile.update');
         } 
         catch (\Exception $e) 
         {
