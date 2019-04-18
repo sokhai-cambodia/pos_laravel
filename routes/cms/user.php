@@ -1,35 +1,14 @@
 <?php
 
 Route::group(['prefix' => 'user'], function(){
-    Route::get('', [
-        'uses' => 'Cms\UsersController@index',
-        'as' => 'user'
-    ]);
 
-    Route::get('/create', [
-        'uses' => 'Cms\UsersController@create',
-        'as' => 'user.create'
-    ]);
-
-    Route::post('/store', [
-        'uses' => 'Cms\UsersController@store',
-        'as' => 'user.create'
-    ]);
-
-    Route::post('/update/{id}', [
-        'uses' => 'Cms\UsersController@update',
-        'as' => 'user.update'
-    ]);
-
-    Route::get('/edit/{id}', [
-        'uses' => 'Cms\UsersController@edit',
-        'as' => 'user.update'
-    ]);
-
-    Route::get('/destroy/{id}', [
-        'uses' => 'Cms\UsersController@destroy',
-        'as' => 'user.destroy'
-    ]);
+    Route::get('', 'Cms\UserController@index')->name('user');
+    Route::get('/lists', 'Cms\UserController@getUserLists')->name('user.lists');
+    Route::get('/create', 'Cms\UserController@create')->name('user.create');
+    Route::post('/store', 'Cms\UserController@store')->name('user.store');
+    Route::get('/edit/{id}', 'Cms\UserController@edit')->name('user.edit');
+    Route::post('/update/{id}', 'Cms\UserController@update')->name('user.update');
+    Route::get('/destroy/{id}', 'Cms\UserController@destroy')->name('user.delete');
 
 });
 

@@ -30,51 +30,48 @@
                     </ul>
                 </li>
 
-                {{-- category --}}
+                {{-- Branch --}}
                 <li class="pcoded-hasmenu">
                     <a href="javascript:void(0)" class="waves-effect waves-dark">
                         <span class="pcoded-micon"><i class="feather icon-sidebar"></i></span>
-                        <span class="pcoded-mtext">Category</span>
+                        <span class="pcoded-mtext">Branch</span>
                         {{-- <span class="pcoded-badge label label-warning">NEW</span> --}}
                     </a>
                     <ul class="pcoded-submenu">
                         <li class="">
-                            <a href="javascript:void(0)" class="waves-effect waves-dark">
-                                <span class="pcoded-mtext">Add Category</span>
+                            <a href="{{ route('branch.create') }}" class="waves-effect waves-dark">
+                                <span class="pcoded-mtext">Add Branch</span>
                             </a>
                         </li>
                         <li class=" ">
-                            <a href="javascript:void(0)" class="waves-effect waves-dark">
-                                <span class="pcoded-mtext">List Category</span>
+                            <a href="{{ route('branch') }}" class="waves-effect waves-dark">
+                                <span class="pcoded-mtext">List Branch</span>
                             </a>
-
                         </li>
-
                     </ul>
                 </li>
 
-                {{-- Product --}}
+                {{-- Unit --}}
                 <li class="pcoded-hasmenu">
                     <a href="javascript:void(0)" class="waves-effect waves-dark">
                         <span class="pcoded-micon"><i class="feather icon-sidebar"></i></span>
-                        <span class="pcoded-mtext">Product</span>
+                        <span class="pcoded-mtext">Unit</span>
                         {{-- <span class="pcoded-badge label label-warning">NEW</span> --}}
                     </a>
                     <ul class="pcoded-submenu">
                         <li class="">
-                            <a href="javascript:void(0)" class="waves-effect waves-dark">
-                                <span class="pcoded-mtext">Add Product</span>
+                            <a href="{{ route('unit.create') }}" class="waves-effect waves-dark">
+                                <span class="pcoded-mtext">Add Unit</span>
                             </a>
                         </li>
                         <li class=" ">
-                            <a href="javascript:void(0)" class="waves-effect waves-dark">
-                                <span class="pcoded-mtext">List Product</span>
+                            <a href="{{ route('unit') }}" class="waves-effect waves-dark">
+                                <span class="pcoded-mtext">List Unit</span>
                             </a>
-
                         </li>
-
                     </ul>
                 </li>
+
                 {{-- User --}}
                 <li class="pcoded-hasmenu">
                     <a href="javascript:void(0)" class="waves-effect waves-dark">
@@ -84,21 +81,60 @@
                     </a>
                     <ul class="pcoded-submenu">
                         <li class="">
-                            <a href="javascript:void(0)" class="waves-effect waves-dark">
-                                <span class="pcoded-mtext">User list</span>
+                            <a href="{{ route('user.create') }}" class="waves-effect waves-dark">
+                                <span class="pcoded-mtext">Add User</span>
                             </a>
                         </li>
                         <li class=" ">
-                            <a href="javascript:void(0)" class="waves-effect waves-dark">
-                                <span class="pcoded-mtext">Create User</span>
+                            <a href="{{ route('user') }}" class="waves-effect waves-dark">
+                                <span class="pcoded-mtext">List User</span>
                             </a>
-
                         </li>
-
                     </ul>
                 </li>
 
+                {{-- Role --}}
+                <li class="pcoded-hasmenu">
+                    <a href="javascript:void(0)" class="waves-effect waves-dark">
+                        <span class="pcoded-micon"><i class="feather icon-sidebar"></i></span>
+                        <span class="pcoded-mtext">Role</span>
+                        {{-- <span class="pcoded-badge label label-warning">NEW</span> --}}
+                    </a>
+                    <ul class="pcoded-submenu">
+                        <li class="">
+                            <a href="{{ route('role.create') }}" class="waves-effect waves-dark">
+                                <span class="pcoded-mtext">Add Role</span>
+                            </a>
+                        </li>
+                        <li class=" ">
+                            <a href="{{ route('role') }}" class="waves-effect waves-dark">
+                                <span class="pcoded-mtext">List Role</span>
+                            </a>
+                        </li>
+                    </ul>
+                </li>
 
+                {{-- Category --}}
+                <li class="pcoded-hasmenu">
+                    <a href="javascript:void(0)" class="waves-effect waves-dark">
+                        <span class="pcoded-micon"><i class="feather icon-sidebar"></i></span>
+                        <span class="pcoded-mtext">Category</span>
+                        {{-- <span class="pcoded-badge label label-warning">NEW</span> --}}
+                    </a>
+                    <ul class="pcoded-submenu">
+                        <li class="">
+                            <a href="{{ route('category.create') }}" class="waves-effect waves-dark">
+                                <span class="pcoded-mtext">Add Category</span>
+                            </a>
+                        </li>
+                        <li class=" ">
+                            <a href="{{ route('category') }}" class="waves-effect waves-dark">
+                                <span class="pcoded-mtext">List Category</span>
+                            </a>
+                        </li>
+                    </ul>
+                </li>
+                
                 <li class="pcoded-hasmenu">
                     <a href="javascript:void(0)" class="waves-effect waves-dark">
                         <span class="pcoded-micon">

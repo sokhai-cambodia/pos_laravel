@@ -225,7 +225,9 @@ return [
         'URL' => Illuminate\Support\Facades\URL::class,
         'Validator' => Illuminate\Support\Facades\Validator::class,
         'View' => Illuminate\Support\Facades\View::class,
-
+        'NotificationHelper' => App\Helpers\NotificationHelper::class,
+        'FileHelper' => App\Helpers\FileHelper::class,
+        'UtilHelper' => App\Helpers\UtilHelper::class,
     ],
 
 ];

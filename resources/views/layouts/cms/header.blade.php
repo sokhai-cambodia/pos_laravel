@@ -16,6 +16,8 @@
 <link rel="stylesheet" href="{{ asset('plugin/cms/assets/pages/waves/css/waves.min.css') }}" type="text/css" media="all">
 <!-- feather icon -->
 <link rel="stylesheet" type="text/css" href="{{ asset('plugin/cms/assets/icon/feather/css/feather.css') }}">
+<!-- ico font -->
+<link rel="stylesheet" type="text/css" href="{{ asset('plugin/cms/assets/icon/icofont/css/icofont.css') }}">
 <!-- font-awesome-n -->
 <link rel="stylesheet" type="text/css" href="{{ asset('plugin/cms/assets/css/font-awesome-n.min.css') }}">
 <!-- Chartlist chart css -->
@@ -23,14 +25,5 @@
 <!-- Style.css -->
 <link rel="stylesheet" type="text/css" href="{{ asset('plugin/cms/assets/css/style.css') }}">
 <link rel="stylesheet" type="text/css" href="{{ asset('plugin/cms/assets/css/widget.css') }}">
-
-<!-- font awesome -->
-<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
-
-<link rel="stylesheet" type="text/css" href="{{ asset('plugin/cms/assets/css/widget.css') }}">
-
-<link rel="stylesheet" type="text/css" href="{{ asset('plugin/cms/bower_components/datatables.net-bs4/css/dataTables.bootstrap4.min.css')}}">
-<link rel="stylesheet" type="text/css" href="{{ asset('plugin/cms/assets/pages/data-table/css/buttons.dataTables.min.css')}}">
-<link rel="stylesheet" type="text/css" href="{{ asset('plugin/cms/bower_components/datatables.net-responsive-bs4/css/responsive.bootstrap4.min.css')}}">
-
-
+<!-- Dropify.css -->
+<link rel="stylesheet" type="text/css" href="{{ asset('plugin/cms/assets/css/dropify.css') }}">
