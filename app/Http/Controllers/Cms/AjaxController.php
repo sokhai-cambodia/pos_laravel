@@ -41,75 +41,52 @@ class AjaxController extends Controller
 
     }
 
-    public function findProductIngredient(Request $request)
-    {
-        $products = Product::where('is_ingredient', 1)->get();
-        $units = Unit::all();
-        $productIngredientList = view('cms.ajax.product.product-ingredient-list')
-                                ->with([
-                                    'products' => $products,
-                                    'units' => $units,
-                                ])
-                                ->render();
-        $table = view('cms.ajax.product.product-ingredient')->with(['productIngredientList' => $productIngredientList])->render();
-        $data = [
-            'table' => $table,
-            'row' => $productIngredientList
-        ];
-        return response()->json([
-            'status' => 1,
-            'data' => $data,
-        ]);
 
-    }
+    // public function findUpdateProductIngredient(Request $request)
+    // {
+    //     $products = Product::where('is_ingredient', 1)->get();
+    //     $units = Unit::all();
+    //     $productsData = DB::table('products')
+    //                     ->join('product_ingredients', 'product_ingredients.ingredient_product_id', '=', 'products.id')
+    //                     ->where('product_ingredients.product_id', $request->id)
+    //                     ->select(
+    //                         'products.id',
+    //                         'products.photo',
+    //                         'product_ingredients.unit_id',
+    //                         'product_ingredients.quanity_for_cut_stock'
+    //                         )
+    //                     ->get();
 
-    public function findUpdateProductIngredient(Request $request)
-    {
-        $products = Product::where('is_ingredient', 1)->get();
-        $units = Unit::all();
-        $productsData = DB::table('products')
-                        ->join('product_ingredients', 'product_ingredients.ingredient_product_id', '=', 'products.id')
-                        ->where('product_ingredients.product_id', $request->id)
-                        ->select(
-                            'products.id',
-                            'products.photo',
-                            'product_ingredients.unit_id',
-                            'product_ingredients.quanity_for_cut_stock'
-                            )
-                        ->get();
+    //     $productIngredientLists = view('cms.ajax.product.product-ingredient-update-list')
+    //                             ->with([
+    //                                 'productsData' => $productsData,
+    //                                 'products' => $products,
+    //                                 'units' => $units,
+    //                             ])
+    //                             ->render();
 
-        $productIngredientLists = view('cms.ajax.product.product-ingredient-update-list')
-                                ->with([
-                                    'productsData' => $productsData,
-                                    'products' => $products,
-                                    'units' => $units,
-                                ])
-                                ->render();
+    //     $productIngredientList = view('cms.ajax.product.product-ingredient-list')
+    //                             ->with([
+    //                                 'products' => $products,
+    //                                 'units' => $units,
+    //                             ])
+    //                             ->render();
+    //     $table = view('cms.ajax.product.product-ingredient')->with(['productIngredientList' => $productIngredientLists])->render();
+    //     $data = [
+    //         'table' => $table,
+    //         'row' => $productIngredientList,
+    //     ];
+    //     return response()->json([
+    //         'status' => 1,
+    //         'data' => $data,
+    //     ]);
 
-        $productIngredientList = view('cms.ajax.product.product-ingredient-list')
-                                ->with([
-                                    'products' => $products,
-                                    'units' => $units,
-                                ])
-                                ->render();
-        $table = view('cms.ajax.product.product-ingredient')->with(['productIngredientList' => $productIngredientLists])->render();
-        $data = [
-            'table' => $table,
-            'row' => $productIngredientList,
-        ];
-        return response()->json([
-            'status' => 1,
-            'data' => $data,
-        ]);
-
-    }
+    // }
 
 
     public function findUserInfo(Request $request) {
         $user = User::find($request->user_id);
-        if($user == null) {
-            return response()->json([ 'status' => 0 ]);
-        }
+        if($user == null) return response()->json([ 'status' => 0 ]);
 
         $data = view('cms.ajax.user-info')->with(['user' => $user])->render();
         return response()->json([
@@ -119,24 +96,40 @@ class AjaxController extends Controller
 
     }
 
-
-    public function findRoomInfo(Request $request) {
-        $room = Room::find($request->id);
-        if($room == null) {
-            return response()->json([ 'status' => 0 ]);
+    public function findProductIngredient(Request $request)
+    {
+        $products = Product::where('is_ingredient', 1)
+                            ->where('name', 'like', '%'.$request->search.'%')
+                            ->limit(10)
+                            ->get();
+        $response = array();
+        foreach($products as $product) {
+            $response[] = ["value" => $product->id, "label" => $product->name];
         }
+        return response()->json($response);
 
-        $data = view('cms.ajax.room-info')->with(['room' => $room])->render();
-        return response()->json([
-            'status' => 1,
-            'data' => $data,
-        ]);
-
-        var_dump($data);
     }
 
+    public function findProductIngredientById(Request $request)
+    {
+        $product = Product::where('is_ingredient', 1)
+                            ->where('id', $request->id)
+                            ->first();
 
+        if($product == null) return response()->json([ 'status' => 0 ]);
 
-    
-    
+        $units = Unit::all();
+        
+        $tr = view('cms.ajax.product-ingredient')
+              ->with([
+                  'product' => $product,
+                  'units' => $units
+                ])
+              ->render();
+        return response()->json([
+            'status' => 1,
+            'tr' => $tr,
+        ]);
+
+    } 
 }

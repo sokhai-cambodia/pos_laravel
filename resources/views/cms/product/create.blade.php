@@ -14,7 +14,7 @@
                 <label class="col-sm-2 col-form-label">Name</label>
                 <div class="col-sm-10">
                     <input type="text" name="name" class="form-control"
-                    placeholder="Enter Name" value="{{ old('last_name') }}">
+                    placeholder="Enter Name" value="{{ old('name') }}">
                 </div>
             </div>
             <div class="form-group row">
@@ -27,7 +27,7 @@
                 <label class="col-sm-2 col-form-label">Description</label>
                 <div class="col-sm-10">
                     <textarea rows="5" cols="5" name="description" class="form-control"
-                        placeholder="Enter Description"></textarea>
+                        placeholder="Enter Description">{{ old('description') }}</textarea>
                 </div>
             </div>
             <div class="form-group row">
@@ -88,7 +88,45 @@
                 </div>
             </div>
             <div id="product-ingredient">
-                            
+                {{-- Search --}}
+                <div class="form-group row" >
+                    <label class="col-sm-2 col-form-label">Search</label>
+                    <div class="col-sm-10">
+                        <input type="text" name="search" id="search-product-ingredient" class="form-control"
+                        placeholder="Search By Product Name">
+                    </div>
+                </div>
+                {{-- #Search --}}
+                {{-- Detail --}}
+                <div>
+                    <div class="table-responsive">
+                        <table class="table table-styling" id="product-ingredient-table">
+                            <thead>
+                                <tr class="table-primary">
+                                    <th>
+                                        Photo
+                                    </th>
+                                    <th>
+                                        Name
+                                    </th>
+                                    <th>
+                                        Unit
+                                    </th>
+                                    <th>
+                                        Quanity
+                                    </th>
+                                    <th>
+                                        Action
+                                    </th>
+                                </tr>
+                            </thead>
+                            <tbody id='product-ingredient-list'>
+                                
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                {{-- #Detail --}}
             </div>
             <button type="submit" class="btn btn-success waves-effect waves-light pull-right">Save</button>
         </form>
@@ -103,19 +141,18 @@
 <script>
 $(function(){
 
+    
     $('body').on('change', '#stock_type', function() {
         var val = $(this).val();
-        // if(val == 'ingredient') {
-        //     initProductIngredientList();
-           
-        // } else {
-        //     $("#product-ingredient").html('');
-        // }
-        alert(val);
+        if(val == 'ingredient') {
+            $("#product-ingredient").show();
+        } else {
+            $("#product-ingredient").hide();
+            $("#product-ingredient-list").html('');
+        }
     });
 
-
-   
+    $("#stock_type").change();
 
     $('body').on('click', '.btn-delete', function() {
         var tr = $(this).closest('tr')
@@ -149,6 +186,63 @@ $(function(){
             }
         })
     });
+
+    // autocomplete
+    $( "#search-product-ingredient" ).autocomplete({
+        source: function( request, response ) {
+        // Fetch data
+        console.log(request);
+        $.ajax({
+            url: "{{ route('ajax.find-product-ingredient') }}",
+            type: 'get',
+            dataType: "json",
+            data: {
+                search: request.term
+            },
+            success: function( data ) {
+                response( data );
+            }
+        });
+        },
+        select: function (event, ui) {
+            if(!existProductIngredient(ui.item.value)) getProductIngredient(ui.item.value);
+            return false;
+        }
+    });
+
+    function existProductIngredient(id) {
+        $result = false;
+        $('#product-ingredient-table > tbody  > tr').each(function(ind, tr) {
+            var bookid = $(tr).find('.i_product_id').val();
+            if(bookid == id) {
+                $result = true;
+                return false;
+            }
+        });
+        return $result;
+    }
+
+    function getProductIngredient(id) {
+
+        $.ajax({
+            url: "{{ route('ajax.find-product-ingredient-by-id') }}",
+            method: 'get',
+            dataType : 'json',
+            data: {
+                id : id
+            },
+            success: function(result){
+                if(result.status == 1) {
+                    $("#product-ingredient-list").append(result.tr);
+                } else {
+                    alert('no data');
+                }
+                
+                
+            }
+        })
+    }
+
 })
 </script>
 @endsection

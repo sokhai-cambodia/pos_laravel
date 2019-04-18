@@ -5,6 +5,7 @@ namespace App;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use DB;
+use FileHelper;
 
 class Product extends Model
 {
@@ -13,8 +14,6 @@ class Product extends Model
     protected $table = 'products';
 
     protected $guarded = [];
-
-    private $PATH = 'assets/uploads/products';
 
     // User
    
@@ -70,7 +69,7 @@ class Product extends Model
 
     public function getPhoto()
     {
-        return asset($this->PATH.'/'.$this->photo);
+        return asset(FileHelper::hasImage($this->photo));
     }
 
     public static function laratablesAdditionalColumns()
