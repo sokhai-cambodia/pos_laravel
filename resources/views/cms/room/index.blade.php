@@ -3,6 +3,27 @@
 @include('layouts.cms.data-table-header')
 
 @section('content')
+ <!-- animation modal Dialogs start -->
+<div class="modal fade" id="view-info" tabindex="-1" role="dialog">
+    <div class="modal-dialog modal-md" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title">View User Information</h4>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body" id="model-body">
+                
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default waves-effect " data-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+<!--animation modal  Dialogs ends -->
+
 <!-- Default ordering table start -->
 <div class="card">
     <div class="card-header">
@@ -13,12 +34,11 @@
             <table id="listing" class="table table-striped table-bordered nowrap" style="width: 100%">
                 <thead>
                     <tr>
-                        <th>Name</th>
-                        <th>Photo</th>
-                        <th>Category</th>
-                        <th>Cut Stock Qty</th>
-                        <th>Ingredient</th>
-                        <th>Price</th>
+                        <th>#</th>
+                        <th>Room</th>
+                        <th>Branch</th>
+                        <th>Bed</th>
+                        <th>Status</th>
                         <th>Actions</th>
                     </tr>
                 </thead>
@@ -38,14 +58,15 @@
             $('#listing').DataTable({
                 serverSide: true,
                 processing: true,
-                ajax: "{{ route('product.lists') }}",
+                responsive: true,
+                ajax: "{{ route('room.lists') }}",
                 columns: [
-                    { name: 'name' },
+                    { name: 'id' },
+                    { name: 'room_no'},
                     { name: 'thumbnail', orderable: false, searchable: false },
-                    { name: 'category', orderable: false, searchable: false },
-                    { name: 'stock', orderable: false, searchable: false },
-                    { name: 'ingredient', orderable: false, searchable: false},
-                    { name: 'price', orderable: false, searchable: false },
+                    { name: 'branch_id', orderable: false, searchable: false },
+                    { name: 'bed', searchable: false},
+                    { name: 'status', orderable: false, searchable: false },
                     { name: 'action', orderable: false, searchable: false },
                 ],
             });
@@ -91,7 +112,7 @@
                 var user_id = $(this).attr('data-id');
                 $.ajax({
                     type:'POST',
-                    url:"{{ route('ajax.find-user-info') }}",
+                    url:"{{ route('ajax.find-room-info') }}",
                     data: {
                         _token: _token,
                         user_id: user_id

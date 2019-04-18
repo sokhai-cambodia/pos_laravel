@@ -37,6 +37,7 @@ class UserController extends Controller
     public function create()
     {
         $roles = Role::all();   
+       
         $data = [
             'title' => 'Create New User',
             'icon' => $this->icon,

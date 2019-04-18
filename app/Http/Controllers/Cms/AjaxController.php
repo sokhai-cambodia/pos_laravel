@@ -9,6 +9,7 @@ use App\Permission;
 use App\Product;
 use App\Unit;
 use App\User;
+use App\Room;
 
 class AjaxController extends Controller
 {
