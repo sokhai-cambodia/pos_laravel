@@ -33,7 +33,7 @@
             <div class="form-group row">
                 <label class="col-sm-2 col-form-label">Category</label>
                 <div class="col-sm-10">
-                    <select name="category_id" class="form-control">
+                    <select id="category_id" name="category_id" class="form-control">
                         @foreach ($categories as $category)
                             <option value="{{ $category->id }}" {{  UtilHelper::selected($category->id, old('category_id')) }}>{{ $category->name }}</option>
                         @endforeach

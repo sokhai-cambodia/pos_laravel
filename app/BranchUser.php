@@ -3,11 +3,9 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\SoftDeletes;
 
 class BranchUser extends Model
 {
-    use SoftDeletes;
 
     protected $table = 'branch_users';
 

@@ -24,9 +24,7 @@ class CreateBranchUsersTable extends Migration
             $table->tinyInteger('is_active')->default(1);
             $table->integer('created_by');
             $table->integer('updated_by')->nullable();
-            $table->integer('deleted_by')->nullable();
             $table->timestamps();
-            $table->softDeletes();
             $table->primary(['branch_id', 'user_id']);
         });
     }

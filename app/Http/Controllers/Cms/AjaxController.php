@@ -44,8 +44,19 @@ class AjaxController extends Controller
     public function findUserInfo(Request $request) {
         $user = User::find($request->user_id);
         if($user == null) return response()->json([ 'status' => 0 ]);
+        $id = $user->id;
+        $branches = DB::table('branches as b')
+                        ->leftJoin('branch_users as bu', function ($join) use ( $id) {
+                            $join->on('bu.branch_id', '=', 'b.id')
+                                 ->where('bu.user_id', '=', $id);
+                        })
+                        ->select('b.*', DB::raw('IF(bu.branch_id = b.id, true, false) as checked'))
+                        ->get();
 
-        $data = view('cms.ajax.user-info')->with(['user' => $user])->render();
+        $data = view('cms.ajax.user-info')->with([
+            'user' => $user,
+            'branches' => $branches,
+            ])->render();
         return response()->json([
             'status' => 1,
             'data' => $data,
