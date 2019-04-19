@@ -62,8 +62,11 @@ Route::group(['prefix' => 'cms', 'middleware' => ['auth']], function(){
     // PRODUCT
     require_once __DIR__.'/cms/product.php';
 
-    // Room
+    // ROOM
     require_once __DIR__.'/cms/room.php';
+
+    // PERMISSION
+    require_once __DIR__.'/cms/permission.php';
 });
 
 Route::group(['prefix' => 'front-end'], function () {

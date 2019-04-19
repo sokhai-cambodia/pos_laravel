@@ -10,12 +10,9 @@ use Auth;
 use NotificationHelper;
 
 class PermissionController extends Controller
-{
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+{ 
+    private $icon = 'icon-layers';
+
     public function index()
     {
         return view('cms.permission.index');
@@ -34,11 +31,16 @@ class PermissionController extends Controller
      */
     public function create()
     {
-        $data['permissions'] = Permission::where([
+        $permissions = Permission::where([
             ['use_for_action', '!=', '1'],
             ['route_name', '#']
         ])->get();
-
+        
+        $data = [
+            'title' => 'Create New User',
+            'icon' => $this->icon,
+            'permissions'  => $permissions
+        ];
         return view('cms.permission.create')->with($data);
     }
 
@@ -52,30 +54,30 @@ class PermissionController extends Controller
     {
         $request->validate([
             'name' => 'required|unique:permissions|max:255',
-            'routeName' => 'required'
+            'route_name' => 'required'
         ]);
         
         $name = $request->name;
-        $useForAction = isset($request->useForAction) ? 1 : 0;
-        $permissionId = $request->permissionId;
-        $routeName = $request->routeName;
+        $use_for_action = isset($request->use_for_action) ? 1 : 0;
+        $permission_id = $request->permission_id;
+        $route_name = $request->route_name;
         
         try 
         {
             Permission::create([
                 'name' => $name,
-                'use_for_action' => $useForAction,
-                'permission_id' => $permissionId,
-                'route_name' => $routeName,
+                'use_for_action' => $use_for_action,
+                'permission_id' => $permission_id,
+                'route_name' => $route_name,
                 'created_by' => Auth::id(),
             ]);
             NotificationHelper::setSuccessNotification('created_success');
-            return back();
+            return redirect()->route('permission.create');
         } 
         catch (\Exception $e) 
         {
             NotificationHelper::errorNotification($e);
-            return back()->withInput();
+            return redirect()->route('permission.create')->withInput();
         }
         
     }
