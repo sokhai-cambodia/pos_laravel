@@ -70,7 +70,7 @@
                     </select>
                 </div>
             </div>
-            
+
             <div class="form-group row">
                 <label class="col-sm-2 col-form-label">Photo</label>
                 <div class="col-sm-10">
@@ -88,7 +88,7 @@
                     </div>
                 </div>
             </div>
-            
+
             <button type="submit" class="btn btn-success waves-effect waves-light pull-right">Save</button>
         </form>
     </div>
