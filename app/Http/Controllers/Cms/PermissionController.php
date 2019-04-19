@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Cms;
 
 use App\Http\Controllers\Controller;
+use Illuminate\Validation\Rule;
 use App\Permission;
 use Illuminate\Http\Request;
 use Freshbitsweb\Laratables\Laratables;
@@ -24,11 +25,6 @@ class PermissionController extends Controller
         return Laratables::recordsOf(Permission::class);
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function create()
     {
         $permissions = Permission::where([
@@ -44,12 +40,6 @@ class PermissionController extends Controller
         return view('cms.permission.create')->with($data);
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
     public function store(Request $request)
     {
         $request->validate([
@@ -82,49 +72,87 @@ class PermissionController extends Controller
         
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Permission  $permission
-     * @return \Illuminate\Http\Response
-     */
-    public function show(Permission $permission)
+    public function show(Request $request)
     {
-        //
+        $permission = Permission::find($request->id);
+        if($permission == null) return response()->json([ 'status' => 0 ]);
+        $permissions = Permission::where('permission_id', $permission->id)->get();
+
+        $data = view('cms.permission.list-sub-permission')->with([
+            'permissions' => $permissions
+            ])->render();
+        return response()->json([
+            'status' => 1,
+            'data' => $data,
+        ]);
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Permission  $permission
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(Permission $permission)
+    public function edit($id)
     {
-        //
+        $permission = Permission::findOrFail($id);
+        $permissions = Permission::where([
+            ['use_for_action', '!=', '1'],
+            ['route_name', '#']
+        ])->get();
+        
+        $data = [
+            'title' => 'Create New User',
+            'icon' => $this->icon,
+            'permissions'  => $permissions,
+            'permission' => $permission
+        ];
+
+        return view('cms.permission.edit')->with($data);
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Permission  $permission
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, Permission $permission)
+    public function update(Request $request, $id)
     {
-        //
+        $request->validate([
+            'name' =>  [
+                'required',
+                'max:255',
+                Rule::unique('permissions')->ignore($id),
+            ],
+            'route_name' => 'required'
+        ]);
+
+        try 
+        {
+            $permission = Permission::findOrFail($id);
+            $permission->name = $request->name;
+            $permission->use_for_action = $request->use_for_action;
+            $permission->permission_id = $request->permission_id;
+            $permission->route_name = $request->route_name;
+            $permission->updated_by = Auth::id();
+            $permission->save();
+
+            NotificationHelper::setSuccessNotification('updated_success');
+            return redirect()->route('permission');
+        } 
+        catch (\Exception $e) 
+        {
+            NotificationHelper::errorNotification($e);
+            return back()->withInput();
+        }
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\Permission  $permission
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy(Permission $permission)
+    public function destroy($id)
     {
-        //
+        $permission = Permission::findOrFail($id);
+        try 
+        {
+            $permission->deleted_at = date("Y-m-d H:i:s");
+            $permission->deleted_by = Auth::id();
+            $permission->save();
+
+            NotificationHelper::setDeletedPopUp('deleted_success');
+            return redirect()->route('permission');
+        } 
+        catch (\Exception $e) 
+        {
+            NotificationHelper::errorNotification($e);
+            return redirect()->route('permission');
+        }
     }
 
     
