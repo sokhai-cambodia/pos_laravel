@@ -40,7 +40,6 @@
                         <th>Username</th>
                         <th>Gender</th>
                         <th>DOB</th>
-                        <th>Branch User</th>
                         <th>Actions</th>
                     </tr>
                 </thead>
@@ -60,7 +59,6 @@
             $('#listing').DataTable({
                 serverSide: true,
                 processing: true,
-                responsive: true,
                 ajax: "{{ route('user.lists') }}",
                 columns: [
                     { name: 'id' },
@@ -68,7 +66,7 @@
                     { name: 'name' },
                     { name: 'username' },
                     { name: 'gender', searchable: false},
-                    { name: 'dob', orderable: false, searchable: false },
+                    { name: 'dob', searchable: false },
                     { name: 'action', orderable: false, searchable: false },
                 ],
             });
