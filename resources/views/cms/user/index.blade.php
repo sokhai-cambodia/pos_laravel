@@ -40,6 +40,7 @@
                         <th>Username</th>
                         <th>Gender</th>
                         <th>DOB</th>
+                        <th>Branch User</th>
                         <th>Actions</th>
                     </tr>
                 </thead>

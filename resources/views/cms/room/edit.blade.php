@@ -43,12 +43,7 @@
                         <option value="available">Available</option>
                         <option value="checked_in">Checked_in</option>
                         <option value="blocked">Blocked</option>       
-                        {{-- @foreach ($status as $st)
-                            @php 
-                                $gSelected = UtilHelper::hasValue(old('gender'), $user->gender);
-                            @endphp
-                            <option value="{{ $gd }}" {{  UtilHelper::selected($gd, $gSelected) }}>{{ $gd }}</option>
-                        @endforeach --}}
+                       
                     </select>
                 </div>
                 <span class="dropdown-wrapper" aria-hidden="true"></span>
