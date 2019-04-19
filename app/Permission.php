@@ -38,6 +38,16 @@ class Permission extends Model
 
     // Data Table Customize Method
 
+    public static function laratablesAdditionalColumns()
+    {
+        return ['use_for_action'];
+    }
+
+    public static function laratablesQueryConditions($query)
+    {
+        return $query->whereNull('permission_id');
+    }
+
     public static function laratablesCustomAction($permission)
     {
         return view('cms.permission.data-table.action', compact('permission'))->render();
@@ -46,6 +56,12 @@ class Permission extends Model
     public static function laratablesCustomUseForAction($permission)
     {
         return view('cms.permission.data-table.use-for-action', compact('permission'))->render();
+    }
+
+    public static function laratablesCustomSubPermission($permission)
+    {
+        $permissions = Permission::where('permission_id', $permission->id)->get();
+        return view('cms.permission.data-table.list-sub-permission', compact('permissions'))->render();
     }
 
 }

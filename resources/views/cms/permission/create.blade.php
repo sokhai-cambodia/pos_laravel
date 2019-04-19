@@ -15,7 +15,7 @@
                     <select class=" col-sm-12 border border-1 " name="permission_id" tabindex="-1" aria-hidden="true" style="height:40px;">
                         @foreach ($permissions as $permission)
                             <option value="">not select</option>
-                            <option value="{{ $permission->id }}">{{ $permission->name }}</option>
+                            <option value="{{ $permission->id }}" {{  UtilHelper::selected($permission->id, old('permission_id')) }}>{{ $permission->name }}</option>
                         @endforeach
                     </select>
                 </div>
@@ -25,14 +25,14 @@
             <div class="form-group row">
                 <label class="col-sm-2 col-form-label">Name</label>
                 <div class="col-sm-10">
-                    <input type="text" name="name" class="form-control" placeholder="Enter Name">
+                    <input type="text" name="name" class="form-control" placeholder="Enter Name" value="{{ old('name') }}">
                 </div>
             </div>
 
             <div class="form-group row">
                 <label class="col-sm-2 col-form-label">Route Name</label>
                 <div class="col-sm-10">
-                    <input type="text" name="route_name" class="form-control" placeholder="Enter Route Name">
+                    <input type="text" name="route_name" class="form-control" placeholder="Enter Route Name" value="{{ old('route_name') }}">
                 </div>
             </div>
 

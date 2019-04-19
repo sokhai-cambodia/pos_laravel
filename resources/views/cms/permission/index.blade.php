@@ -3,6 +3,43 @@
 @include('layouts.cms.data-table-header')
 
 @section('content')
+ <!-- animation modal Dialogs start -->
+ <div class="modal fade" id="view-info" tabindex="-1" role="dialog">
+    <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title">View Sub Permission Information</h4>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <!-- Hover table card start -->
+                <div class="table-responsive">
+                    <table class="table table-hover">
+                        <thead>
+                            <tr>
+                                <th>#</th>
+                                <th>Name</th>
+                                <th>User For Action</th>
+                                <th>Action</th>
+                            </tr>
+                        </thead>
+                        <tbody id="model-body">
+                            
+                        </tbody>
+                    </table>
+                </div>
+                <!-- Hover table card end -->
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default waves-effect " data-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+<!--animation modal  Dialogs ends -->
+
 <!-- Default ordering table start -->
 <div class="card">
     <div class="card-header">
@@ -14,9 +51,8 @@
                 <thead>
                     <tr>
                         <th>Name</th>
-                        <th>Route Name</th>
                         <th>Use For Action</th>
-                        <th>Permission Id</th>
+                        <th>Sub Permission</th>
                         <th>Actions</th>
                     </tr>
                 </thead>
@@ -40,9 +76,8 @@
                 ajax: "{{ route('permission.lists') }}",
                 columns: [
                     { name: 'name' },
-                    { name: 'route_name' },
                     { name: 'use_for_action', orderable: false, searchable: false },
-                    { name: 'permission_id', orderable: false, searchable: false },
+                    { name: 'sub_permission', orderable: false, searchable: false },
                     { name: 'action', orderable: false, searchable: false },
                 ],
             });
@@ -85,13 +120,13 @@
             //$('#view-info').modal('show');
             $('body').on('click', '.view-info', function() {
                 var _token = "{{ csrf_token() }}";
-                var user_id = $(this).attr('data-id');
+                var id = $(this).attr('data-id');
                 $.ajax({
-                    type:'POST',
-                    url:"{{ route('ajax.find-user-info') }}",
+                    type:'GET',
+                    url:"{{ route('permission.list-sub-permission') }}",
                     data: {
                         _token: _token,
-                        user_id: user_id
+                        id: id
                     },
                     success:function(data) {
                         if(data.status == 1) {
@@ -99,7 +134,7 @@
                             $('#view-info').modal('show');
                         }
                     }
-                });  
+                });
                 
             });
 
