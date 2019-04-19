@@ -8,7 +8,7 @@
         <span>Add class of <code>.form-control</code> with <code>&lt;input&gt;</code> tag</span>
     </div>
     <div class="card-block">
-        <form action="{{ route('user.store') }}" method="POST" enctype="multipart/form-data">
+        <form action="{{ route('user.create') }}" method="POST" enctype="multipart/form-data">
             @csrf
             <div class="form-group row">
                 <label class="col-sm-2 col-form-label">Last Name</label>
@@ -87,6 +87,25 @@
                         </div>
                     </div>
                 </div>
+            </div>
+            <div class="form-group row">
+                <label class="col-sm-2 col-form-label">Branch</label>
+                <div class="col-sm-10">
+                   <div class="row">
+                        @foreach($branches as $branch)
+                            <div class="col-sm-4">
+                                <div class="border-checkbox-section">
+                                    <div class="border-checkbox-group border-checkbox-group-primary">
+                                        <input class="border-checkbox" type="checkbox" id="branch_{{$branch->id}}" value="{{$branch->id}}" name="branches[]">
+                                        <label class="border-checkbox-label" for="branch_{{$branch->id}}">{{$branch->name}}</label>
+                                    </div>
+                                </div>
+                            </div>
+                        @endforeach
+                    </div>
+                </div>
+
+
             </div>
 
             <button type="submit" class="btn btn-success waves-effect waves-light pull-right">Save</button>

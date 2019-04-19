@@ -80,7 +80,7 @@
             <div class="form-group row">
                 <label class="col-sm-2 col-form-label">Photo</label>
                 <div class="col-sm-10">
-                    <input type="file" name="photo" class="form-control dropify">
+                    <input type="file" name="photo" class="form-control dropify" data-default-file="{{ $user->getPhoto() }}">
                 </div>
             </div>
             <div class="form-group row">
@@ -97,7 +97,23 @@
                     </div>
                 </div>
             </div>
-            
+            <div class="form-group row">
+                <label class="col-sm-2 col-form-label">Branch</label>
+                <div class="col-sm-10">
+                    <div class="row">
+                        @foreach($branches as $branch)
+                            <div class="col-sm-4">
+                                <div class="border-checkbox-section">
+                                    <div class="border-checkbox-group border-checkbox-group-primary">
+                                        <input class="border-checkbox" type="checkbox" id="branch_{{$branch->id}}" value="{{$branch->id}}" name="branches[]" {{ UtilHelper::checked($branch->checked, 1) }}>
+                                        <label class="border-checkbox-label" for="branch_{{$branch->id}}">{{$branch->name}}</label>
+                                    </div>
+                                </div>
+                            </div>
+                        @endforeach
+                    </div>
+                </div>
+            </div>
             <button type="submit" class="btn btn-success waves-effect waves-light pull-right">Save</button>
         </form>
     </div>

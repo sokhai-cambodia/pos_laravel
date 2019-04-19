@@ -10,7 +10,11 @@ Class FileHelper
     }
 
     public static function getDefaultImage() {
-        return  env('DEFAULT_IMAGE_PATH', 'assets/uploads/default/default.jpg');
+        return  env('DEFAULT_IMAGE_PATH', 'assets/cms/default.jpg');
+    }
+
+    public static function getDashboardImage() {
+        return  asset(env('DASHBOARD_IMAGE_PATH', 'assets/cms/dashboard.png'));
     }
 
     public static function upload($file, $pathName = '') {

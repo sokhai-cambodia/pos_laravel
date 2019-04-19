@@ -3,7 +3,7 @@
             <i class="icofont icofont-check-circled"></i>Action
     </button>
     <div class="dropdown-menu" aria-labelledby="dropdown-2" data-dropdown-in="fadeIn" data-dropdown-out="fadeOut">
-        <a class="dropdown-item waves-light waves-effect" href="{{ route('user.edit', ['id' => $user->id]) }}">Edit</a>
+        <a class="dropdown-item waves-light waves-effect" href="{{ route('user.update', ['id' => $user->id]) }}">Edit</a>
         <div class="dropdown-divider"></div>
         <a class="dropdown-item waves-light waves-effect btn-delete" 
             href="javascript:void(0)"

@@ -1,5 +1,5 @@
 <div>
-    <a href="{{ route('unit.edit', ['id' => $unit->id]) }}" 
+    <a href="{{ route('unit.update', ['id' => $unit->id]) }}" 
         class="btn waves-effect waves-light btn-success">
         <i class="icofont icofont-check-circled"></i>Edit
     </a>

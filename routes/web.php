@@ -20,19 +20,20 @@ Route::get('/login', 'LoginController@index')->name('login');
 Route::post('/login', 'LoginController@login')->name('login');
 Route::get('/logout', 'LoginController@logout')->name('logout');
 
-
-
-
 // Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
+
+// Front end View
+
+Route::get('front-end/index','FrontEndController@index')->name('index');
 
 // AJAX
 require_once __DIR__.'/cms/ajax.php';
 
 Route::group(['prefix' => 'cms', 'middleware' => ['auth']], function(){
     
-    Route::get('/cms', function () {
+    Route::get('', function () {
         return view('cms.index');
     })->name('cms');
 
@@ -40,10 +41,16 @@ Route::group(['prefix' => 'cms', 'middleware' => ['auth']], function(){
         return view('cms.blank');
     })->name('blank');
 
+    // USER
+    require_once __DIR__.'/cms/user.php';
+
+    // PROFILE
+    require_once __DIR__.'/cms/profile.php';
+
     // BRANCH
     require_once __DIR__.'/cms/branch.php';
 
-    // BRANCH
+    // CATEGORY
     require_once __DIR__.'/cms/category.php';
 
     // UNIT
@@ -52,7 +59,15 @@ Route::group(['prefix' => 'cms', 'middleware' => ['auth']], function(){
     // ROLE
     require_once __DIR__.'/cms/role.php';
 
-    // USER
-    require_once __DIR__.'/cms/user.php';
+    // PRODUCT
+    require_once __DIR__.'/cms/product.php';
 
+    // Room
+    require_once __DIR__.'/cms/room.php';
+});
+
+Route::group(['prefix' => 'front-end'], function () {
+    Route::get('', function () {
+        return view('front-end.index');
+    })->name('front-end');
 });

@@ -8,7 +8,7 @@
         <span>Add class of <code>.form-control</code> with <code>&lt;input&gt;</code> tag</span>
     </div>
     <div class="card-block">
-        <form action="{{ route('branch.store') }}" method="POST">
+        <form action="{{ route('branch.create') }}" method="POST">
             @csrf
             <div class="form-group row">
                 <label class="col-sm-2 col-form-label">Name</label>

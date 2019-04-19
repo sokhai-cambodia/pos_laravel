@@ -13,11 +13,13 @@ class Branch extends Model
 
     protected $guarded = [];
 
-    // User
-    public function users()
-    {
-        return $this->belongsToMany('App\User', 'branch_users', 'branch_id', 'user_id');
-    }
+  // User
+  public function users()
+  {
+      return $this->belongsToMany('App\User', 'branch_users', 'branch_id', 'user_id');
+  }
+ 
+
 
     public function userCreatedBy()
     {
