@@ -1,4 +1,4 @@
-@extends('layouts.front-end.template') 
+@extends('layouts.front-end.template')
 @section('content')
 
 
@@ -28,6 +28,32 @@
         -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, .3);
         background-color: #555;
     }
+
+    /* scrollbar style */
+
+    /* width */
+    ::-webkit-scrollbar {
+        width: 7px;
+    }
+
+    /* track */
+    ::-webkit-scrollbar-track {
+        box-shadow: inset 0 0 5px grey;
+    }
+
+    /* customize  overflow  */
+
+    /* handle */
+    ::-webkit-scrollbar-thumb {
+        background: #807e7e;
+        border-radius: 10px;
+    }
+
+    /* handle on hover  */
+    ::-webkit-scrollbar-thumb:hover {
+        background: red;
+    }
+
 </style>
 <div class="row bg-info text-center">
 
@@ -191,7 +217,7 @@
                             <div class="card m-2  rounded-0 " style="width: 100%">
                                 <div class="card-body ">
                                     <img src="https://cdn0.woolworths.media/content/wowproductimages/large/032731.jpg" alt="" width="100%" height="100%">
-    
+
                                 </div>
                                 <div class="card-footer text-white text-center bg-primary rounded-0">
                                      <p><span>Cocacola</span></p>
@@ -202,7 +228,7 @@
                             <div class="card m-2 rounded-0 " style="width: 100%">
                                 <div class="card-body ">
                                     <img src="https://4.imimg.com/data4/QB/WX/MY-1850306/coca-cola-diet-coke-500x500.jpg" alt="" width="100%" height="100%">
-    
+
                                 </div>
                                 <div class="card-footer text-white text-center bg-primary rounded-0">
                                      <p><span>Cocacola</span></p>
@@ -213,7 +239,7 @@
                             <div class="card m-2 rounded-0 " style="width: 100%">
                                 <div class="card-body ">
                                     <img src="https://4.imimg.com/data4/QB/WX/MY-1850306/coca-cola-diet-coke-500x500.jpg" alt="" width="100%" height="100%">
-    
+
                                 </div>
                                 <div class="card-footer text-white text-center bg-primary rounded-0">
                                      <p><span>Cocacola</span></p>
