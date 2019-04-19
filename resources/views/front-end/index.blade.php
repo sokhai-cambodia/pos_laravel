@@ -76,10 +76,10 @@
                 </div>
 
 
-                <div class=" p-5">
-                    <button class="btn btn-primary">Paid</button>
-                    <button class="btn btn-success">Print</button>
-                    <button class="btn btn-danger">Close</button>
+                <div class=" fixed-bottom p-2 m-2 float-left bg-secondary d-flex justify-contents-start">
+                    <button class="btn btn-primary mr-2  text-dark  border border-dark">Paid</button>
+                    <button class="btn btn-success mr-2  text-dark border border-dark">Print</button>
+                    <button class="btn btn-danger mr-2  text-dark border border-dark">Close</button>
 
                 </div>
             </div>
@@ -97,28 +97,28 @@
 
                 <div class="category d-flex flex-column force-overflow">
 
-                    <div class="card mb-4 rounded-0 " style="width: 100%; height: 100%;">
+                    <div class="card mb-4 rounded-0 " style="width: 100%; height:70%;">
                         <div class="card-body ">
                             <img src="https://cdn0.woolworths.media/content/wowproductimages/large/032731.jpg" width="100%" height="20%;" alt="">
                         </div>
                         <div class="card-footer text-white text-center bg-dark rounded-0">
-                            <h5>ចេកអាំង</h5>
+                                <p><span>Cocacola</span></p>
                         </div>
                     </div>
-                    <div class="card mb-4 rounded-0 " style="width: 100%">
+                    <div class="card mb-4 rounded-0 " style="width: 100%; height:70%;" >
                         <div class="card-body ">
                             <img src="https://cdn0.woolworths.media/content/wowproductimages/large/032731.jpg" width="100%" height="20%;" alt="">
                         </div>
                         <div class="card-footer text-white text-center bg-dark rounded-0">
-                            <h5>ចេកអាំង</h5>
+                                <p><span>Cocacola</span></p>
                         </div>
                     </div>
-                    <div class="card mb-4 rounded-0 " style="width: 100%">
+                    <div class="card mb-4 rounded-0 " style="width: 100%; height:70%;">
                             <div class="card-body ">
                                 <img src="https://cdn0.woolworths.media/content/wowproductimages/large/032731.jpg" width="100%" height="20%;" alt="">
                             </div>
                             <div class="card-footer text-white text-center bg-dark rounded-0">
-                                <h5>ចេកអាំង</h5>
+                            <p><span>Cocacola</span></p>
                             </div>
                         </div>
 
@@ -139,15 +139,15 @@
         <div class="row">
             <div class="col-sm-12 scrollbar" id="style-1 ">
 
-                <div class="row mt-3">
+                <div class="row mt-3 ">
                     <div class="col-sm-3 border-success">
                         <div class="card m-2  rounded-0 " style="width: 100%">
                             <div class="card-body ">
                                 <img src="https://cdn0.woolworths.media/content/wowproductimages/large/032731.jpg" alt="" width="100%" height="100%">
 
                             </div>
-                            <div class="card-footer text-white text-center bg-success rounded-0">
-                                <h5>ពងក្រួច</h5>
+                            <div class="card-footer text-white text-center bg-primary rounded-0">
+                                 <p><span>Cocacola</span></p>
                             </div>
                         </div>
                     </div>
@@ -157,8 +157,8 @@
                                 <img src="https://4.imimg.com/data4/QB/WX/MY-1850306/coca-cola-diet-coke-500x500.jpg" alt="" width="100%" height="100%">
 
                             </div>
-                            <div class="card-footer text-white text-center bg-success rounded-0">
-                                <h5>ពងក្រួច</h5>
+                            <div class="card-footer text-white text-center bg-primary rounded-0">
+                                 <p><span>Cocacola</span></p>
                             </div>
                         </div>
                     </div>
@@ -168,8 +168,8 @@
                                 <img src="https://4.imimg.com/data4/QB/WX/MY-1850306/coca-cola-diet-coke-500x500.jpg" alt="" width="100%" height="100%">
 
                             </div>
-                            <div class="card-footer text-white text-center bg-success rounded-0">
-                                <h5>ពងក្រួច</h5>
+                            <div class="card-footer text-white text-center bg-primary rounded-0">
+                                 <p><span>Cocacola</span></p>
                             </div>
                         </div>
                     </div>
@@ -179,8 +179,8 @@
                                 <img src="https://4.imimg.com/data4/QB/WX/MY-1850306/coca-cola-diet-coke-500x500.jpg" alt="" width="100%" height="100%">
 
                             </div>
-                            <div class="card-footer text-white text-center bg-success rounded-0">
-                                <h5>ពងក្រួច</h5>
+                            <div class="card-footer text-white text-center bg-primary rounded-0">
+                                 <p><span>Cocacola</span></p>
                             </div>
                         </div>
                     </div>
@@ -193,8 +193,8 @@
                                     <img src="https://cdn0.woolworths.media/content/wowproductimages/large/032731.jpg" alt="" width="100%" height="100%">
     
                                 </div>
-                                <div class="card-footer text-white text-center bg-success rounded-0">
-                                    <h5>ពងក្រួច</h5>
+                                <div class="card-footer text-white text-center bg-primary rounded-0">
+                                     <p><span>Cocacola</span></p>
                                 </div>
                             </div>
                         </div>
@@ -204,8 +204,8 @@
                                     <img src="https://4.imimg.com/data4/QB/WX/MY-1850306/coca-cola-diet-coke-500x500.jpg" alt="" width="100%" height="100%">
     
                                 </div>
-                                <div class="card-footer text-white text-center bg-success rounded-0">
-                                    <h5>ពងក្រួច</h5>
+                                <div class="card-footer text-white text-center bg-primary rounded-0">
+                                     <p><span>Cocacola</span></p>
                                 </div>
                             </div>
                         </div>
@@ -215,8 +215,8 @@
                                     <img src="https://4.imimg.com/data4/QB/WX/MY-1850306/coca-cola-diet-coke-500x500.jpg" alt="" width="100%" height="100%">
     
                                 </div>
-                                <div class="card-footer text-white text-center bg-success rounded-0">
-                                    <h5>ពងក្រួច</h5>
+                                <div class="card-footer text-white text-center bg-primary rounded-0">
+                                     <p><span>Cocacola</span></p>
                                 </div>
                             </div>
                         </div>
@@ -224,23 +224,15 @@
                             <div class="card m-2 rounded-0 " style="width: 100%">
                                 <div class="card-body ">
                                     <img src="https://4.imimg.com/data4/QB/WX/MY-1850306/coca-cola-diet-coke-500x500.jpg" alt="" width="100%" height="100%">
-    
                                 </div>
-                                <div class="card-footer text-white text-center bg-success rounded-0">
-                                    <h5>ពងក្រួច</h5>
+                                <div class="card-footer text-white text-center bg-primary rounded-0">
+                                     <p><span>Cocacola</span></p>
                                 </div>
                             </div>
                         </div>
                     </div>
-
             </div>
-
-
-
         </div>
-
-
-
     </div>
 
 </div>
