@@ -166,6 +166,30 @@
 
                
             </ul>
+            {{-- Permission Main Menu --}}
+            <div class="pcoded-navigation-label">Permission</div>
+            <ul class="pcoded-item pcoded-left-item">
+                {{-- Permission --}}
+                <li class="pcoded-hasmenu">
+                    <a href="javascript:void(0)" class="waves-effect waves-dark">
+                        <span class="pcoded-micon"><i class="feather icon-sidebar"></i></span>
+                        <span class="pcoded-mtext">Permission</span>
+                        {{-- <span class="pcoded-badge label label-warning">NEW</span> --}}
+                    </a>
+                    <ul class="pcoded-submenu">
+                        <li class="">
+                            <a href="{{ route('permission.create') }}" class="waves-effect waves-dark">
+                                <span class="pcoded-mtext">Add Permission</span>
+                            </a>
+                        </li>
+                        <li class=" ">
+                            <a href="{{ route('permission') }}" class="waves-effect waves-dark">
+                                <span class="pcoded-mtext">List Permission</span>
+                            </a>
+                        </li>
+                    </ul>
+                </li>               
+            </ul>
         </div>
     </div>
 </nav>

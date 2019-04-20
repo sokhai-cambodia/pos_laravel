@@ -54,7 +54,6 @@ class ProductController extends Controller
 
     public function store(Request $request)
     {
-        
         $request->validate([
             'name' => 'required|unique:products|max:255',
             'stock_type' => 'required',

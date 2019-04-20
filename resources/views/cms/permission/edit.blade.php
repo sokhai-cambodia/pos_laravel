@@ -1,0 +1,62 @@
+@extends('layouts.cms.template', compact('title','icon')) 
+@section('content')
+<!-- Basic Form Inputs card start -->
+<div class="card">
+    <div class="card-header">
+        <h5>{{ $title }}</h5>
+        <span>Add class of <code>.form-control</code> with <code>&lt;input&gt;</code> tag</span>
+    </div>
+    <div class="card-block">
+        <form action="{{ route('permission.update', ['id' => $permission->id]) }}" method="POST">
+            @csrf
+            <div class="form-group row">
+                <label class="col-sm-2 col-form-label">Permission</label>
+                <div class="col-sm-10">
+                    <select class=" col-sm-12 border border-1 " name="permission_id" tabindex="-1" aria-hidden="true" style="height:40px;">
+                        @foreach ($permissions as $perm)
+                            <option value="">not select</option>
+                            @php 
+                                $pSelected = UtilHelper::hasValue(old('permission_id'), $permission->id);
+                            @endphp
+                            <option value="{{ $perm->id }}" {{  UtilHelper::selected($perm->id, $pSelected) }}>{{ $perm->name }}</option>
+                        @endforeach
+                    </select>
+                </div>
+                <span class="dropdown-wrapper" aria-hidden="true"></span>
+            </div>
+
+            <div class="form-group row">
+                <label class="col-sm-2 col-form-label">Name</label>
+                <div class="col-sm-10">
+                    <input type="text" name="name" class="form-control" placeholder="Enter Name" value="{{ UtilHelper::hasValue(old('name'), $permission->name) }}">
+                </div>
+            </div>
+
+            <div class="form-group row">
+                <label class="col-sm-2 col-form-label">Route Name</label>
+                <div class="col-sm-10">
+                    <input type="text" name="route_name" class="form-control" placeholder="Enter Route Name" value="{{ UtilHelper::hasValue(old('route_name'), $permission->route_name) }}" >
+                </div>
+            </div>
+
+            <div class="form-group row">
+                <label class="col-sm-2 col-form-label">User For Action</label>
+                <div class="col-sm-10 col-sm-offset-2">
+                    <div class="border-checkbox-section">
+                        <div class="border-checkbox-group border-checkbox-group-primary">
+                            @php 
+                                $use_for_action = UtilHelper::hasValue(old('use_for_action'), $permission->use_for_action);
+                            @endphp
+                            <input class="border-checkbox" type="checkbox" id="use_for_action" name="use_for_action" {{ UtilHelper::checked($use_for_action, 1) }} value="1">
+                            <label class="border-checkbox-label" for="use_for_action">User For Action</label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <button type="submit" class="btn btn-success waves-effect waves-light pull-right">Save</button>
+        </form>
+    </div>
+</div>
+<!-- Basic Form Inputs card end -->
+@endsection

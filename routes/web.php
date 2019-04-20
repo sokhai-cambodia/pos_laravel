@@ -24,6 +24,10 @@ Route::get('/logout', 'LoginController@logout')->name('logout');
 
 Route::get('/home', 'HomeController@index')->name('home');
 
+// Front end View
+
+Route::get('front-end/index','FrontEndController@index')->name('index');
+
 // AJAX
 require_once __DIR__.'/cms/ajax.php';
 
@@ -58,6 +62,15 @@ Route::group(['prefix' => 'cms', 'middleware' => ['auth']], function(){
     // PRODUCT
     require_once __DIR__.'/cms/product.php';
 
-    // Room
-    require_once __DIR__.'/cms/rooms.php';
+    // ROOM
+    require_once __DIR__.'/cms/room.php';
+
+    // PERMISSION
+    require_once __DIR__.'/cms/permission.php';
+});
+
+Route::group(['prefix' => 'front-end'], function () {
+    Route::get('', function () {
+        return view('front-end.index');
+    })->name('front-end');
 });

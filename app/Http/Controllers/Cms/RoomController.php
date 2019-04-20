@@ -77,13 +77,13 @@ class RoomController extends Controller
 
     public function edit($id)
     {
-        $room = Room::findOrFail($id);
+        $room_no = Room::findOrFail($id);
         $branch = Branch::all();
         $data = [
             'title' => 'Edit Room',
             'icon' => $this->icon,
-            'branch_id'  => $branch,
-            'room_no'  => $room
+            'branch'  => $branch,
+            'room_no'  => $room_no
         ];
         
         return view('cms.room.edit')->with($data);
@@ -98,7 +98,6 @@ class RoomController extends Controller
         try 
         {
             $room = Room::findOrFail($id);
-    
             $room->room_no = $request->name;
             $room->branch_id = $request->branch;
             $room->bed = $request->bed;
@@ -107,7 +106,7 @@ class RoomController extends Controller
             $room->save();
 
             NotificationHelper::setSuccessNotification('updated_success');
-            return redirect()->route('user');
+            return redirect()->route('room');
         } 
         catch (\Exception $e) 
         {
