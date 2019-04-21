@@ -143,7 +143,7 @@
                         </li>
                     </ul>
                 </li>
-                
+
                 <li class="pcoded-hasmenu">
                     <a href="javascript:void(0)" class="waves-effect waves-dark">
                         <span class="pcoded-micon"><i class="feather icon-sidebar"></i></span>
@@ -163,8 +163,33 @@
                         </li>
                     </ul>
                 </li>
+                {{-- report --}}
+                <li class="pcoded-hasmenu">
+                    <a href="javascript:void(0)" class="waves-effect waves-dark">
+                        <span class="pcoded-micon"><i class="feather icon-sidebar"></i></span>
+                        <span class="pcoded-mtext">Report</span>
+                        {{-- <span class="pcoded-badge label label-warning">NEW</span> --}}
+                    </a>
+                    <ul class="pcoded-submenu">
+                        <li class="">
+                            <a href="{{ route('report.daily') }}" class="waves-effect waves-dark">
+                                <span class="pcoded-mtext">Daily Report</span>
+                            </a>
+                        </li>
+                        <li class=" ">
+                            <a href="{{ route('report.month') }}" class="waves-effect waves-dark">
+                                <span class="pcoded-mtext">Report by Month</span>
+                            </a>
+                        </li>
+                        <li class=" ">
+                            <a href="{{ route('report.year') }}" class="waves-effect waves-dark">
+                                <span class="pcoded-mtext">Report by Year</span>
+                            </a>
+                        </li>
+                    </ul>
+                </li>
 
-               
+
             </ul>
             {{-- Permission Main Menu --}}
             <div class="pcoded-navigation-label">Permission</div>
@@ -188,7 +213,7 @@
                             </a>
                         </li>
                     </ul>
-                </li>               
+                </li>
             </ul>
         </div>
     </div>

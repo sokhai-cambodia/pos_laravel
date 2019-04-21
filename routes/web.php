@@ -32,7 +32,7 @@ Route::get('front-end/index','FrontEndController@index')->name('index');
 require_once __DIR__.'/cms/ajax.php';
 
 Route::group(['prefix' => 'cms', 'middleware' => ['auth']], function(){
-    
+
     Route::get('', function () {
         return view('cms.index');
     })->name('cms');
@@ -67,6 +67,9 @@ Route::group(['prefix' => 'cms', 'middleware' => ['auth']], function(){
 
     // PERMISSION
     require_once __DIR__.'/cms/permission.php';
+
+    // REPORTS
+    require_once __DIR__.'/cms/report.php';
 });
 
 Route::group(['prefix' => 'front-end'], function () {
