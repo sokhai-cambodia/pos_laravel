@@ -1,4 +1,4 @@
-@php 
+@php
     $icon = isset($icon) ? 'feather '.$icon.' bg-c-blue' : 'feather icon-clipboard bg-c-blue';
     $title = isset($title) ? $title : 'Empty Name';
 @endphp
@@ -21,7 +21,7 @@
         <div class="pcoded-container navbar-wrapper">
             <!-- [ Header ] start -->
             @include('layouts.cms.navbar-head')
-            
+
             <div class="pcoded-main-container">
                 <div class="pcoded-wrapper">
                     <!-- [ navigation menu ] start -->
@@ -64,7 +64,7 @@
                             </div>
                         </div>
                     </div>
-                   
+
                     <!-- [ style Customizer ] start -->
                     <div id="styleSelector">
                     </div>
@@ -77,8 +77,8 @@
     @include('layouts.message.notification')
     @include('layouts.message.delete-popup')
     @yield('footer-src')
-    
-   
-    
+
+
+
 </body>
 </html>
