@@ -3,96 +3,116 @@
 @include('layouts.cms.data-table-header')
 
 @section('content')
+<style>
+    .report_header {
+        background: grey;
+    }
+</style>
 <!-- Default ordering table start -->
+<div class="card">
+    <div class="card-header">
+        Filter
+    </div>
+    <div class="card-block">
+        <form  method="GET">
+            <div class="form-group row">
+                <div class='col-sm-3'>
+                    <div class="form-group">
+                        <div class='input-group date' id='datetimepicker1'>
+                            <input type='date' class="form-control" name="date"/>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-3">
+                    <select class="browser-default custom-select" name="user">
+                        <option selected>Users</option>
+                        <option value="1">User1</option>
+                        <option value="2">User2</option>
+                        <option value="3">User3</option>
+                    </select>
+                </div>
+                <div class="col-sm-3">
+                    <div class="form-group">
+                    <input type="text" name="product" class="form-control" value="{{ Request::get('product') }}" placeholder="Search Product">
+                    </div>
+                </div>
+                <div class="col-sm-3">
+                    <div>
+                        <input type="submit" class="btn btn-group btn-primary btn-sm" value="Search"/>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+
+</div>
 <div class="card">
     <div class="card-header">
         {{-- <h5>{{ $title }}</h5> --}}
     </div>
 
-
-    <div class="card-block">
-        {{-- search box --}}
-        <div class="container ">
-            <div class="row float-right">
-                <div class="col-xs-8 col-xs-offset-2">
-                    <div class="input-group">
-                        <div class="input-group-btn search-panel">
-                            <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
-                                <span id="search_concept">Filter by</span> <span class="caret"></span>
-                            </button>
-                            <ul class="dropdown-menu" role="menu">
-                                <li class="pl-3"><a href="#daily">Daily</a></li>
-                                <li class="pl-3"><a href="#by_month">By Monthly</a></li>
-                                <li class="pl-3"><a href="#by_year">By Year</a></li>
-                            </ul>
+    <div class="container">
+            <div class="row">
+                    <div class="col-md-4">
+                        <select class="browser-default custom-select">
+                            <option selected>Users</option>
+                            <option value="1">User1</option>
+                            <option value="2">User2</option>
+                            <option value="3">User3</option>
+                        </select>
+                    </div>
+                    <div class="col-md-8">
+                        <div class="row offset-3">
+                            <div class="d-flex justify-content-between">
+                                <div class="ml-2">
+                                    <button class="btn btn-block btn-light border border-2 rounded">PDF</button>
+                                </div>
+                                <div class="ml-2">
+                                    <button class="btn btn-block btn-light border border-2 rounded">Exel</button>
+                                </div>
+                                <div class="ml-2">
+                                    <button class="btn btn-block btn-light border border-2 rounded">Print</button>
+                                </div>
+                            </div>
                         </div>
-                        <input type="hidden" name="search_param" value="all" id="search_param">
-                        <input type="text" class="form-control" name="x" placeholder="Search term...">
-                        <span class="input-group-btn">
-                            {{-- <button class="btn btn-block btn-default" type="button"><i class="fas fa-search"></i></button> --}}
-                        </span>
                     </div>
                 </div>
-            </div>
-        </div>
-        {{-- !end search box --}}
-        <div class="dt-responsive table-responsive">
-            <table id="listing" class="table table-striped table-bordered nowrap" style="width: 100%">
-                <thead class="bg-info">
+    </div>
+
+
+    <div class="card-block">
+
+        {{-- Report --}}
+        <div class="container">
+                <table class="table">
+                  <thead>
                     <tr>
-                        <th>ID</th>
-                        <th>Invoice No</th>
-                        <th>Product</th>
-                        <th>Category</th>
-                        <th>Quantiry</th>
-                        <th>Price</th>
-                        <th>Total</th>
-                        <th>Order Date</th>
-                        <th>Employee</th>
-                        <th>Customer</th>
+                      <th scope="col">Date</th>
+                      <th scope="col">Room N<sub>o</sub>:</th>
+                      <th scope="col">Employee</th>
+                      <th scope="col">Category</th>
+                      <th scope="col">Price</th>
+                      <th scope="col">Quantity</th>
+                      <th scope="col">Total</th>
                     </tr>
-                </thead>
-                <tbody>
+                  </thead>
+                  <tbody>
                     <tr>
-                        <td>000</td>
-                        <td>000</td>
-                        <td>Sanwadawd idch</td>
-                        <td>Food</td>
-                        <td>2</td>
-                        <td>3.00</td>
-                        <td>6.00</td>
-                        <td>11/02/2019</td>
-                        <td>Dan</td>
-                        <td>Room S2</td>
+                      <th scope="row">1</th>
+                      <td>Mark</td>
+                      <td>Otto</td>
+                      <td>@mdo</td>
+                      <td>Otto</td>
+                      <td>@mdo</td>
+                      <td>Otto</td>
                     </tr>
-                    <tr>
-                        <td>000</td>
-                        <td>000</td>
-                        <td>Sanwadawd idch</td>
-                        <td>Food</td>
-                        <td>2</td>
-                        <td>3.00</td>
-                        <td>6.00</td>
-                        <td>11/02/2019</td>
-                        <td>Dan</td>
-                        <td>Room S2</td>
-                    </tr>
-                    <tr>
-                        <td>000</td>
-                        <td>000</td>
-                        <td>Sanwadawd idch</td>
-                        <td>Food</td>
-                        <td>2</td>
-                        <td>3.00</td>
-                        <td>6.00</td>
-                        <td>11/02/2019</td>
-                        <td>Dan</td>
-                        <td>Room S2</td>
-                    </tr>
-                </tbody>
-            </table>
-        </div>
-{{-- pagenation --}}
+                  </tbody>
+                </table>
+              </div>
+        {{-- !end report --}}
+
+
+        {{-- pagenation --}}
         <nav aria-label="Page navigation example">
             <ul class="pagination justify-content-center">
                 <li class="page-item disabled">
@@ -106,14 +126,13 @@
                 </li>
             </ul>
         </nav>
-{{--! end pagenation --}}
+        {{--! end pagenation --}}
 
     </div>
 </div>
 <!-- Default ordering table end -->
 @endsection
 
-@section('footer-src')
-    @include('layouts.cms.data-table-footer')
-@endsection
+
+
 
