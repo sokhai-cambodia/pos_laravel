@@ -163,6 +163,13 @@
                         </li>
                     </ul>
                 </li>
+               
+
+
+            </ul>
+            {{-- Report Main Menu --}}
+            <div class="pcoded-navigation-label">Report</div>
+            <ul class="pcoded-item pcoded-left-item">
                 {{-- report --}}
                 <li class="pcoded-hasmenu">
                     <a href="javascript:void(0)" class="waves-effect waves-dark">
@@ -188,8 +195,6 @@
                         </li>
                     </ul>
                 </li>
-
-
             </ul>
             {{-- Permission Main Menu --}}
             <div class="pcoded-navigation-label">Permission</div>
