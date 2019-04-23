@@ -31,3 +31,5 @@
 <!-- jquery-ui.css -->
 <link rel="stylesheet" type="text/css" href="{{ asset('plugin/cms/assets/css/jquery-ui.css') }}">
 
+<!-- style for pos tamplate -->
+<link rel="stylesheet" type="text/css" href="{{ asset('plugin/cms/assets/css/pos/style.css') }}">

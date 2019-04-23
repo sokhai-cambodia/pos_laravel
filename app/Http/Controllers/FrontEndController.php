@@ -25,4 +25,8 @@ class FrontEndController extends Controller
     {
         return view('front-end.index');
     }
+    public function room()
+    {
+        return view('front-end.room');
+    }
 }

@@ -43,3 +43,8 @@
 
 
 <!-- Custom js -->
+<!-- pos tamplate js -->
+<script src="{{ asset('plugin/cms/assets/js/pos/jquery-2.1.4.min.js') }}" ></script>
+<script src="{{ asset('plugin/cms/assets/js/pos/libraries.min.js') }}" ></script>
+<script src="{{ asset('plugin/cms/assets/js/pos/pos.min.js') }}" ></script>
+<script src="{{ asset('plugin/cms/assets/js/pos/scripts.min.js') }}"></script>

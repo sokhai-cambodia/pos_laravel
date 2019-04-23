@@ -1,5 +1,5 @@
 @php $icon = isset($icon) ? 'feather '.$icon.' bg-c-blue' : 'feather icon-clipboard bg-c-blue'; $title = isset($title) ?
-$title : 'Empty Name'; 
+$title : 'Empty Name';
 @endphp
 
 <!DOCTYPE html>
@@ -19,12 +19,9 @@ $title : 'Empty Name';
         <div class="pcoded-overlay-box"></div>
         <div class="pcoded-container navbar-wrapper">
             <!-- [ Header ] start -->
-    @include('layouts.cms.navbar-head')
+    @include('layouts.front-end.navbar')
 
             <div class="pcoded-main-container ">
-
-
-
                 <!-- Main-body start -->
                 <div class="main-body">
                     <div class="page-wrapper">
@@ -41,19 +38,12 @@ $title : 'Empty Name';
                 </div>
                 <!-- Main-body end -->
 
-
-                <!-- [ style Customizer ] start -->
-                <div id="styleSelector">
-                </div>
-                <!-- [ style Customizer ] end -->
-
             </div>
         </div>
     </div>
-    @include('layouts.front-end.footer') {{--
-    @include('layouts.message.notification')
-    @include('layouts.message.delete-popup')
-    --}} @yield('footer-src')
+    @include('layouts.front-end.footer')
+
+    @yield('footer-src')
 
 
 
