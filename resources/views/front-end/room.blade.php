@@ -2,6 +2,40 @@
 @section('content')
 
 <style>
+    .sidebar {
+        height: 100%;
+        position: fixed;
+        z-index: 1;
+        top: 6;
+        right: 0;
+        background-color: #111;
+        overflow-x: hidden;
+        transition: 0.5s;
+        padding-top: 60px;
+    }
+
+    .sidebar a {
+        padding: 8px 8px 8px 35px;
+        text-decoration: none;
+        font-size: 20px;
+        color: #818181;
+        display: block;
+        transition: 0.3s;
+
+   }
+
+    .sidebar a:hover {
+        color: #f1f1f1;
+    }
+
+    .sidebar .closebtn {
+        position: absolute;
+        top: 0;
+        right: 25px;
+        font-size: 30px;
+        margin-left: 50px;
+    }
+
     .scrollbar {
         height: 145px;
         width: 280px;
@@ -55,13 +89,13 @@
     <div class="col-sm-5">
         <div id="pos">
             <form action="https://spos.tecdiary.com/pos" id="pos-sale-form" method="post" accept-charset="utf-8">
-                <input type="hidden" name="spos_token" value="4ee4b0c1e746977f85a2a1d356f96780">
+                <input type="hidden" name="spos_token">
                 <div class="well well-sm" id="leftdiv">
                     <div id="lefttop" style="margin-bottom:5px;">
                         <div class="form-group" style="margin-bottom:5px;">
                             <div class="input-group">
                                 <select name="customer_id" id="spos_customer" data-placeholder="Select Customer" required="required" class="form-control select2 select2-hidden-accessible" style="width:100%;position:absolute;" tabindex="-1" aria-hidden="true">
-                                    <option value="1" selected="selected">Walk-in Client</option>
+                                    <option value="1">Walk-in Client</option>
                                 </select><span class="select2 select2-container select2-container--default" dir="ltr" style="width: 100%;"><span class="selection"><span class="select2-selection select2-selection--single" role="combobox" aria-autocomplete="list" aria-haspopup="true" aria-expanded="false" tabindex="0" aria-labelledby="select2-spos_customer-container"><span class="select2-selection__rendered" id="select2-spos_customer-container" title="Walk-in Client">Walk-in Client</span><span class="select2-selection__arrow" role="presentation"><b role="presentation"></b></span></span></span><span class="dropdown-wrapper" aria-hidden="true"></span></span>
                                 <div class="input-group-addon no-print" style="padding: 2px 5px;">
                                     <a href="#" id="add-customer" class="external" data-toggle="modal" data-target="#myModal"><i class="fa fa-2x fa-plus-circle" id="addIcon"></i></a>
@@ -191,6 +225,22 @@
     </div>
 
     <div class="col-sm-7 ">
+            <ul class="list-group sidebar " id="mySidebar" width="175px">
+                <li class="active">
+                    <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">×</a>
+                </li>
+
+                <li class=" ">
+                    <a href="#">A-001</a>
+                </li>
+                <li class=" ">
+                    <a href="#">A-002</a>
+                </li>
+                <li class=" ">
+                    <a href="#">A-003</a>
+                </li>
+            </ul>
+
         <!-- category -->
         <div class="row">
             <div class="col-sm 11 scrollbar" id="style-1">
