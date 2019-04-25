@@ -93,4 +93,23 @@ class StockController extends Controller
        dd($request->all());
     }
 
+    // Wasted
+    public function wasted()
+    {
+        $branches = Branch::all();
+        $data = [
+            'title' => 'Wasted',
+            'icon' => $this->icon,
+            'branches' => $branches
+        ];
+        
+        return view('cms.stock.wasted')->with($data);
+    }
+
+    public function saveWasted(Request $request)
+    {
+       dd($request->all());
+    }
+
+
 }
