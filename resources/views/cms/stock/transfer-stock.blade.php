@@ -10,7 +10,7 @@
     <div class="card-block">
         <div class="form-group row">
             <div class="col-sm-3">
-                <select class="browser-default custom-select" name="fromBranchId">
+                <select class="browser-default custom-select" name="from_branch_id">
                     <option value="">From Branch</option>
                     @foreach ($fromBranches as $fromBranch)    
                         <option value="{{ $fromBranch->id }}">{{ $fromBranch->name }}</option>
@@ -18,7 +18,7 @@
                 </select>
             </div>
             <div class="col-sm-3">
-                <select class="browser-default custom-select" name="toBranchId">
+                <select class="browser-default custom-select" name="to_branch_id">
                     <option value="">To Branch</option>
                     @foreach ($toBranches as $toBranch)    
                         <option value="{{ $toBranch->id }}">{{ $toBranch->name }}</option>
