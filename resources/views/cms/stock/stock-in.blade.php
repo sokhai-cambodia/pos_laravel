@@ -10,7 +10,7 @@
     <div class="card-block">
         <div class="form-group row">
             <div class="col-sm-3">
-                <select class="browser-default custom-select" name="fromBranchId">
+                <select class="browser-default custom-select" name="from_branch_id">
                     @foreach ($branches as $branch)    
                         <option value="{{ $branch->id }}">{{ $branch->name }}</option>
                     @endforeach
