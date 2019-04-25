@@ -111,5 +111,28 @@ class StockController extends Controller
        dd($request->all());
     }
 
+    // Adjust
+    public function adjust()
+    {   
+        $adjustType = [
+            'adjust_add' => 'Add',
+            'adjust_sub' => 'Substract'
+        ];
+        $branches = Branch::all();
+        $data = [
+            'title' => 'Wasted',
+            'icon' => $this->icon,
+            'branches' => $branches,
+            'adjustType' => $adjustType
+        ];
+        
+        return view('cms.stock.adjust')->with($data);
+    }
+
+    public function saveAdjust(Request $request)
+    {
+       dd($request->all());
+    }
+
 
 }

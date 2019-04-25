@@ -21,7 +21,7 @@ class CreateInventoryTransactionsTable extends Migration
             $table->bigIncrements('id');
             $table->integer('from_branch_id');
             $table->integer('to_branch_id')->nullable();
-            $table->enum('type', ['stock_in', 'adjust', 'transfer', 'wasted'])->default('stock_in');
+            $table->enum('type', ['stock_in', 'adjust_add', 'adjust_sub', 'transfer', 'wasted'])->default('stock_in');
             $table->integer('created_by');
             $table->integer('updated_by')->nullable();
             $table->integer('deleted_by')->nullable();

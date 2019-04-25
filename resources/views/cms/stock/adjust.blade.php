@@ -2,7 +2,7 @@
 
 @section('content')
 <!-- Default ordering table start -->
-<form action="{{ route('stock.stock-in') }}" method="POST">
+<form action="{{ route('stock.adjust') }}" method="POST">
 <div class="card">
     <div class="card-header">
         Search
@@ -11,12 +11,19 @@
         <div class="form-group row">
             <div class="col-sm-3">
                 <select class="browser-default custom-select" name="fromBranchId">
+                    @foreach ($adjustType as $key => $value )    
+                        <option value="{{ $key }}">{{ $value }}</option>
+                    @endforeach
+                </select>
+            </div>
+            <div class="col-sm-3">
+                <select class="browser-default custom-select" name="fromBranchId">
                     @foreach ($branches as $branch)    
                         <option value="{{ $branch->id }}">{{ $branch->name }}</option>
                     @endforeach
                 </select>
             </div>
-            <div class="col-sm-9">
+            <div class="col-sm-6">
                 <div class="form-group">
                 <input type="text" id="search-product" class="form-control" placeholder="Search Product" onkeypress="if (event.keyCode == 13) return false;">
                 </div>
