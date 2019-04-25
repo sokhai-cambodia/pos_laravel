@@ -1,7 +1,5 @@
 @extends('layouts.cms.template', compact('title','icon'))
 
-@include('layouts.cms.data-table-header')
-
 @section('content')
 <style>
     .report_header {
@@ -16,6 +14,16 @@
     <div class="card-block">
         <form  method="GET">
             <div class="form-group row">
+                <div class='col-sm-3'>
+                    <div class="form-group">
+                        <div class='input-group date' id='datetimepicker1'>
+                            <input type='text' class="form-control" />
+                            <span class="input-group-addon">
+                                <span class="glyphicon glyphicon-calendar"></span>
+                            </span>
+                        </div>
+                    </div>
+                </div>
                 <div class='col-sm-3'>
                     <div class="form-group">
                         <div class='input-group date' id='datetimepicker1'>
@@ -131,6 +139,24 @@
     </div>
 </div>
 <!-- Default ordering table end -->
+@endsection
+
+@section('footer-src')
+<!-- Include Date Range Picker -->
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.4.1/js/bootstrap-datepicker.min.js"></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.4.1/css/bootstrap-datepicker3.css"/>
+
+<script>
+	$(document).ready(function(){
+		date_input.datepicker({
+			format: 'mm/dd/yyyy',
+			container: container,
+			todayHighlight: true,
+			autoclose: true,
+		})
+	})
+</script>
+
 @endsection
 
 
