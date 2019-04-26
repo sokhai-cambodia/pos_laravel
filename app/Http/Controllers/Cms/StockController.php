@@ -47,7 +47,7 @@ class StockController extends Controller
                 $type = 'stock_in';
                 $branch = Branch::find($request->from_branch_id);
                 if($branch == null) {
-                    NotificationHelper::errorNotification('Invalid Branch', true);
+                    NotificationHelper::setErrorNotification('Invalid Branch', true);
                     return back()->withInput();
                 }
                 
@@ -63,7 +63,7 @@ class StockController extends Controller
                 $quanity = $request->quanity;
 
                 if(count($product_id) != count($unit_id) || count($product_id) != count($quanity)) {
-                    NotificationHelper::errorNotification('Invalid Give Data', true);
+                    NotificationHelper::setErrorNotification('Invalid Give Data', true);
                     return back()->withInput();
                 }
 
@@ -226,7 +226,60 @@ class StockController extends Controller
 
     public function saveWasted(Request $request)
     {
-       dd($request->all());
+        $request->validate([
+            'from_branch_id' => 'required|min:1',
+            'product_id' => 'required|min:1',
+            'unit_id' => 'required|min:1',
+            'quanity' => 'required|min:1'
+        ]);
+
+        try 
+        {   
+            DB::transaction(function () use($request) {
+                $type = 'wasted';
+                $branch = Branch::find($request->from_branch_id);
+                if($branch == null) {
+                    NotificationHelper::setErrorNotification('Invalid Branch', true);
+                    return back()->withInput();
+                }
+                
+                $inventoryTransaction = InventoryTransaction::create([
+                    'from_branch_id' => $branch->id,
+                    'type' => $type,
+                    'created_by' => Auth::id(),
+                ]);
+
+                $inventoryTransactionDetails = [];
+                $product_id = $request->product_id;
+                $unit_id = $request->unit_id;
+                $quanity = $request->quanity;
+
+                if(count($product_id) != count($unit_id) || count($product_id) != count($quanity)) {
+                    NotificationHelper::setErrorNotification('Invalid Give Data', true);
+                    return back()->withInput();
+                }
+
+                for($i = 0; $i < count($product_id); $i++) {
+                    $inventoryTransactionDetails[] = [
+                        'inventory_transaction_id' => $inventoryTransaction->id,
+                        'product_id' => $product_id[$i],
+                        'unit_id' => $unit_id[$i],
+                        'quanity' => $quanity[$i]
+                    ];
+                }
+                InventoryTransactionDetail::insert($inventoryTransactionDetails);
+
+                // TODO Update Stock
+            });
+
+            NotificationHelper::setSuccessNotification('created_success');
+            return back();
+        } 
+        catch (\Exception $e) 
+        {
+            NotificationHelper::errorNotification($e);
+            return back()->withInput();
+        }
     }
 
    
@@ -250,8 +303,65 @@ class StockController extends Controller
     }
 
     public function saveAdjust(Request $request)
-    {
-       dd($request->all());
+    {       
+        
+        $request->validate([
+            'from_branch_id' => 'required|min:1',
+            'type' => [
+                'required',
+                Rule::in(['adjust_add', 'adjust_sub']),
+            ],
+            'product_id' => 'required|min:1',
+            'unit_id' => 'required|min:1',
+            'quanity' => 'required|min:1'
+        ]);
+
+        try 
+        {   
+            DB::transaction(function () use($request) {
+                $branch = Branch::find($request->from_branch_id);
+                if($branch == null) {
+                    NotificationHelper::setErrorNotification('Invalid Branch', true);
+                    return back()->withInput();
+                }
+                
+                $inventoryTransaction = InventoryTransaction::create([
+                    'from_branch_id' => $branch->id,
+                    'type' => $request->type,
+                    'created_by' => Auth::id(),
+                ]);
+
+                $inventoryTransactionDetails = [];
+                $product_id = $request->product_id;
+                $unit_id = $request->unit_id;
+                $quanity = $request->quanity;
+
+                if(count($product_id) != count($unit_id) || count($product_id) != count($quanity)) {
+                    NotificationHelper::setErrorNotification('Invalid Give Data', true);
+                    return back()->withInput();
+                }
+
+                for($i = 0; $i < count($product_id); $i++) {
+                    $inventoryTransactionDetails[] = [
+                        'inventory_transaction_id' => $inventoryTransaction->id,
+                        'product_id' => $product_id[$i],
+                        'unit_id' => $unit_id[$i],
+                        'quanity' => $quanity[$i]
+                    ];
+                }
+                InventoryTransactionDetail::insert($inventoryTransactionDetails);
+
+                // TODO Update Stock
+            });
+
+            NotificationHelper::setSuccessNotification('created_success');
+            return back();
+        } 
+        catch (\Exception $e) 
+        {
+            NotificationHelper::errorNotification($e);
+            return back()->withInput();
+        }
     }
 
 
