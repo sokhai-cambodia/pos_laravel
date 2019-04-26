@@ -184,17 +184,17 @@
                             </a>
                         </li>
                         <li class=" ">
-                            <a href="{{ route('stock.transfer-stock') }}" class="waves-effect waves-dark">
+                            <a href="{{ route('stock.stock-in') }}" class="waves-effect waves-dark">
                                 <span class="pcoded-mtext">Transfer Stock</span>
                             </a>
                         </li>
                         <li class=" ">
-                            <a href="{{ route('stock.wasted') }}" class="waves-effect waves-dark">
+                            <a href="{{ route('stock.stock-in') }}" class="waves-effect waves-dark">
                                 <span class="pcoded-mtext">Wasted Stock</span>
                             </a>
                         </li>
                         <li class=" ">
-                            <a href="{{ route('stock.adjust') }}" class="waves-effect waves-dark">
+                            <a href="{{ route('stock.stock-in') }}" class="waves-effect waves-dark">
                                 <span class="pcoded-mtext">Adjust Stock</span>
                             </a>
                         </li>
