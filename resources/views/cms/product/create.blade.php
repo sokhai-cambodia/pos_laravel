@@ -61,8 +61,8 @@
             <div class="form-group row">
                 <label class="col-sm-2 col-form-label">Quanity For Cut Stock</label>
                 <div class="col-sm-10">
-                    <input type="number" required step="0.01" name="quanity_for_cut_stock" class="form-control"
-                    placeholder="Enter Name" value="{{ old('quanity_for_cut_stock') }}">
+                    <input type="number" required step="0.01" name="quantity_for_cut_stock" class="form-control"
+                    placeholder="Enter Name" value="{{ old('quantity_for_cut_stock') }}">
                 </div>
             </div>
           

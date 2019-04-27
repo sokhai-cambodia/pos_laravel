@@ -60,7 +60,7 @@ class ProductController extends Controller
             'category_id' => 'required',
             'unit_id' => 'required',
             'price' => 'required',
-            'quanity_for_cut_stock' => 'required'
+            'quantity_for_cut_stock' => 'required'
 
         ]);
         
@@ -68,7 +68,7 @@ class ProductController extends Controller
             $request->validate([
                 'i_product_id' => 'required|min:1',
                 'i_unit_id' => 'required|min:1',
-                'i_quanity_for_cut_stock' => 'required|min:1',
+                'i_quantity_for_cut_stock' => 'required|min:1',
     
             ]);
         }
@@ -90,7 +90,7 @@ class ProductController extends Controller
                     'stock_type' => $stock_type,
                     'is_ingredient' => $is_ingredient,
                     'price' => $request->price,
-                    'quanity_for_cut_stock' => $request->quanity_for_cut_stock,
+                    'quantity_for_cut_stock' => $request->quantity_for_cut_stock,
                     'unit_id' => $request->unit_id,
                     'category_id' => $request->category_id,
                     'created_by' => Auth::id(),
@@ -100,13 +100,13 @@ class ProductController extends Controller
                     $productIngredients = [];
                     $i_product_id = $request->i_product_id;
                     $i_unit_id = $request->i_unit_id;
-                    $i_quanity_for_cut_stock = $request->i_quanity_for_cut_stock;
+                    $i_quantity_for_cut_stock = $request->i_quantity_for_cut_stock;
                     for($i = 0; $i < count($i_product_id); $i++) {
                         $productIngredients[] = [
                             'product_id' => $product->id,
                             'ingredient_product_id' => $i_product_id[$i],
                             'unit_id' => $i_unit_id[$i],
-                            'quanity_for_cut_stock' => $i_quanity_for_cut_stock[$i],
+                            'quantity_for_cut_stock' => $i_quantity_for_cut_stock[$i],
                             'created_by' => Auth::id(),
                         ];
                     }
@@ -157,7 +157,7 @@ class ProductController extends Controller
             'category_id' => 'required',
             'unit_id' => 'required',
             'price' => 'required',
-            'quanity_for_cut_stock' => 'required'
+            'quantity_for_cut_stock' => 'required'
 
         ]);
         
@@ -165,7 +165,7 @@ class ProductController extends Controller
             $request->validate([
                 'i_product_id' => 'required|min:1',
                 'i_unit_id' => 'required|min:1',
-                'i_quanity_for_cut_stock' => 'required|min:1',
+                'i_quantity_for_cut_stock' => 'required|min:1',
     
             ]);
         }
@@ -184,7 +184,7 @@ class ProductController extends Controller
                 $product->stock_type = $stock_type;
                 $product->is_ingredient = $is_ingredient;
                 $product->price = $request->price;
-                $product->quanity_for_cut_stock = $request->quanity_for_cut_stock;
+                $product->quantity_for_cut_stock = $request->quantity_for_cut_stock;
                 $product->unit_id = $request->unit_id;
                 $product->category_id = $request->category_id;
                 $product->updated_by = Auth::id();
@@ -196,13 +196,13 @@ class ProductController extends Controller
                     $productIngredients = [];
                     $i_product_id = $request->i_product_id;
                     $i_unit_id = $request->i_unit_id;
-                    $i_quanity_for_cut_stock = $request->i_quanity_for_cut_stock;
+                    $i_quantity_for_cut_stock = $request->i_quantity_for_cut_stock;
                     for($i = 0; $i < count($i_product_id); $i++) {
                         $productIngredients[] = [
                             'product_id' => $product->id,
                             'ingredient_product_id' => $i_product_id[$i],
                             'unit_id' => $i_unit_id[$i],
-                            'quanity_for_cut_stock' => $i_quanity_for_cut_stock[$i],
+                            'quantity_for_cut_stock' => $i_quantity_for_cut_stock[$i],
                             'created_by' => Auth::id(),
                         ];
                     }

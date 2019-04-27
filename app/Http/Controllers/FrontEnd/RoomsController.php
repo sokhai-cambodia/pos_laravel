@@ -8,14 +8,14 @@ use NotificationHelper;
 use FileHelper;
 
 
-class OrderController extends Controller
+class RoomsController extends Controller
 {
     private $icon = 'icon-layers';
 
 
     public function index()
     {
-        return view('front-end.view.room')->with($data);
+        return view('front-end.order.index')->with($data);
     }
 
 

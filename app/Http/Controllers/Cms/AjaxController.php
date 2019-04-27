@@ -111,7 +111,7 @@ class AjaxController extends Controller
                         'products.name',
                         'products.photo',
                         'product_ingredients.unit_id',
-                        'product_ingredients.quanity_for_cut_stock'
+                        'product_ingredients.quantity_for_cut_stock'
                         )
                     ->get();
 

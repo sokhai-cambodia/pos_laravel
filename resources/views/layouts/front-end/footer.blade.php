@@ -48,3 +48,15 @@
 <script src="{{ asset('plugin/cms/assets/js/pos/libraries.min.js') }}" ></script>
 <script src="{{ asset('plugin/cms/assets/js/pos/pos.min.js') }}" ></script>
 <script src="{{ asset('plugin/cms/assets/js/pos/scripts.min.js') }}"></script>
+
+<script>
+function openNav() {
+  document.getElementById("mySidebar").style.width = "250px";
+  document.getElementById("main").style.marginLeft = "250px";
+}
+
+function closeNav() {
+  document.getElementById("mySidebar").style.width = "0";
+  document.getElementById("main").style.marginLeft= "0";
+}
+</script>

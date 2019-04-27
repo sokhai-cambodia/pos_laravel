@@ -15,8 +15,8 @@
             </select>
         </td>
         <td style="vertical-align:middle">
-            <input type="number" required step="0.01" min="1" name="i_quanity_for_cut_stock[]" class="form-control"
-        placeholder="Enter Quanity" value="{{ $product->quanity_for_cut_stock }}">
+            <input type="number" required step="0.01" min="1" name="i_quantity_for_cut_stock[]" class="form-control"
+        placeholder="Enter Quanity" value="{{ $product->quantity_for_cut_stock }}">
         </td>
         <td style="vertical-align:middle">
             <button type="button" class="btn waves-effect waves-light btn-danger btn-delete">

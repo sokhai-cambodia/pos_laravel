@@ -23,7 +23,7 @@ class CreateInvoiceIngredientDetailsTable extends Migration
             $table->integer('product_id');
             $table->integer('product_ingredient_id');
             $table->integer('qty');
-            $table->double('quanity_for_cut_stock', 8, 2);
+            $table->double('quantity_for_cut_stock', 8, 2);
             $table->integer('unit_id');
             $table->timestamps();
         });
