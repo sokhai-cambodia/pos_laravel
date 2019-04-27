@@ -23,7 +23,7 @@ class CreateProductIngredientsTable extends Migration
             $table->integer('product_id');
             $table->integer('ingredient_product_id');
             $table->integer('unit_id');
-            $table->double('quanity_for_cut_stock', 8, 2);
+            $table->double('quantity_for_cut_stock', 8, 2);
             $table->integer('created_by');
             $table->integer('updated_by')->nullable();
             $table->integer('deleted_by')->nullable();

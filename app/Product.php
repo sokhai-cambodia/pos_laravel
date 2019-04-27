@@ -74,7 +74,7 @@ class Product extends Model
 
     public static function laratablesAdditionalColumns()
     {
-        return ['photo', 'category_id', 'unit_id', 'quanity_for_cut_stock', 'name'];
+        return ['photo', 'category_id', 'unit_id', 'quantity_for_cut_stock', 'name'];
     }
 
     public static function laratablesCustomThumbnail($product)
@@ -89,7 +89,7 @@ class Product extends Model
 
     public static function laratablesCustomStock($product)
     {
-        return $product->quanity_for_cut_stock.' '.$product->unit->name;
+        return $product->quantity_for_cut_stock.' '.$product->unit->name;
     }
 
     public static function laratablesCustomIngredient($product)

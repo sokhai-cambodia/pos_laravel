@@ -26,7 +26,7 @@ class CreateProductsTable extends Migration
             $table->enum('stock_type', ['product', 'ingredient'])->default('product');
             $table->tinyInteger('is_ingredient')->default(0);
             $table->float('price', 8, 2);
-            $table->double('quanity_for_cut_stock', 8, 2);
+            $table->double('quantity_for_cut_stock', 8, 2);
             $table->integer('unit_id');
             $table->integer('category_id');
             $table->integer('created_by');

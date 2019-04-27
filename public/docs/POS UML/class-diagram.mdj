@@ -18002,7 +18002,7 @@
 											"top": 339,
 											"width": 121.75439453125,
 											"height": 13,
-											"text": "+quanityForCutStock",
+											"text": "+quantityForCutStock",
 											"horizontalAlignment": 0
 										}
 									],
@@ -18825,7 +18825,7 @@
 											"top": 295,
 											"width": 121.75439453125,
 											"height": 13,
-											"text": "+quanityForCutStock",
+											"text": "+quantityForCutStock",
 											"horizontalAlignment": 0
 										},
 										{
@@ -23266,7 +23266,7 @@
 											"top": 492,
 											"width": 87,
 											"height": 13,
-											"text": "+quanity",
+											"text": "+quantity",
 											"horizontalAlignment": 0
 										},
 										{
@@ -25292,7 +25292,7 @@
 											"top": 666,
 											"width": 143.03173828125,
 											"height": 13,
-											"text": "+quanity",
+											"text": "+quantity",
 											"horizontalAlignment": 0
 										},
 										{
@@ -25801,7 +25801,7 @@
 											"top": 818,
 											"width": 181.33984375,
 											"height": 13,
-											"text": "+quanity",
+											"text": "+quantity",
 											"horizontalAlignment": 0
 										}
 									],
@@ -26357,7 +26357,7 @@
 							"_parent": {
 								"$ref": "AAAAAAFpTKItc9fAZhQ="
 							},
-							"name": "quanityForCutStock",
+							"name": "quantityForCutStock",
 							"type": ""
 						}
 					]
@@ -26811,7 +26811,7 @@
 							"_parent": {
 								"$ref": "AAAAAAFpTKI19tg7fKs="
 							},
-							"name": "quanityForCutStock",
+							"name": "quantityForCutStock",
 							"type": ""
 						},
 						{
@@ -27301,7 +27301,7 @@
 							"_parent": {
 								"$ref": "AAAAAAFpTOZGy1I9LCM="
 							},
-							"name": "quanity",
+							"name": "quantity",
 							"type": ""
 						},
 						{
@@ -27520,7 +27520,7 @@
 							"_parent": {
 								"$ref": "AAAAAAFqNSUJ+FbOOfg="
 							},
-							"name": "quanity",
+							"name": "quantity",
 							"type": ""
 						},
 						{
@@ -27617,7 +27617,7 @@
 							"_parent": {
 								"$ref": "AAAAAAFqVY/egbvo3Vs="
 							},
-							"name": "quanity"
+							"name": "quantity"
 						}
 					]
 				}

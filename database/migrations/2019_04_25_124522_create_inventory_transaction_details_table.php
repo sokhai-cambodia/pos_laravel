@@ -21,7 +21,7 @@ class CreateInventoryTransactionDetailsTable extends Migration
             $table->bigIncrements('id');
             $table->integer('inventory_transaction_id');
             $table->integer('product_id');
-            $table->double('quanity', 8, 2);
+            $table->double('quantity', 8, 2);
             $table->integer('unit_id');
         });
     }

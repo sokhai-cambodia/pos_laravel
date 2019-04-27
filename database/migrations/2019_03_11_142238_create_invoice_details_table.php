@@ -22,8 +22,8 @@ class CreateInvoiceDetailsTable extends Migration
             $table->bigIncrements('id');
             $table->integer('invoice_id');
             $table->integer('product_id');
-            $table->integer('quanity');
-            $table->double('quanity_for_cut_stock', 8, 2);
+            $table->integer('quantity');
+            $table->double('quantity_for_cut_stock', 8, 2);
             $table->float('price', 8, 2);
             $table->integer('unit_id');
         });

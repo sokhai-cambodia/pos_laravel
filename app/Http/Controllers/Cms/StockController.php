@@ -14,6 +14,7 @@ use App\Unit;
 use App\Branch;
 use App\InventoryTransaction;
 use App\InventoryTransactionDetail;
+use App\ProductStock;
 
 class StockController extends Controller
 {   
@@ -62,6 +63,21 @@ class StockController extends Controller
                         ['inventory_transaction_id' => $inventoryTransaction->id],
                         $inventory
                     );
+
+                    $pstock = ProductStock::where('branch_id',  $branch->id)
+                                            ->where('product_id', $inventory->product_id)
+                                            ->first();
+                    if($pstock === null) {
+                        ProductStock::create([
+                            'branch_id' => $branch->id,
+                            'product_id', $inventory->product_id,
+                            'qty' => $inventory->quantity
+                        ]);
+                    } else {
+                        $pstock->qty = $pstock->qty + $inventory->quantity;
+                        $
+                    }
+                    
                 }
 
                 InventoryTransactionDetail::insert($inventoryTransactionDetails);

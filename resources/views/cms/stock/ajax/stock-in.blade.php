@@ -17,7 +17,7 @@
         </select>
     </td>
     <td style="vertical-align:middle">
-        <input type="number" required step="0.01" min="1" name="inventory[][quanity]" class="form-control quanity"
+        <input type="number" required step="0.01" min="1" name="inventory[][quantity]" class="form-control quantity"
 placeholder="Enter Quanity" value="1">
     </td>
     <td style="vertical-align:middle">
