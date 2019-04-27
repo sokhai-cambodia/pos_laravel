@@ -63,19 +63,19 @@ class StockController extends Controller
                         ['inventory_transaction_id' => $inventoryTransaction->id],
                         $inventory
                     );
-
+                    
                     $pstock = ProductStock::where('branch_id',  $branch->id)
-                                            ->where('product_id', $inventory->product_id)
+                                            ->where('product_id', $inventory['product_id'])
                                             ->first();
                     if($pstock === null) {
                         ProductStock::create([
                             'branch_id' => $branch->id,
-                            'product_id', $inventory->product_id,
-                            'qty' => $inventory->quantity
+                            'product_id' => $inventory['product_id'],
+                            'qty' => $inventory['quantity']
                         ]);
                     } else {
-                        $pstock->qty = $pstock->qty + $inventory->quantity;
-                        $
+                        $pstock->qty = $pstock->qty + $inventory['quantity'];
+                        $pstock->save();
                     }
                     
                 }
