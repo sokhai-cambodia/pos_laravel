@@ -2,43 +2,10 @@
 @section('content')
 
 <style>
-    .sidebar {
-        height: 100%;
-        position: fixed;
-        z-index: 1;
-        top: 6;
-        right: 0;
-        background-color: #111;
-        overflow-x: hidden;
-        transition: 0.5s;
-        padding-top: 60px;
-    }
-
-    .sidebar a {
-        padding: 8px 8px 8px 35px;
-        text-decoration: none;
-        font-size: 20px;
-        color: #818181;
-        display: block;
-        transition: 0.3s;
-
-   }
-
-    .sidebar a:hover {
-        color: #f1f1f1;
-    }
-
-    .sidebar .closebtn {
-        position: absolute;
-        top: 0;
-        right: 25px;
-        font-size: 30px;
-        margin-left: 50px;
-    }
 
     .scrollbar {
         height: 145px;
-        width: 280px;
+        width: 98%;
         background: grey;
         overflow-x: scroll;
         display: inline-flex;
@@ -48,7 +15,7 @@
     .scrollbar-item {
         height: 400px;
         width: 100%;
-        float: left;
+        /* float: left; */
         background: white;
         overflow-y: scroll;
         display: inline-flex;
@@ -89,9 +56,11 @@
     <div class="col-sm-5">
         <div id="pos">
             <form action="https://spos.tecdiary.com/pos" id="pos-sale-form" method="post" accept-charset="utf-8">
-                <input type="hidden" name="spos_token">
+                <!-- <input type="hidden" name="spos_token"> -->
                 <div class="well well-sm" id="leftdiv">
+
                     <div id="lefttop" style="margin-bottom:5px;">
+
                         <div class="form-group" style="margin-bottom:5px;">
                             <div class="input-group">
                                 <select name="customer_id" id="spos_customer" data-placeholder="Select Customer" required="required" class="form-control select2 select2-hidden-accessible" style="width:100%;position:absolute;" tabindex="-1" aria-hidden="true">
@@ -106,9 +75,11 @@
                         <div class="form-group" style="margin-bottom:5px;">
                             <input type="text" name="hold_ref" value="" id="hold_ref" class="form-control kb-text" placeholder="Reference Note">
                         </div>
+
                         <div class="form-group" style="margin-bottom:5px;">
                             <input type="text" name="code" id="add_item" class="form-control ui-autocomplete-input" placeholder="Search product by code or name, you can scan barcode too" autocomplete="off">
                         </div>
+
                     </div>
                     <div id="printhead" class="print">
                         <p>Date: 20th April 2019</p>
@@ -175,7 +146,7 @@
                     </div>
                     <div id="botbuttons" class="col-xs-12 text-center">
                         <div class="row">
-                            <div class="col-xs-4" style="padding: 0;">
+                            <div class="col-xs-4" style="padding: 0 5px;">
                                 <div class="btn-group-vertical btn-block">
                                     <button type="button" class="btn btn-warning btn-block btn-flat" id="suspend">Hold</button>
                                     <button type="button" class="btn btn-danger btn-block btn-flat" id="reset">Cancel</button>
@@ -192,7 +163,8 @@
                             </div>
                         </div>
                     </div>
-                    <div class="clearfix"></div>
+                    <!-- input payment -->
+                    <!-- <div class="clearfix"></div>
                     <span id="hidesuspend"></span>
                     <input type="hidden" name="spos_note" value="" id="spos_note">
                     <div id="payment-con">
@@ -218,31 +190,16 @@
                     <input type="hidden" name="eid" id="is_delete" value="0">
                     <input type="hidden" name="total_items" id="total_items" value="0">
                     <input type="hidden" name="total_quantity" id="total_quantity" value="0">
-                    <input type="submit" id="submit" value="Submit Sale" style="display: none;">
+                    <input type="submit" id="submit" value="Submit Sale" style="display: none;"> -->
                 </div>
             </form>
         </div>
     </div>
 
     <div class="col-sm-7 ">
-            <ul class="list-group sidebar " id="mySidebar" width="175px">
-                <li class="active">
-                    <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">×</a>
-                </li>
-
-                <li class=" ">
-                    <a href="#">A-001</a>
-                </li>
-                <li class=" ">
-                    <a href="#">A-002</a>
-                </li>
-                <li class=" ">
-                    <a href="#">A-003</a>
-                </li>
-            </ul>
 
         <!-- category -->
-        <div class="row">
+        <div class="">
             <div class="col-sm 11 scrollbar" id="style-1">
                 <div class=" text-center border border-dark d-inline-block mr-1 bg-primary">
                     <img class="img " src="https://cdn.pastemagazine.com/www/articles/kfc%20canada%20double%20down%20main.jpg" height="100px" width="160px" alt="">
@@ -346,7 +303,7 @@
         <div class="row scrollbar-item " id="style-2">
             <div class="col-sm-12 mt-2">
 
-                <div class="row">
+                <div class=" row ">
 
                     <div class="col-sm-3 mt-2">
                         <div class=" text-center border border-dark d-inline-block mr-1 bg-primary">
@@ -354,7 +311,6 @@
                             <h4 class=""><span>Cocacola</span></h4>
                         </div>
                     </div>
-
                     <div class="col-sm-3 mt-2">
                         <div class=" text-center border border-dark d-inline-block mr-1 bg-primary">
                             <img class="img " src="https://cdn.pastemagazine.com/www/articles/kfc%20canada%20double%20down%20main.jpg" height="100%" width="100%" alt="">

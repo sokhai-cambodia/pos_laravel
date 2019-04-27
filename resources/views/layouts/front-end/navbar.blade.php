@@ -72,9 +72,9 @@
         float: left;
     }
 
-    /* .dropdown:hover .dropdown-content {
+    .dropdown:hover .dropdown-content {
         display: block;
-    } */
+    }
 
     .nav-cotent {
         z-index: 1;
@@ -106,7 +106,7 @@
     <div class="collapse navbar-collapse  " id="navbarColor01">
         <ul class="nav navbar-nav ml-5 ">
 
-            <li class="nav-item coner-nav ">
+            <!-- <li class="nav-item coner-nav ">
                 <div class=" ">
                     <a class="nav-link active" href="#">Room </a>
                 </div>
@@ -132,7 +132,7 @@
                     <a class="nav-link active" href="#">Close Register</a>
                 </div>
 
-            </li>
+            </li> -->
 
 
         </ul>
@@ -147,17 +147,11 @@
                 </a>
 
             </li>
-            <li>
-                <div id="main">
-                    <button class="openbtn" onclick="openNav()">☰ </button>
-                    <!-- <a href="#" data-toggle="control-sidebar" class="sidebar-icon"><i class="fas fa-align-right"></i></a> -->
-                </div>
-                <!-- <a href="#" data-toggle="control-sidebar" class="sidebar-icon"><i class="fas fa-align-right"></i></a> -->
-            </li>
+
         </ul>
 
         <div class=" dropdown-content">
-            <ul class="list-group bg-dark">
+            <ul class="list-group ">
                 <li class="list-group-item active text-center">Setting</li>
                 <li class="list-group-item"> <a class="nav-link" href="#"><i class="fas fa-edit mr-2"></i> View Profile</a></li>
                 <li class="list-group-item"><a class="nav-link" href="#"><i class="fas fa-power-off mr-2"></i> Log out</a></li>
