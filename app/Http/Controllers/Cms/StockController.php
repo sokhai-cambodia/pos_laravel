@@ -40,60 +40,7 @@ class StockController extends Controller
             'inventory' => 'required'
         ]);
 
-        try 
-        {   
-            DB::transaction(function () use($request) {
-                $type = 'stock_in';
-                $branch = Branch::find($request->from_branch_id);
-                if($branch == null) {
-                    NotificationHelper::setErrorNotification('Invalid Branch', true);
-                    return back()->withInput();
-                }
-                
-                $inventoryTransaction = InventoryTransaction::create([
-                    'from_branch_id' => $branch->id,
-                    'type' => $type,
-                    'created_by' => Auth::id(),
-                ]);
-
-                $inventoryTransactionDetails = [];
-
-                foreach($request->inventory as $inventory) {
-                    $inventoryTransactionDetails[] = array_merge(
-                        ['inventory_transaction_id' => $inventoryTransaction->id],
-                        $inventory
-                    );
-                    
-                    $pstock = ProductStock::where('branch_id',  $branch->id)
-                                            ->where('product_id', $inventory['product_id'])
-                                            ->first();
-                    if($pstock === null) {
-                        ProductStock::create([
-                            'branch_id' => $branch->id,
-                            'product_id' => $inventory['product_id'],
-                            'qty' => $inventory['quantity']
-                        ]);
-                    } else {
-                        $pstock->qty = $pstock->qty + $inventory['quantity'];
-                        $pstock->save();
-                    }
-                    
-                }
-
-                InventoryTransactionDetail::insert($inventoryTransactionDetails);
-
-                // TODO Update Stock
-            });
-
-            NotificationHelper::setSuccessNotification('created_success');
-            return back();
-        } 
-        catch (\Exception $e) 
-        {
-            NotificationHelper::errorNotification($e);
-            return back()->withInput();
-        }
-
+        return $this->stockTransaction($request, 'stock_in');
     }
 
     public function findStockInProduct(Request $request)
@@ -134,6 +81,132 @@ class StockController extends Controller
     }
     // End StockIn
 
+    // Wasted
+    public function wasted()
+    {
+        $branches = Branch::all();
+        $data = [
+            'title' => 'Wasted Stock',
+            'icon' => $this->icon,
+            'branches' => $branches
+        ];
+        
+        return view('cms.stock.wasted')->with($data);
+    }
 
+    public function saveWasted(Request $request)
+    {
+        $request->validate([
+            'from_branch_id' => 'required|min:1',
+            'inventory' => 'required'
+        ]);
+
+        return $this->stockTransaction($request, 'wasted');
+    }
+
+    // Adjust Stock
+    public function adjust()
+    {
+        $branches = Branch::all();
+        $adjustType = [ 'adjust_add' => 'Adjust Add', 'adjust_sub' => 'Adjust Sub', ];
+        $data = [
+            'title' => 'Adjust Stock',
+            'icon' => $this->icon,
+            'branches' => $branches,
+            'adjustType' => $adjustType
+        ];
+        
+        return view('cms.stock.adjust')->with($data);
+    }
+
+    public function saveAdjust(Request $request)
+    {
+        $request->validate([
+            'from_branch_id' => 'required|min:1',
+            'inventory' => 'required',
+            'type' => [
+                'required',
+                Rule::in(['adjust_add', 'adjust_sub']),
+            ],
+        ]);
+        
+        return $this->stockTransaction($request, $request->type);
+    }
+
+    // =============== Private Method =============
+
+    private function stockTransaction(Request $request, $type) {
+        try 
+        {   
+
+            $stockType = ['stock_in', 'adjust_add', 'adjust_sub', 'wasted'];
+
+            if (!in_array($type, $stockType)) {
+                NotificationHelper::setErrorNotification('Invalid Stock Type', true);
+                return back()->withInput();
+            }
+
+            DB::transaction(function () use($request, $type) {
+                $branch = Branch::find($request->from_branch_id);
+                if($branch == null) {
+                    NotificationHelper::setErrorNotification('Invalid Branch', true);
+                    return back()->withInput();
+                }
+                
+                $inventoryTransaction = InventoryTransaction::create([
+                    'from_branch_id' => $branch->id,
+                    'type' => $type,
+                    'created_by' => Auth::id(),
+                ]);
+
+                $inventoryTransactionDetails = [];
+
+                foreach($request->inventory as $inventory) {
+                    $inventoryTransactionDetails[] = array_merge(
+                        ['inventory_transaction_id' => $inventoryTransaction->id],
+                        $inventory
+                    );
+
+                    $product_id =  $inventory['product_id'];
+                    $quantity =  $inventory['quantity'];
+
+
+                    $stock = ProductStock::where('branch_id',  $branch->id)
+                                            ->where('product_id', $product_id)
+                                            ->first();
+                    if($stock == null) {
+                        if($type != 'stock_in') {
+                            NotificationHelper::setErrorNotification('Stock Type is not stock in', true);
+                            return back()->withInput();
+                        }
+                        ProductStock::create([
+                            'branch_id' => $branch->id,
+                            'product_id' => $product_id,
+                            'qty' => $quantity
+                        ]);
+                    } else {
+                        // If type = ['stock_in', 'adjust_add'] add stock other type will sub
+                        $qty = in_array($type, ['stock_in', 'adjust_add']) ? ($stock->qty + $quantity) : ($stock->qty - $quantity);
+                        ProductStock::where('branch_id',  $branch->id)
+                                    ->where('product_id', $inventory['product_id'])
+                                    ->update(['qty' => $qty]);
+                    }
+                    
+                }
+
+                InventoryTransactionDetail::insert($inventoryTransactionDetails);
+
+                // TODO Update Stock
+            });
+
+            NotificationHelper::setSuccessNotification('created_success');
+            return back();
+        } 
+        catch (\Exception $e) 
+        {
+            NotificationHelper::errorNotification($e);
+            return back()->withInput();
+        }
+    }
 
 }
