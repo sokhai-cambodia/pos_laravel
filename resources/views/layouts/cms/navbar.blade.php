@@ -167,6 +167,40 @@
 
 
             </ul>
+            {{-- Stock Main Menu --}}
+            <div class="pcoded-navigation-label">Stock</div>
+            <ul class="pcoded-item pcoded-left-item">
+                {{-- report --}}
+                <li class="pcoded-hasmenu">
+                    <a href="javascript:void(0)" class="waves-effect waves-dark">
+                        <span class="pcoded-micon"><i class="feather icon-sidebar"></i></span>
+                        <span class="pcoded-mtext">Stock</span>
+                        {{-- <span class="pcoded-badge label label-warning">NEW</span> --}}
+                    </a>
+                    <ul class="pcoded-submenu">
+                        <li class="">
+                            <a href="{{ route('stock.stock-in') }}" class="waves-effect waves-dark">
+                                <span class="pcoded-mtext">Stock In</span>
+                            </a>
+                        </li>
+                        <li class=" ">
+                            <a href="{{ route('stock.stock-in') }}" class="waves-effect waves-dark">
+                                <span class="pcoded-mtext">Transfer Stock</span>
+                            </a>
+                        </li>
+                        <li class=" ">
+                            <a href="{{ route('stock.stock-in') }}" class="waves-effect waves-dark">
+                                <span class="pcoded-mtext">Wasted Stock</span>
+                            </a>
+                        </li>
+                        <li class=" ">
+                            <a href="{{ route('stock.stock-in') }}" class="waves-effect waves-dark">
+                                <span class="pcoded-mtext">Adjust Stock</span>
+                            </a>
+                        </li>
+                    </ul>
+                </li>
+            </ul>
             {{-- Report Main Menu --}}
             <div class="pcoded-navigation-label">Report</div>
             <ul class="pcoded-item pcoded-left-item">

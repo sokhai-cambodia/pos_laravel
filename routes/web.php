@@ -69,10 +69,13 @@ Route::group(['prefix' => 'cms', 'middleware' => ['auth']], function(){
 
     // REPORTS
     require_once __DIR__.'/cms/report.php';
+
+    // STOCK
+    require_once __DIR__.'/cms/stock.php';
 });
 
-// Route::group(['prefix' => 'front-end'], function () {
-//     Route::get('', function () {
-//         return view('front-end.index');
-//     })->name('front-end');
-// });
+Route::group(['prefix' => 'front-end', 'middleware' => ['auth']], function () {
+    Route::get('', function () {
+        return view('front-end.index');
+    })->name('front-end');
+});
