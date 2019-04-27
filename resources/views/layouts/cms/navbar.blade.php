@@ -184,7 +184,7 @@
                             </a>
                         </li>
                         <li class=" ">
-                            <a href="{{ route('stock.stock-in') }}" class="waves-effect waves-dark">
+                            <a href="{{ route('stock.transfer-stock') }}" class="waves-effect waves-dark">
                                 <span class="pcoded-mtext">Transfer Stock</span>
                             </a>
                         </li>

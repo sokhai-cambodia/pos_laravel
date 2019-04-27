@@ -37,7 +37,9 @@ class StockController extends Controller
     {
         $request->validate([
             'from_branch_id' => 'required|min:1',
-            'inventory' => 'required'
+            'inventory.*.product_id' => 'required|min:1',
+            'inventory.*.unit_id' => 'required|min:1',
+            'inventory.*.quantity' => 'required|min:1',
         ]);
 
         return $this->stockTransaction($request, 'stock_in');
@@ -98,7 +100,9 @@ class StockController extends Controller
     {
         $request->validate([
             'from_branch_id' => 'required|min:1',
-            'inventory' => 'required'
+            'inventory.*.product_id' => 'required|min:1',
+            'inventory.*.unit_id' => 'required|min:1',
+            'inventory.*.quantity' => 'required|min:1',
         ]);
 
         return $this->stockTransaction($request, 'wasted');
@@ -123,7 +127,9 @@ class StockController extends Controller
     {
         $request->validate([
             'from_branch_id' => 'required|min:1',
-            'inventory' => 'required',
+            'inventory.*.product_id' => 'required|min:1',
+            'inventory.*.unit_id' => 'required|min:1',
+            'inventory.*.quantity' => 'required|min:1',
             'type' => [
                 'required',
                 Rule::in(['adjust_add', 'adjust_sub']),
@@ -131,6 +137,123 @@ class StockController extends Controller
         ]);
         
         return $this->stockTransaction($request, $request->type);
+    }
+
+    // Transfer Stock
+    public function transferStock()
+    {
+        $fromBranches = Branch::all();
+        $toBranches = Branch::all();
+        $adjustType = [ 'adjust_add' => 'Adjust Add', 'adjust_sub' => 'Adjust Sub', ];
+        $data = [
+            'title' => 'Adjust Stock',
+            'icon' => $this->icon,
+            'fromBranches' => $fromBranches,
+            'toBranches' => $toBranches,
+            'adjustType' => $adjustType
+        ];
+        
+        return view('cms.stock.transfer-stock')->with($data);
+    }
+
+    public function saveTransferStock(Request $request)
+    {
+        $request->validate([
+            'from_branch_id' => 'required|min:1',
+            'to_branch_id' => 'required|min:1',
+            'inventory.*.product_id' => 'required|min:1',
+            'inventory.*.unit_id' => 'required|min:1',
+            'inventory.*.quantity' => 'required|min:1',
+        ]);
+        
+        if($request->from_branch_id == $request->to_branch_id) {
+            NotificationHelper::setErrorNotification('Cannot Transfer To Same Branch', true);
+            return back()->withInput();
+        }
+
+        try 
+        {   
+
+            DB::transaction(function () use($request) {
+                $from_branch = Branch::find($request->from_branch_id);
+                if($from_branch == null) {
+                    NotificationHelper::setErrorNotification('Invalid From Branch', true);
+                    return back()->withInput();
+                }
+
+                $to_branch = Branch::find($request->to_branch_id);
+                if($to_branch == null) {
+                    NotificationHelper::setErrorNotification('Invalid To Branch', true);
+                    return back()->withInput();
+                }
+                
+                
+                $inventoryTransaction = InventoryTransaction::create([
+                    'from_branch_id' => $from_branch->id,
+                    'to_branch_id' => $to_branch->id,
+                    'type' => 'transfer',
+                    'created_by' => Auth::id(),
+                ]);
+
+                $inventoryTransactionDetails = [];
+
+                foreach($request->inventory as $inventory) {
+                    $inventoryTransactionDetails[] = array_merge(
+                        ['inventory_transaction_id' => $inventoryTransaction->id],
+                        $inventory
+                    );
+
+                    $product_id =  $inventory['product_id'];
+                    $quantity =  $inventory['quantity'];
+
+
+                    $from_stock = ProductStock::where('branch_id',  $from_branch->id)
+                                            ->where('product_id', $product_id)
+                                            ->first();
+
+                    $to_stock = ProductStock::where('branch_id',  $to_branch->id)
+                                            ->where('product_id', $product_id)
+                                            ->first();
+
+                    if($from_stock == null) {
+                        NotificationHelper::setErrorNotification('No product to transfer', true);
+                        return back()->withInput();
+                    }
+                    
+
+                    $from_branch_qty = $from_stock->qty - $quantity;
+                    ProductStock::where('branch_id',  $from_branch->id)
+                                ->where('product_id', $product_id)
+                                ->update(['qty' => $from_branch_qty]);
+
+                    if($to_stock == null) {
+                        ProductStock::create([
+                            'branch_id' => $to_branch->id,
+                            'product_id' => $product_id,
+                            'qty' => $quantity
+                        ]);
+                    } else {
+                        $to_branch_qty = $to_stock->qty + $quantity;
+                        ProductStock::where('branch_id',  $to_branch->id)
+                                ->where('product_id', $product_id)
+                                ->update(['qty' => $to_branch_qty]);
+                    }
+                    
+                }
+
+                InventoryTransactionDetail::insert($inventoryTransactionDetails);
+
+                // TODO Update Stock
+            });
+
+            NotificationHelper::setSuccessNotification('created_success');
+            return back();
+        } 
+        catch (\Exception $e) 
+        {
+            NotificationHelper::errorNotification($e);
+            return back()->withInput();
+        }
     }
 
     // =============== Private Method =============

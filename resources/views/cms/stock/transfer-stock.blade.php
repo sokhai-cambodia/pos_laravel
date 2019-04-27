@@ -140,8 +140,12 @@ $(function(){
     function generateProductNo() {
         $('#product-table > tbody  > tr').each(function(ind, tr) {
             $(tr).find('.product_no').text(ind + 1);
+            $(tr).find('.product_id').attr('name', 'inventory['+ ind +'][product_id]');
+            $(tr).find('.unit_id').attr('name', 'inventory['+ ind +'][unit_id]');
+            $(tr).find('.quantity').attr('name', 'inventory['+ ind +'][quantity]');
         });
     }
+
 
     function getProductIngredient(id) {
 
