@@ -79,3 +79,7 @@ Route::group(['prefix' => 'front-end', 'middleware' => ['auth']], function () {
         return view('front-end.index');
     })->name('front-end');
 });
+
+Route::get('/errors', function(){
+    return view('cms.errors.404');
+});
