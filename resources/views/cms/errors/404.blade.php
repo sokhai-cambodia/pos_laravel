@@ -1,3 +1,6 @@
+@section('header-src')
+
+@endsection
 <!DOCTYPE html>
 <html>
 <head>
@@ -17,18 +20,21 @@
             font-size: 18px;
         }
         a{
+            text-align: center;
             text-decoration: none;
         }
         .w-wrap .link-home{
+            text-decoration: underline;
             width: 80%;
             text-align: center;
+            margin: 20px 0 0 80px;
         }
     </style>
 </head>
 <body>
     <div class="w-wrap">
         <div><img src="{{asset('assets/uploads/404.png')}}"></div>
-        <div class="link-home"><a href="{{ url()->previous() }}"><span style="font-family:Bayon;">Back</span></a></div>
+        <div class="link-home"><a href="{{ url()->previous() }}"><span style="font-family:Bayon;">Back To previous page</span></a></div>
     </div>
 </body>
 </html>
