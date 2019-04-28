@@ -28,7 +28,8 @@
 <script src="{{ asset('plugin/cms/assets/js/dropify.js') }}"></script>
 <!-- jquery-ui.js -->
 <script src="{{ asset('plugin/cms/assets/js/jquery-ui.js') }}"></script>
-
+<!-- PrintArea -->
+<script src="{{ asset('plugin/cms/assets/js/jquery.PrintArea.js') }}"></script>
 
 <!-- Global site tag (gtag.js) - Google Analytics -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=UA-23581568-13"></script>

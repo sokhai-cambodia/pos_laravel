@@ -90,7 +90,7 @@
                                         <button class="btn waves-effect waves-light hor-grd btn-grd-light ">Excel<i class="fas fa-file-exel" style="margin-left:10px;"></i></button>
                                     </div>
                                     <div class="col-md-4">
-                                        <button class="btn waves-effect waves-light hor-grd btn-grd-light ">Print<i class="fas fa-print" style="margin-left:10px;"></i></button>
+                                        <button id="print_report" class="btn waves-effect waves-light hor-grd btn-grd-light ">Print<i class="fas fa-print" style="margin-left:10px;"></i></button>
                                     </div>
                                 </div>
                             </div>
@@ -103,8 +103,8 @@
     <div class="card-block">
 
         {{-- Report --}}
-        <div class="container">
-                <table class="table">
+        <div class="container" id="print_area">
+                <table class="table"  style="width: 100%">
                   <thead>
                     <tr>
                       <th scope="col">Date</th>
@@ -173,6 +173,20 @@
 <script src="{{ asset('plugin/cms/bower_components/jquery-minicolors/js/jquery.minicolors.min.js') }}"></script>
 <script src="{{ asset('plugin/cms/assets/pages/advance-elements/custom-picker.js') }}"></script>
 <script src="{{ asset('plugin/cms/assets/js/moment-with-locales.min.js') }}"></script>
+
+
+<script>
+$( document ).ready(function() {
+    $("#print_report").click(function(){
+        // https://www.jqueryscript.net/other/Print-Specified-Area-Of-A-Page-PrintArea.html
+        $("#print_area").printArea({
+            mode:"iframe",
+            popTitle: 'Sample Print',
+            popClose: true,
+        });
+    });
+});
+</script>
 @endsection
 
 
