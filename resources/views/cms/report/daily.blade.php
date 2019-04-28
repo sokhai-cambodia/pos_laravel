@@ -84,10 +84,10 @@
                             <div class="col-md-6">
                                 <div class="row">
                                     <div class="col-md-4">
-                                        <button class="btn waves-effect waves-light hor-grd btn-grd-light ">PDF<i class="fas fa-file-pdf" style="margin-left:10px;"></i></button>
+                                        <button id="export_pdf" class="btn waves-effect waves-light hor-grd btn-grd-light ">PDF<i class="fas fa-file-pdf" style="margin-left:10px;"></i></button>
                                     </div>
                                     <div class="col-md-4">
-                                        <button class="btn waves-effect waves-light hor-grd btn-grd-light ">Excel<i class="fas fa-file-exel" style="margin-left:10px;"></i></button>
+                                        <button id="export_excel" class="btn waves-effect waves-light hor-grd btn-grd-light ">Excel<i class="fas fa-file-exel" style="margin-left:10px;"></i></button>
                                     </div>
                                     <div class="col-md-4">
                                         <button id="print_report" class="btn waves-effect waves-light hor-grd btn-grd-light ">Print<i class="fas fa-print" style="margin-left:10px;"></i></button>
@@ -104,7 +104,7 @@
 
         {{-- Report --}}
         <div class="container" id="print_area">
-                <table class="table"  style="width: 100%">
+                <table class="table" id="export_area"  style="width: 100%">
                   <thead>
                     <tr>
                       <th scope="col">Date</th>
@@ -174,7 +174,6 @@
 <script src="{{ asset('plugin/cms/assets/pages/advance-elements/custom-picker.js') }}"></script>
 <script src="{{ asset('plugin/cms/assets/js/moment-with-locales.min.js') }}"></script>
 
-
 <script>
 $( document ).ready(function() {
     $("#print_report").click(function(){
@@ -183,6 +182,47 @@ $( document ).ready(function() {
             mode:"iframe",
             popTitle: 'Sample Print',
             popClose: true,
+        });
+    });
+
+    // https://www.jqueryscript.net/table/export-table-json-csv-txt-pdf.html?fbclid=IwAR3ZQ6gnktILOahyibt3Hm3YnEmDAalN8f2mz2CGg9QdzduniqqNSF1UyOk
+
+    $("#export_excel").click(function(){
+        $("#export_area").tableHTMLExport({
+            // csv, txt, json, pdf
+            type:'csv',
+
+            // default file name
+            filename: 'tableHTMLExport.csv',
+
+            // for csv
+            separator: ',',
+            newline: '\r\n',
+            trimContent: true,
+            quoteFields: true,
+
+            // CSS selector(s)
+            ignoreColumns: '',
+            ignoreRows: '',
+                        
+            // your html table has html content?
+            htmlContent: false,
+
+            // debug
+            consoleLog: false,       
+
+        });
+    });
+
+    $("#export_pdf").click(function(){
+        $("#export_area").tableHTMLExport({
+
+            // csv, txt, json, pdf
+            type:'pdf',
+
+            // file name
+            filename:'sample.pdf'
+
         });
     });
 });
