@@ -14,13 +14,15 @@ use FileHelper;
 
 class ReportsController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+    
+    private $icon = 'icon-layers';
+
     public function daily() {
-        return view('cms.report.daily');
+        $data = [
+            'title' => 'Daily Report',
+            'icon' => $this->icon
+        ];
+        return view('cms.report.daily')->with($data);
     }
 
     public function month() {

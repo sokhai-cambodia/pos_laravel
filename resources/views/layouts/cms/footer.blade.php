@@ -28,9 +28,15 @@
 <script src="{{ asset('plugin/cms/assets/js/dropify.js') }}"></script>
 <!-- jquery-ui.js -->
 <script src="{{ asset('plugin/cms/assets/js/jquery-ui.js') }}"></script>
+<!-- PrintArea -->
+<script src="{{ asset('plugin/cms/assets/js/jquery.PrintArea.js') }}"></script>
+<!-- tableHTMLExport -->
+<script src="{{ asset('plugin/cms/assets/js/tableHTMLExport.js') }}"></script>
+<!-- JSPDF -->
+<script src="{{ asset('plugin/cms/assets/js/jspdf.min.js') }}"></script>
+<script src="{{ asset('plugin/cms/assets/js/jspdf.plugin.autotable.min.js') }}"></script>
 
-
-<!-- Global site tag (gtag.js) - Google Analytics -->
+<!-- Global site tag (gtag.js) - Google Analytics -->   
 <script async src="https://www.googletagmanager.com/gtag/js?id=UA-23581568-13"></script>
 <script>
     window.dataLayer = window.dataLayer || [];

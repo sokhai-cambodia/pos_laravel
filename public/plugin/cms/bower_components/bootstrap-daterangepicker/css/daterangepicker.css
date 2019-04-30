@@ -169,7 +169,8 @@
     padding-left: 28px; }
     .daterangepicker .calendar-time select.disabled {
       color: #ccc;
-      cursor: not-allowed; }
+      cursor: not-allowed;
+     }
 
 .ranges {
   font-size: 11px;
