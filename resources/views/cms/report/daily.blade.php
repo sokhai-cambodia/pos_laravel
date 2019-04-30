@@ -1,18 +1,5 @@
 @extends('layouts.cms.template', compact('title','icon'))
-@section('header-src')
-{{-- select2 css --}}
-<link rel="stylesheet" type="text/css" href="{{ asset('plugin/cms/bower_components/select2/css/select2.min.css') }}">
-<link rel="stylesheet" type="text/css" href="{{ asset('plugin/cms/bower_components/bootstrap-multiselect/css/bootstrap-multiselect.css') }}">
-<link rel="stylesheet" type="text/css" href="{{ asset('plugin/cms/bower_components/multiselect/css/multi-select.css') }}">
-{{-- !End select2 css --}}
-{{-- datepicker css --}}
-<link rel="stylesheet" type="text/css" href="{{ asset('plugin/cms/assets/pages/advance-elements/css/bootstrap-datetimepicker.css') }}">
-<link rel="stylesheet" type="text/css" href="{{ asset('plugin/cms/bower_components/bootstrap-daterangepicker/css/daterangepicker.css') }}">
-<link rel="stylesheet" type="text/css" href="{{ asset('plugin/cms/bower_components/datedropper/css/datedropper.min.css') }}">
-<link rel="stylesheet" type="text/css" href="{{ asset('plugin/cms/bower_components/spectrum/css/spectrum.css') }}">
-<link rel="stylesheet" type="text/css" href="{{ asset('plugin/cms/bower_components/jquery-minicolors/css/jquery.minicolors.css') }}">
-{{-- !end datepicker css --}}
-@endsection
+@include('cms.report.header')
 @section('content')
 <style>
     .report_header {
@@ -59,7 +46,7 @@
 </div>
 <div class="card">
     <div class="card-header">
-        {{-- 
+        {{--
         <h5>{{ $title }}</h5>
         --}}
     </div>
@@ -67,10 +54,10 @@
         <div class="row">
             <div class="col-md-2">
                 <select class="browser-default custom-select">
-                    <option selected>Users</option>
-                    <option value="1">User1</option>
-                    <option value="2">User2</option>
-                    <option value="3">User3</option>
+                    <option selected>Short By</option>
+                    <option value="3">Daily</option>
+                    <option value="1">Month</option>
+                    <option value="2">Year</option>
                 </select>
             </div>
             <div class="col-md-10 offset-4">
@@ -96,13 +83,14 @@
         {{-- Report --}}
         <div id="print_area">
             <table class="table" id="export_area">
+                <span class="my-2">Report for:<b>...</b></span>
                 <thead>
                     <tr>
                         <th>Date</th>
-                        <th>Room N<sub>o</sub>:</th>
+                        <th>Type:</th>
                         <th>Employee</th>
+                        <th>Product</th>
                         <th>Category</th>
-                        <th>Price</th>
                         <th>Quantity</th>
                         <th>Total</th>
                         <th>Price</th>
@@ -114,9 +102,9 @@
                     <tr>
                         <th>1</th>
                         <td>Mark</td>
-                        <td>Otto</td>
                         <td>@mdo</td>
                         <td>Otto</td>
+                        <td>@mdo</td>
                         <td>@mdo</td>
                         <td>Otto</td>
                         <td>Otto</td>
@@ -147,23 +135,7 @@
 <!-- Default ordering table end -->
 @endsection
 @section('footer-src')
-{{-- select2 script --}}
-<script src="{{ asset('plugin/cms/bower_components/select2/js/select2.full.min.js') }}"></script>
-<script src="{{ asset('plugin/cms/bower_components/bootstrap-multiselect/js/bootstrap-multiselect.js') }}"></script>
-<script src="{{ asset('plugin/cms/bower_components/multiselect/js/jquery.multi-select.js') }}"></script>
-<script src="{{ asset('plugin/cms/assets/js/jquery.quicksearch.js') }}"></script>
-<script src="{{ asset('plugin/cms/assets/pages/advance-elements/select2-custom.js') }}"></script>
-{{-- datepicker script --}}
-<script src="{{ asset('plugin/cms/assets/pages/advance-elements/moment-with-locales.min.js') }}"></script>
-<script src="{{ asset('plugin/cms/bower_components/bootstrap-datepicker/js/bootstrap-datepicker.min.js') }}"></script>
-<script src="{{ asset('plugin/cms/assets/pages/advance-elements/bootstrap-datetimepicker.min.js') }}"></script>
-<script src="{{ asset('plugin/cms/bower_components/bootstrap-daterangepicker/js/daterangepicker.js') }}"></script>
-<script src="{{ asset('plugin/cms/bower_components/datedropper/js/datedropper.min.js') }}"></script>
-<script src="{{ asset('plugin/cms/bower_components/spectrum/js/spectrum.js') }}"></script>
-<script src="{{ asset('plugin/cms/bower_components/jscolor/js/jscolor.js') }}"></script>
-<script src="{{ asset('plugin/cms/bower_components/jquery-minicolors/js/jquery.minicolors.min.js') }}"></script>
-<script src="{{ asset('plugin/cms/assets/pages/advance-elements/custom-picker.js') }}"></script>
-<script src="{{ asset('plugin/cms/assets/js/moment-with-locales.min.js') }}"></script>
+@include('cms.report.footer')
 <script>
     $( document ).ready(function() {
         $("#print_report").click(function(){
@@ -174,45 +146,45 @@
                 popClose: true,
             });
         });
-    
+
         // https://www.jqueryscript.net/table/export-table-json-csv-txt-pdf.html?fbclid=IwAR3ZQ6gnktILOahyibt3Hm3YnEmDAalN8f2mz2CGg9QdzduniqqNSF1UyOk
-    
+
         $("#export_excel").click(function(){
             $("#export_area").tableHTMLExport({
                 // csv, txt, json, pdf
                 type:'csv',
-    
+
                 // default file name
                 filename: 'tableHTMLExport.csv',
-    
+
                 // for csv
                 separator: ',',
                 newline: '\r\n',
                 trimContent: true,
                 quoteFields: true,
-    
+
                 // CSS selector(s)
                 ignoreColumns: '',
                 ignoreRows: '',
-                            
+
                 // your html table has html content?
                 htmlContent: false,
-    
+
                 // debug
-                consoleLog: false,       
-    
+                consoleLog: false,
+
             });
         });
-    
+
         $("#export_pdf").click(function(){
             $("#export_area").tableHTMLExport({
-    
+
                 // csv, txt, json, pdf
                 type:'pdf',
-    
+
                 // file name
                 filename:'sample.pdf'
-    
+
             });
         });
     });

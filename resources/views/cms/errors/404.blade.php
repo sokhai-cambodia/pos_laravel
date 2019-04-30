@@ -34,7 +34,7 @@
 <body>
     <div class="w-wrap">
         <div><img src="{{asset('assets/uploads/404.png')}}"></div>
-        <div class="link-home"><a href="{{ url()->previous() }}"><span style="font-family:Bayon;">Back To previous page</span></a></div>
+        <div class="link-home"><a href="{{ route('blank') }}"><span style="font-family:Bayon;">Back To previous page</span></a></div>
     </div>
 </body>
 </html>
