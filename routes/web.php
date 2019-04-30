@@ -26,7 +26,8 @@ Route::get('/home', 'HomeController@index')->name('home');
 
 // Front end View
 Route::get('front-end/index','FrontEndController@index')->name('index');
-Route::get('front-end/view/room', 'FrontEndController@room')->name('room');
+Route::get('front-end/view/index', 'FrontEndController@room')->name('index');
+// Route::get('front-end/view/room', 'FrontEndController@room')->name('room');
 // AJAX
 require_once __DIR__.'/cms/ajax.php';
 
