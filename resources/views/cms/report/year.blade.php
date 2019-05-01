@@ -96,15 +96,17 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <tr>
-                        <td>Year</td>
-                        <th>1</th>
-                        <td>Mark</td>
-                        <td>Otto</td>
-                        <td>@mdo</td>
-                        <td>Otto</td>
-                        <td>@mdo</td>
-                    </tr>
+                    @for($i = 1; $i <= 20; $i++)
+                        <tr>
+                            <td>Year</td>
+                            <th>1</th>
+                            <td>Mark</td>
+                            <td>Otto</td>
+                            <td>@mdo</td>
+                            <td>Otto</td>
+                            <td>@mdo</td>
+                        </tr>
+                    @endfor
                 </tbody>
             </table>
         </div>
