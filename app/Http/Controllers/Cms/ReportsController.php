@@ -3,14 +3,7 @@
 namespace App\Http\Controllers\Cms;
 
 use App\Http\Controllers\Controller;
-use Illuminate\Validation\Rule;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Hash;
-
-use Auth;
-use App\User;
-use NotificationHelper;
-use FileHelper;
 
 class ReportsController extends Controller
 {
@@ -26,10 +19,18 @@ class ReportsController extends Controller
     }
 
     public function month() {
-        return view('cms.report.month');
+        $data = [
+            'title' => 'Monthly Report',
+            'icon' => $this->icon
+        ];
+        return view('cms.report.month')->with($data);
     }
     public function year() {
-        return view('cms.report.year');
+        $data = [
+            'title' => 'Yearly Report',
+            'icon' => $this->icon
+        ];
+        return view('cms.report.year')->with($data);
     }
 
     /**
