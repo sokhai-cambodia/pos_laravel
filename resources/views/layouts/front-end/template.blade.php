@@ -8,6 +8,7 @@
 
 <body>
     @yield('content')
+    @include('layouts.message.notification')
 </body>
 
 @yield('footer-src')

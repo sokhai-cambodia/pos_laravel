@@ -130,6 +130,14 @@
                     </div>
                     <div class="category" id="category-list-overflow">
                         <div class="d-flex flex-column" id="list_category">
+                            @foreach ($categories as $category)
+                                <div class="card tables get-category-list">
+                                    <img class="card-img-top" src="{{ $category->getPhoto() }}" alt="Card image" style="width:100%">
+                                    <div class="text-center">
+                                        <span>{{ $category->name }}</span>
+                                    </div>
+                                </div>
+                            @endforeach
                         </div>
                     </div>
                 </div>
@@ -224,35 +232,6 @@
             }
 
             //---------#type_list_category function
-
-
-
-            //---------list_category function
-            function load_list_category(rowCount) {
-                var list_category =
-                    `
-                        <div class="card tables get-category-list">
-                            <img class="card-img-top" src="{{ asset('plugin/front-end/image/food4.jpg') }}" alt="Card image" style="width:100%">
-                            <div class="text-center">
-                                <span>chicken</span>
-                            </div>
-                        </div>`;
-                var html_tag = '';
-                for (var i = 0; i < rowCount; i++) {
-                    html_tag += list_category;
-                }
-                $('#list_category').append(html_tag);
-            }
-
-            //---------#list_category function
-
-            load_list_category(10);
-
-            //--------call load_type_of_category function
-            // load_type_of_category(2);
-
-            // load_invoice();
-
 
             //-------function add clicked category to add list category
             $('.get-category-list').click(function () {
