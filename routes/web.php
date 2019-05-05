@@ -33,9 +33,8 @@ Route::get('/logout', 'LoginController@logout')->name('logout');
 Route::get('/home', 'HomeController@index')->name('home');
 
 // Front end View
-Route::get('front-end/pos','FrontEndController@index')->name('front-end.pos');
-Route::get('front-end/room', 'FrontEndController@room')->name('front-end.room');
-// Route::get('front-end/view/room', 'FrontEndController@room')->name('room');
+require_once __DIR__.'/front-end.php';
+
 // AJAX
 require_once __DIR__.'/cms/ajax.php';
 
