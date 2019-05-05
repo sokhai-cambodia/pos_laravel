@@ -68,6 +68,8 @@
         width: calc( 100% - 1em )
     }
 
+
+
 </style>
 @endsection
 
@@ -119,8 +121,12 @@
 
                 <!---------------list_category---------------->
                 <div class="col-md-2" id="category-list">
-                    <div class="m-2 text-center ">
-                        <h5 class="p-3">Category:</h5 class="p-3" cla>
+                    <div class="mt-3 text-center ">
+                        <div class="p-2">
+                            <div class="md-form mt-0">
+                                <input class="form-control" type="text" placeholder="Category" aria-label="Search">
+                            </div>
+                        </div>
                     </div>
                     <div class="category" id="category-list-overflow">
                         <div class="d-flex flex-column" id="list_category">
@@ -131,8 +137,12 @@
 
                 <!---------------type_list_category---------------->
                 <div class="col-md-6" id="product-list">
-                    <div class="m-2 text-center ">
-                        <h5 class="p-3">Type of Category:</h5 class="p-3">
+                    <div class="mt-3 text-center ">
+                        <div class="p-2">
+                            <div class="md-form mt-0">
+                                <input class="form-control" type="text" placeholder="Product" aria-label="Search">
+                            </div>
+                        </div>
                     </div>
                     <div class="category" id="product-list-overflow">
                         <div class="row set_item " id='type_of_category'>
@@ -146,7 +156,7 @@
     </div>
     <div class="button">
         <button id="get_button" type="button" class="btn btn-success btn-lg btn-invoice"><i class="far fa-money-bill-alt"></i>Paid</button>
-        <button id="get_button" type="button" class="btn btn-success btn-lg btn-invoice">PayLetter</button>
+        <button id="get_button" type="button" class="btn btn-warning btn-lg btn-invoice"><i class="far fa-money-bill-alt"></i>PayLetter</button>
         <button type="button" class="btn btn-secondary btn-lg btn-invoice"><i class="fas fa-print"></i>Print</button>
         <button type="button" class="btn btn-danger btn-lg btn-invoice"><i class="fas fa-window-close"></i>Close</button>
     </div>
