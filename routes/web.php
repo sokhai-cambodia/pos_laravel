@@ -11,6 +11,14 @@
 |
 */
 
+
+Route::get('/clear-cache', function() {
+    Artisan::call('config:clear');
+    Artisan::call('cache:clear');
+    Artisan::call('config:cache');
+    return 'CLEAR-CACHE DONE'; //Return anything
+});
+
 Route::get('/', function () {
     return redirect()->route('login');
 });
