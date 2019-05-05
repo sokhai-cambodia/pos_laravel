@@ -6,47 +6,25 @@ $title : 'Empty Name';
 <html lang="en">
 
 <head>
-    @include('layouts.front-end.header') @yield('header-src')
+    @include('layouts.front-end.header')
+    @yield('header-src')
 </head>
+<style>
+body{
+    background-size: cover;
+    background-repeat: no-repeat;
+    height: 100%;
+    font-family: 'Numans', sans-serif;
+    background-color: black;
+    }
+</style>
 
 <body>
-    <!-- [ Pre-loader ] start -->
-    <div class="loader-bg">
-        <div class="loader-bar"></div>
-    </div>
-    <!-- [ Pre-loader ] end -->
-    <div id="pcoded" class="pcoded">
-        <div class="pcoded-overlay-box"></div>
-        <div class="pcoded-container navbar-wrapper">
-            <!-- [ Header ] start -->
+    <!-- [ Header ] start -->
     @include('layouts.front-end.navbar')
-
-            <div class="pcoded-main-container ">
-                <!-- Main-body start -->
-                <div class="main-body">
-                    <div class="page-wrapper">
-                        <!-- Page body start -->
-                        <div class="page-body">
-                            <div class="row">
-                                <div class="col-sm-12">
-                                     @yield('content')
-                                </div>
-                            </div>
-                        </div>
-                        <!-- Page body end -->
-                    </div>
-                </div>
-                <!-- Main-body end -->
-
-            </div>
-        </div>
-    </div>
+    @yield('content')
     @include('layouts.front-end.footer')
-
     @yield('footer-src')
-
-
-
 </body>
 
 </html>
