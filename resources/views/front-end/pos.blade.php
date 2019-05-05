@@ -65,7 +65,7 @@
         <div class="row" id="pos-row">
             <div class="col-12 col-sm-4 col-md-4" id="">
                 <div class="m-2 ">
-                    <h5 class="p-3">Invoice-No: 1</h5>
+                    <h5 class="p-3">Invoice-No: {{ $room->room_no }}</h5>
                 </div>
                 <!---------------table invoice---------------->
                 <table class="table">

@@ -19,7 +19,11 @@ class FrontEndController extends Controller
             return redirect()->route('front-end.room');
         }
 
-        $data['categories'] = Category::all();
+        $categories = Category::all();
+        $data = [
+            'categories' => $categories,
+            'room' => $room
+        ];
 
         return view('front-end.pos')->with($data);
     }
