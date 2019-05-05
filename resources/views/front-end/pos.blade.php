@@ -146,6 +146,7 @@
     </div>
     <div class="button">
         <button id="get_button" type="button" class="btn btn-success btn-lg btn-invoice"><i class="far fa-money-bill-alt"></i>Paid</button>
+        <button id="get_button" type="button" class="btn btn-success btn-lg btn-invoice">PayLetter</button>
         <button type="button" class="btn btn-secondary btn-lg btn-invoice"><i class="fas fa-print"></i>Print</button>
         <button type="button" class="btn btn-danger btn-lg btn-invoice"><i class="fas fa-window-close"></i>Close</button>
     </div>
