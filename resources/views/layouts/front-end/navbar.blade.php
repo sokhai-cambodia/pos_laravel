@@ -1,29 +1,14 @@
-@section('header-src')
-<link rel="stylesheet" type="text/css" href="{{ asset('plugin/front-end/assets/css/order.css') }}">
-@endsection
-<style>
-
-  .tables {
-    border:1px solid black;
-    padding: 70px 0px;
-    margin:5px;
-  }
-  .navbar {
-    /* min-height: 7rem; */
-    background-color: #4271a0;
-    color: #d1d1f0;
-    justify-content: space-between;
-}
-</style>
-
-<div class="container">
+    <div class="container-fluid" style=" z-index: 999;" id="main-menu">
     <header class="fixed-top">
-        <nav class="navbar navbar-expand-sm navbar-dark nav-bottom-shadow d-flex">
-            <a><i class="fas fa-bars"><span class="pl-2">Setting</span></i></a>
-            <a>Restaurant</a>
+        <nav class="navbar navbar-expand-sm navbar-dark nav-bottom-shadow d-flex justify-content-between">
+            <div id="collapse">
+                <a class="openbtn btn text-white" onclick="openNav()">☰ Toggle Sidebar</a>
+            </div>
+
+            <a class="text-white">Restaurant</a>
             <div class="float-right">
-                <a class=" py-4 m-3"><i class="fas fa-user-circle"></i>Users</a>
-                <a class="mr-3 py-4 ">Log-Out</a>
+                <a class="py-4 m-3 text-white"><i class="fas fa-user-circle"></i>Users</a>
+                <a class="mr-3 py-4 text-white"><i class="fas fa-sign-out-alt"></i>Log-Out</a>
             </div>
         </nav>
     </header>

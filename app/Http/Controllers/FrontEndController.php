@@ -6,27 +6,14 @@ use Illuminate\Http\Request;
 
 class FrontEndController extends Controller
 {
-    /**
-     * Create a new controller instance.
-     *
-     * @return void
-     */
-    // public function __construct()
-    // {
-    //     $this->middleware('auth');
-    // }
-
-    /**
-     * Show the application dashboard.
-     *
-     * @return \Illuminate\Contracts\Support\Renderable
-     */
     public function index()
     {
-        return view('front-end.index');
+        return view('front-end.pos');
     }
+
     public function room()
     {
-        return view('front-end.view.index');
+        return view('front-end.room');
     }
+
 }

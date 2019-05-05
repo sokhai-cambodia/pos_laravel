@@ -1,0 +1,18 @@
+body{
+    background-size: cover;
+    background-repeat: no-repeat;
+    height: 100%;
+    font-family: 'Numans', sans-serif;
+    background-color: black;
+    }
+.container {
+    margin-top:70px;
+  }
+  
+  .tables {
+    border:1px solid black;
+    padding: 70px 0px;
+    margin:5px;
+  }
+
+  
