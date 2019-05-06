@@ -36,11 +36,26 @@ class FrontEndController extends Controller
     }
 
     public function getProduct(Request $request) {
+        $product = Product::find($request->product_id);
+
+        if($product == null) return response()->json([ 'status' => 0 ]);
+
+        $data = view('front-end.ajax.get-product')
+              ->with(['product' => $product])
+              ->render();
+
+        return response()->json([
+            'status' => 1,
+            'data' => $data
+        ]);
+    }
+
+    public function getProductList(Request $request) {
         $products = Product::where('category_id', $request->category_id)->get();
 
         if($products == null || count($products) == 0) return response()->json([ 'status' => 0 ]);
 
-        $data = view('front-end.ajax.get-product')
+        $data = view('front-end.ajax.get-product-list')
               ->with(['products' => $products])
               ->render();
 

@@ -71,31 +71,15 @@
                 <table class="table">
                     <thead>
                         <tr>
-                            <th scope="col">Name</th>
-                            <th scope="col">Pri</th>
-                            <th scope="col">Qua</th>
+                            <th scope="col" style="width: 50px;">No</th>
+                            <th scope="col" >Name</th>
+                            <th scope="col">Qty</th>
+                            <th scope="col">Price</th>
                             <th scope="col">Total</th>
                         </tr>
                     </thead>
                     <tbody class="type_of_invoice get_type_category">
-                        <!-- <tr >
-                            <th scope="row">1</th>
-                            <td>Markaf fasef fee</td>
-                            <td>Ottsdfsdfo</td>
-                            <td>@mdeefefd esfo</td>
-                            </tr> -->
-                        <!-- <tr>
-                            <td colspan="2" class="calculate-detail"><i>Total</i></td>
-                            <td colspan="2" class="calculate-payment">$<i>0777036</i></td>
-                            </tr>
-                            <tr>
-                            <td colspan="2" class="calculate-detail"><i>Discount</i></td>
-                            <td colspan="2" class="calculate-payment">$<i>011111</i></td>
-                            </tr>
-                            <tr>
-                            <td colspan="2" class="calculate-detail"><i>Grand Total</i></td>
-                            <td colspan="2" class="calculate-payment">$<i>0.111102222</i></td>
-                            </tr> -->
+                       
                     </tbody>
                 </table>
                 <!---------------#table invoice---------------->
@@ -190,21 +174,13 @@
         }
     
         //---------#type_list_category function
-    
-        
-    
-    
-        //------ function add clicked type_category to invoice
-        $('.set_item').click(function () {
-            document.getElementsByClassName('get_type_category') == load_invoice(1);
-        })
-    
+
         // Get Product List
         $('.get-category-list').click(function(){
             var category_id = $(this).attr('data-id');
             
             $.ajax({
-                url: "{{ route('front-end.get-product') }}",
+                url: "{{ route('front-end.get-product-list') }}",
                 type: 'get',
                 dataType: "json",
                 data: {
@@ -213,6 +189,24 @@
                 success: function( data ) {
                     if(data.status == 1) {
                         $('#type_of_category').html(data.data);
+                    }
+                }
+            });
+        });
+
+        $('body').on('click', '.product-list', function() {
+            var product_id = $(this).attr('data-id');
+           
+            $.ajax({
+                url: "{{ route('front-end.get-product') }}",
+                type: 'get',
+                dataType: "json",
+                data: {
+                    product_id: product_id
+                },
+                success: function( data ) {
+                    if(data.status == 1) {
+                        $('.type_of_invoice').append(data.data);
                     }
                 }
             });
