@@ -72,10 +72,10 @@
                     <thead>
                         <tr>
                             <th scope="col" style="width: 50px;">No</th>
-                            <th scope="col" >Name</th>
-                            <th scope="col">Qty</th>
-                            <th scope="col">Price</th>
-                            <th scope="col">Total</th>
+                            <th >Name</th>
+                            <th style="text-align: center" style="width: 50px;">Qty</th>
+                            <th style="text-align: center">Price</th>
+                            <th style="text-align: center">Total</th>
                         </tr>
                     </thead>
                     <tbody class="type_of_invoice get_type_category">
