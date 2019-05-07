@@ -86,6 +86,22 @@
                     
                     </tbody>
                     
+
+                    </tbody>
+                    <tfoot>
+                        <!-- <tr>
+                                <td colspan="2" class="calculate-detail"><i>Total</i></td>
+                                <td colspan="2" class="calculate-payment">$<i>0777036</i></td>
+                            </tr>
+                            <tr>
+                                <td colspan="2" class="calculate-detail"><i>Discount</i></td>
+                                <td colspan="2" class="calculate-payment">$<i>011111</i></td>
+                            </tr>
+                            <tr>
+                                <td colspan="2" class="calculate-detail"><i>Grand Total</i></td>
+                                <td colspan="2" class="calculate-payment">$<i>0.111102222</i></td>
+                            </tr> -->
+                    </tfoot>
                 </table>
                 </form>
                 <!---------------#table invoice---------------->
@@ -95,7 +111,7 @@
                 <div class="mt-3 text-center ">
                     <div class="p-2">
                         <div class="md-form mt-0">
-                            <input class="form-control" type="text" placeholder="Category" aria-label="Search">
+                            <input class="form-control" id="list-product" type="text" placeholder="Category" aria-label="Search">
                         </div>
                     </div>
                 </div>
@@ -141,15 +157,18 @@
 @endsection
 @section('footer-src')
 <script>
+
+
     function openNav() {
         document.getElementById("mySidebar").style.width = "100px";
         document.getElementById("main").style.marginRight = "100px";
     }
-    
+
     function closeNav() {
         document.getElementById("mySidebar").style.width = "0";
         document.getElementById("main").style.marginRight = "0";
     }
+// filter category
     $(function () {
         
         // submit form
@@ -158,10 +177,11 @@
             $("#POSfrm").submit();
         });
         
+
         // Get Product List
         $('.get-category-list').click(function(){
             var category_id = $(this).attr('data-id');
-            
+
             $.ajax({
                 url: "{{ route('front-end.get-product-list') }}",
                 type: 'get',
@@ -229,7 +249,7 @@
                     }
                 });
             }
-           
+
         });
 
         function existProduct(id) {
@@ -256,7 +276,7 @@
                 $(tr).find('.price').attr('name', 'invoice['+ ind +'][price]');
             });
         }
-    
+
     });
 </script>
 @endsection
