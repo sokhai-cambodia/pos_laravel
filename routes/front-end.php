@@ -1,6 +1,6 @@
 <?php 
 
-Route::group(['prefix' => 'front-end'], function(){
+Route::group(['prefix' => 'front-end', 'middleware' => ['auth']], function(){
 
     Route::get('pos','FrontEndController@index')->name('front-end.pos');
     Route::get('room', 'FrontEndController@room')->name('front-end.room');
