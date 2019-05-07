@@ -81,6 +81,20 @@
                     <tbody class="type_of_invoice get_type_category">
 
                     </tbody>
+                    <tfoot>
+                        <!-- <tr>
+                                <td colspan="2" class="calculate-detail"><i>Total</i></td>
+                                <td colspan="2" class="calculate-payment">$<i>0777036</i></td>
+                            </tr>
+                            <tr>
+                                <td colspan="2" class="calculate-detail"><i>Discount</i></td>
+                                <td colspan="2" class="calculate-payment">$<i>011111</i></td>
+                            </tr>
+                            <tr>
+                                <td colspan="2" class="calculate-detail"><i>Grand Total</i></td>
+                                <td colspan="2" class="calculate-payment">$<i>0.111102222</i></td>
+                            </tr> -->
+                    </tfoot>
                 </table>
                 <!---------------#table invoice---------------->
             </div>
