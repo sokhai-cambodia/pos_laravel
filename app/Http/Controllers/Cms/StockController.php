@@ -17,7 +17,7 @@ use App\InventoryTransactionDetail;
 use App\ProductStock;
 
 class StockController extends Controller
-{   
+{
     private $icon = 'icon-layers';
 
     // StockIn
@@ -29,7 +29,7 @@ class StockController extends Controller
             'icon' => $this->icon,
             'branches' => $branches
         ];
-        
+
         return view('cms.stock.stock-in')->with($data);
     }
 
@@ -68,7 +68,7 @@ class StockController extends Controller
         if($product == null) return response()->json([ 'status' => 0 ]);
 
         $units = Unit::all();
-        
+
         $tr = view('cms.stock.ajax.stock-in')
               ->with([
                   'product' => $product,
@@ -92,7 +92,7 @@ class StockController extends Controller
             'icon' => $this->icon,
             'branches' => $branches
         ];
-        
+
         return view('cms.stock.wasted')->with($data);
     }
 
@@ -119,7 +119,7 @@ class StockController extends Controller
             'branches' => $branches,
             'adjustType' => $adjustType
         ];
-        
+
         return view('cms.stock.adjust')->with($data);
     }
 
@@ -135,7 +135,7 @@ class StockController extends Controller
                 Rule::in(['adjust_add', 'adjust_sub']),
             ],
         ]);
-        
+
         return $this->stockTransaction($request, $request->type);
     }
 
@@ -152,7 +152,7 @@ class StockController extends Controller
             'toBranches' => $toBranches,
             'adjustType' => $adjustType
         ];
-        
+
         return view('cms.stock.transfer-stock')->with($data);
     }
 
@@ -165,14 +165,14 @@ class StockController extends Controller
             'inventory.*.unit_id' => 'required|min:1',
             'inventory.*.quantity' => 'required|min:1',
         ]);
-        
+
         if($request->from_branch_id == $request->to_branch_id) {
             NotificationHelper::setErrorNotification('Cannot Transfer To Same Branch', true);
             return back()->withInput();
         }
 
-        try 
-        {   
+        try
+        {
 
             DB::transaction(function () use($request) {
                 $from_branch = Branch::find($request->from_branch_id);
@@ -186,8 +186,8 @@ class StockController extends Controller
                     NotificationHelper::setErrorNotification('Invalid To Branch', true);
                     return back()->withInput();
                 }
-                
-                
+
+
                 $inventoryTransaction = InventoryTransaction::create([
                     'from_branch_id' => $from_branch->id,
                     'to_branch_id' => $to_branch->id,
@@ -219,7 +219,7 @@ class StockController extends Controller
                         NotificationHelper::setErrorNotification('No product to transfer', true);
                         return back()->withInput();
                     }
-                    
+
 
                     $from_branch_qty = $from_stock->qty - $quantity;
                     ProductStock::where('branch_id',  $from_branch->id)
@@ -238,7 +238,7 @@ class StockController extends Controller
                                 ->where('product_id', $product_id)
                                 ->update(['qty' => $to_branch_qty]);
                     }
-                    
+
                 }
 
                 InventoryTransactionDetail::insert($inventoryTransactionDetails);
@@ -248,8 +248,8 @@ class StockController extends Controller
 
             NotificationHelper::setSuccessNotification('created_success');
             return back();
-        } 
-        catch (\Exception $e) 
+        }
+        catch (\Exception $e)
         {
             NotificationHelper::errorNotification($e);
             return back()->withInput();
@@ -259,8 +259,8 @@ class StockController extends Controller
     // =============== Private Method =============
 
     private function stockTransaction(Request $request, $type) {
-        try 
-        {   
+        try
+        {
 
             $stockType = ['stock_in', 'adjust_add', 'adjust_sub', 'wasted'];
 
@@ -275,7 +275,7 @@ class StockController extends Controller
                     NotificationHelper::setErrorNotification('Invalid Branch', true);
                     return back()->withInput();
                 }
-                
+
                 $inventoryTransaction = InventoryTransaction::create([
                     'from_branch_id' => $branch->id,
                     'type' => $type,
@@ -314,7 +314,7 @@ class StockController extends Controller
                                     ->where('product_id', $inventory['product_id'])
                                     ->update(['qty' => $qty]);
                     }
-                    
+
                 }
 
                 InventoryTransactionDetail::insert($inventoryTransactionDetails);
@@ -324,8 +324,8 @@ class StockController extends Controller
 
             NotificationHelper::setSuccessNotification('created_success');
             return back();
-        } 
-        catch (\Exception $e) 
+        }
+        catch (\Exception $e)
         {
             NotificationHelper::errorNotification($e);
             return back()->withInput();

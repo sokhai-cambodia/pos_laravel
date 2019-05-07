@@ -1,4 +1,4 @@
-<?php 
+<?php
 
 Route::group(['prefix' => 'front-end'], function(){
 
@@ -8,5 +8,7 @@ Route::group(['prefix' => 'front-end'], function(){
     // AJAX ROUTE
     Route::get('get-product-list', 'FrontEndController@getProductList')->name('front-end.get-product-list');
     Route::get('get-product', 'FrontEndController@getProduct')->name('front-end.get-product');
+
+    Route::get('get-list-category', 'OrderController@filterListCategory')->name('search-list-category');
 
 });

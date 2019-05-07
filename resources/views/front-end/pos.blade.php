@@ -79,7 +79,7 @@
                         </tr>
                     </thead>
                     <tbody class="type_of_invoice get_type_category">
-                       
+
                     </tbody>
                 </table>
                 <!---------------#table invoice---------------->
@@ -89,7 +89,7 @@
                 <div class="mt-3 text-center ">
                     <div class="p-2">
                         <div class="md-form mt-0">
-                            <input class="form-control" type="text" placeholder="Category" aria-label="Search">
+                            <input class="form-control" id="list-product" type="text" placeholder="Category" aria-label="Search">
                         </div>
                     </div>
                 </div>
@@ -134,17 +134,24 @@
 @endsection
 @section('footer-src')
 <script>
+
+
     function openNav() {
         document.getElementById("mySidebar").style.width = "100px";
         document.getElementById("main").style.marginRight = "100px";
     }
-    
+
     function closeNav() {
         document.getElementById("mySidebar").style.width = "0";
         document.getElementById("main").style.marginRight = "0";
     }
+// filter category
     $(function () {
-    
+
+    })
+
+    $(function () {
+
         function load_invoice(rowCount) {
             var type_of_invoice =
                 `
@@ -172,13 +179,13 @@
                                     <td colspan="2" class="calculate-payment">$<i>0.111102222</i></td>
                                 </tr>`;
         }
-    
+
         //---------#type_list_category function
 
         // Get Product List
         $('.get-category-list').click(function(){
             var category_id = $(this).attr('data-id');
-            
+
             $.ajax({
                 url: "{{ route('front-end.get-product-list') }}",
                 type: 'get',
@@ -196,7 +203,7 @@
 
         $('body').on('click', '.product-list', function() {
             var product_id = $(this).attr('data-id');
-           
+
             $.ajax({
                 url: "{{ route('front-end.get-product') }}",
                 type: 'get',
@@ -211,7 +218,24 @@
                 }
             });
         });
-    
+
+
+        $( "#list-category" ).autocomplete({
+        source: function( request, response ) {
+        $.ajax({
+            url: "{{ route('search-list-category') }}",
+            type: 'get',
+            dataType: "json",
+            data: {
+                search: request.term
+            },
+            success: function( data ) {
+                response( data );
+            }
+        });
+        },
+    });
+
     });
 </script>
 @endsection

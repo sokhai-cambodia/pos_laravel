@@ -11,7 +11,7 @@
         <div class="form-group row">
             <div class="col-sm-3">
                 <select class="browser-default custom-select" name="from_branch_id">
-                    @foreach ($branches as $branch)    
+                    @foreach ($branches as $branch)
                         <option value="{{ $branch->id }}">{{ $branch->name }}</option>
                     @endforeach
                 </select>
@@ -31,7 +31,7 @@
     </div>
 
     <div class="card-block">
-        
+
             @csrf
             <table class="table" id="product-table">
                 <thead>
@@ -49,7 +49,7 @@
                 </tbody>
             </table>
             <button type="submit" class="btn btn-success waves-effect waves-light pull-right">Save</button>
-        
+
     </div>
 </div>
 </form>
@@ -111,7 +111,7 @@ $(function(){
         },
         select: function (event, ui) {
             if(!existProductIngredient(ui.item.value)) getProductIngredient(ui.item.value);
-            event.preventDefault(); 
+            event.preventDefault();
             return false;
         }
     });
@@ -153,12 +153,12 @@ $(function(){
                 } else {
                     alert('no data');
                 }
-                
-                
+
+
             }
         })
     }
-})	
+})
 </script>
 @endsection
 
