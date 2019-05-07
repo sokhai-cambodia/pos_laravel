@@ -35,6 +35,13 @@ class FrontEndController extends Controller
         return view('front-end.room')->with($data);
     }
 
+    public function store(Request $request)
+    {
+        dd($request->all());
+    }
+
+    // AJAX FUNCTION
+
     public function getProduct(Request $request) {
         $product = Product::find($request->product_id);
 

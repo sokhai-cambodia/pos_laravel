@@ -57,6 +57,7 @@
 </style>
 @endsection
 @section('content')
+
 <div id="main">
     {{-- Navbar --}}
     @include('layouts.front-end.navbar')
@@ -64,6 +65,8 @@
     <div class="container-fluid" id="pos-content">
         <div class="row" id="pos-row">
             <div class="col-12 col-sm-4 col-md-4" id="">
+                <form action="{{ route('front-end.store') }}" method="POST" id="POSfrm">
+                @csrf
                 <div class="m-2 ">
                     <h5 class="p-3">Invoice-No: {{ $room->room_no }}</h5>
                 </div>
@@ -80,9 +83,11 @@
                         </tr>
                     </thead>
                     <tbody class="type_of_invoice get_type_category">
-                       
+                    
                     </tbody>
+                    
                 </table>
+                </form>
                 <!---------------#table invoice---------------->
             </div>
             <!---------------list_category---------------->
@@ -127,11 +132,12 @@
     </div>
 </div>
 <div class="button">
-    <button id="get_button" type="button" class="btn btn-success btn-lg btn-invoice"><i class="far fa-money-bill-alt"></i>Pay</button>
+    <button id="pay_btn" type="button" class="btn btn-success btn-lg btn-invoice"><i class="far fa-money-bill-alt"></i>Pay</button>
     <button id="get_button" type="button" class="btn btn-warning btn-lg btn-invoice"><i class="far fa-money-bill-alt"></i>Pay Later</button>
     <button type="button" class="btn btn-secondary btn-lg btn-invoice"><i class="fas fa-print"></i>Print</button>
     <button type="button" class="btn btn-danger btn-lg btn-invoice"><i class="fas fa-window-close"></i>Close</button>
 </div>
+
 @endsection
 @section('footer-src')
 <script>
@@ -145,7 +151,13 @@
         document.getElementById("main").style.marginRight = "0";
     }
     $(function () {
-    
+        
+        // submit form
+
+        $("#pay_btn").click(function(){
+            $("#POSfrm").submit();
+        });
+        
         // Get Product List
         $('.get-category-list').click(function(){
             var category_id = $(this).attr('data-id');
@@ -239,6 +251,9 @@
         function generateInvoiceItemNo() {
             $('#invoice-table > tbody  > tr').each(function(ind, tr) {
                 $(tr).find('.no').text(ind + 1);
+                $(tr).find('.product_id').attr('name', 'invoice['+ ind +'][product_id]');
+                $(tr).find('.qty').attr('name', 'invoice['+ ind +'][qty]');
+                $(tr).find('.price').attr('name', 'invoice['+ ind +'][price]');
             });
         }
     
