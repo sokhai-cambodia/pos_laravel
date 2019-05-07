@@ -11,3 +11,4 @@
 <script src="{{ asset('plugin/front-end/js/bootstrap.min.js') }}"></script>
 <script src="{{ asset('plugin/front-end/js/jquery-3.3.1.min.js') }}"></script>
 <script src="{{ asset('plugin/front-end/js/order.js') }}"></script>
+<script src="{{ asset('plugin/cms/assets/js/swal.js') }}"></script>

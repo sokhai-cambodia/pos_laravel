@@ -68,7 +68,7 @@
                     <h5 class="p-3">Invoice-No: {{ $room->room_no }}</h5>
                 </div>
                 <!---------------table invoice---------------->
-                <table class="table">
+                <table class="table" id="invoice-table">
                     <thead>
                         <tr>
                             <th scope="col" style="width: 50px;">No</th>
@@ -76,6 +76,7 @@
                             <th style="text-align: center" style="width: 50px;">Qty</th>
                             <th style="text-align: center">Price</th>
                             <th style="text-align: center">Total</th>
+                            <th style="text-align: center" style="width: 50px;">Action</th>
                         </tr>
                     </thead>
                     <tbody class="type_of_invoice get_type_category">
@@ -162,40 +163,6 @@
 // filter category
     $(function () {
 
-    })
-
-    $(function () {
-
-        function load_invoice(rowCount) {
-            var type_of_invoice =
-                `
-                    <tr >
-                        <th scope="row">1</th>
-                        <td>Markaf fasef fee</td>
-                        <td>Ottsdfsdfo</td>
-                        <td>@mdeefefd esfo</td>
-                    </tr>
-                `;
-            var html_tag = '';
-            for (var i = 0; i < rowCount; i++) {
-                html_tag += type_of_invoice;
-            }
-            $('.type_of_invoice').append(html_tag) + `<tr>
-                                    <td colspan="2" class="calculate-detail"><i>Total</i></td>
-                                    <td colspan="2" class="calculate-payment">$<i>0777036</i></td>
-                                </tr>
-                                <tr>
-                                    <td colspan="2" class="calculate-detail"><i>Discount</i></td>
-                                    <td colspan="2" class="calculate-payment">$<i>011111</i></td>
-                                </tr>
-                                <tr>
-                                    <td colspan="2" class="calculate-detail"><i>Grand Total</i></td>
-                                    <td colspan="2" class="calculate-payment">$<i>0.111102222</i></td>
-                                </tr>`;
-        }
-
-        //---------#type_list_category function
-
         // Get Product List
         $('.get-category-list').click(function(){
             var category_id = $(this).attr('data-id');
@@ -215,40 +182,82 @@
             });
         });
 
-        $('body').on('click', '.product-list', function() {
-            var product_id = $(this).attr('data-id');
-
-            $.ajax({
-                url: "{{ route('front-end.get-product') }}",
-                type: 'get',
-                dataType: "json",
-                data: {
-                    product_id: product_id
-                },
-                success: function( data ) {
-                    if(data.status == 1) {
-                        $('.type_of_invoice').append(data.data);
+        $('body').on('click', '.btn-delete', function() {
+            var tr = $(this).closest('tr')
+            swal({
+                title: 'Are you sure?',
+                text: "You won't be able to revert this!",
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#3f51b5',
+                cancelButtonColor: '#ff4081',
+                confirmButtonText: 'Great ',
+                buttons: {
+                    cancel: {
+                        text: "Cancel",
+                        value: null,
+                        visible: true,
+                        className: "btn btn-danger",
+                        closeModal: true,
+                    },
+                    confirm: {
+                        text: "OK",
+                        value: true,
+                        visible: true,
+                        className: "btn btn-primary",
+                        closeModal: true
                     }
                 }
-            });
+            }).then((result) => {
+                if (result) {
+                    tr.remove();
+                    generateInvoiceItemNo();
+                }
+            })
         });
 
-
-        $( "#list-category" ).autocomplete({
-        source: function( request, response ) {
-        $.ajax({
-            url: "{{ route('search-list-category') }}",
-            type: 'get',
-            dataType: "json",
-            data: {
-                search: request.term
-            },
-            success: function( data ) {
-                response( data );
+        $('body').on('click', '.product-list', function() {
+            var product_id = $(this).attr('data-id');
+            if(!existProduct(product_id)) {
+                $.ajax({
+                    url: "{{ route('front-end.get-product') }}",
+                    type: 'get',
+                    dataType: "json",
+                    data: {
+                        product_id: product_id
+                    },
+                    success: function( data ) {
+                        if(data.status == 1) {
+                            $('.type_of_invoice').append(data.data);
+                            generateInvoiceItemNo();
+                        }
+                    }
+                });
             }
+
         });
-        },
-    });
+
+        function existProduct(id) {
+            $result = false;
+            $('#invoice-table > tbody  > tr').each(function(ind, tr) {
+                var bookid = $(tr).find('.product_id').val();
+                if(bookid == id) {
+                    var oldQty = $(tr).find('.qty').val() * 1 + 1;
+                    var oldTotal = $(tr).find('.price').val() * oldQty;
+                    $(tr).find('.qty').val(oldQty);
+                    $(tr).find('.span_total').text(oldTotal);
+                    $result = true;
+                    return false;
+                }
+            });
+            return $result;
+        }
+
+        function generateInvoiceItemNo() {
+            $('#invoice-table > tbody  > tr').each(function(ind, tr) {
+                $(tr).find('.no').text(ind + 1);
+            });
+        }
 
     });
 </script>
