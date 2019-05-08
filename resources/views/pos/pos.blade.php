@@ -65,7 +65,7 @@
     <div class="container-fluid" id="pos-content">
         <div class="row" id="pos-row">
             <div class="col-12 col-sm-4 col-md-4" id="">
-                <form action="{{ route('front-end.store') }}" method="POST" id="POSfrm">
+                <form action="{{ route('pos.store') }}" method="POST" id="POSfrm">
                 @csrf
                 <div class="m-2 ">
                     <h5 class="p-3">Invoice-No: {{ $room->room_no }}</h5>
@@ -184,7 +184,7 @@
             var category_id = $(this).attr('data-id');
 
             $.ajax({
-                url: "{{ route('front-end.get-product-list') }}",
+                url: "{{ route('pos.get-product-list') }}",
                 type: 'get',
                 dataType: "json",
                 data: {
@@ -236,7 +236,7 @@
             var product_id = $(this).attr('data-id');
             if(!existProduct(product_id)) {
                 $.ajax({
-                    url: "{{ route('front-end.get-product') }}",
+                    url: "{{ route('pos.get-product') }}",
                     type: 'get',
                     dataType: "json",
                     data: {

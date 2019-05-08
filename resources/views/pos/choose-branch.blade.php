@@ -100,9 +100,9 @@
                                 @foreach ($branches as $branch)
                                     <div class="row m-t-30">
                                         <div class="col-md-12">
-                                            <button type="button" class="btn btn-primary btn-md btn-block waves-effect text-center m-b-20">
+                                            <a href="{{ route('pos.choose-branch', ['id' => $branch->id]) }}" class="btn btn-primary btn-md btn-block waves-effect text-center m-b-20">
                                                 {{$branch->name}}
-                                            </button>
+                                            </a>
                                         </div>
                                     </div>
                                 @endforeach

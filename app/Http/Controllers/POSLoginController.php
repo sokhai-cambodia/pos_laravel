@@ -12,9 +12,9 @@ use App\User;
 class POSLoginController extends Controller
 {
     
-    private $authorizedRoute = 'front-end.room';
+    private $authorizedRoute = 'pos.room';
     private $unauthorizedRoute = 'pos.login';
-    private $loginView = 'front-end.login';
+    private $loginView = 'pos.login';
 
     public function index()
     {

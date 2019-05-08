@@ -14,6 +14,7 @@ use App\InvoiceDetail;
 use App\InvoiceIngredientDetail;
 use App\ProductIngredient;
 use App\Branch;
+use App\User;
 
 class FrontEndController extends Controller
 {
@@ -24,7 +25,7 @@ class FrontEndController extends Controller
         $room = Room::where('id', $room_id)->first();
         if($room == null) {
             NotificationHelper::setErrorNotification('Please select room', true);
-            return redirect()->route('front-end.room');
+            return redirect()->route('pos.room');
         }
 
         $categories = Category::all();
@@ -33,22 +34,44 @@ class FrontEndController extends Controller
             'room' => $room
         ];
 
-        return view('front-end.pos')->with($data);
+        return view('pos.pos')->with($data);
     }
 
     public function room()
     {
+        if(Auth::user()->use_branch_id == null) {
+            return redirect()->route('pos.show-branch');
+        }
         $data['rooms'] = Room::all();
 
-        return view('front-end.room')->with($data);
+        return view('pos.room')->with($data);
     }
     
-    public function chooseBranch()
+    public function showBranch()
     {
-        $data['branches'] = Branch::all();
+        if(Auth::user()->use_branch_id != null) {
+            return redirect()->route('pos.room');
+        }
 
-        return view('front-end.choose-branch')->with($data);
+        $data['branches'] = Branch::all();
+        return view('pos.choose-branch')->with($data);
     }
+
+    public function chooseBranch($id)
+    {
+        $branch = Branch::find($id);
+        if($branch == null) {
+            NotificationHelper::setErrorNotification('invalid branch', true);
+            return redirect()->route('pos.show-branch');
+        }
+
+        $user = User::find(Auth::id());
+        $user->use_branch_id = $id;
+        $user->save();
+
+        return redirect()->route('pos.room');
+    }
+
 
     public function store(Request $request)
     {
@@ -60,8 +83,8 @@ class FrontEndController extends Controller
             'invoice.*.unit_id' => 'required|min:1',
         ]);
 
-        // try
-        // {
+        try
+        {
 
             DB::transaction(function () use($request) {
                 
@@ -112,12 +135,12 @@ class FrontEndController extends Controller
 
             NotificationHelper::setSuccessNotification('created_success');
             return back();
-        // }
-        // catch (\Exception $e)
-        // {
-        //     NotificationHelper::errorNotification($e);
-        //     return back()->withInput();
-        // }
+        }
+        catch (\Exception $e)
+        {
+            NotificationHelper::errorNotification($e);
+            return back()->withInput();
+        }
 
     }
 
@@ -128,7 +151,7 @@ class FrontEndController extends Controller
 
         if($product == null) return response()->json([ 'status' => 0 ]);
 
-        $data = view('front-end.ajax.get-product')
+        $data = view('pos.ajax.get-product')
               ->with(['product' => $product])
               ->render();
 
@@ -143,7 +166,7 @@ class FrontEndController extends Controller
 
         if($products == null || count($products) == 0) return response()->json([ 'status' => 0 ]);
 
-        $data = view('front-end.ajax.get-product-list')
+        $data = view('pos.ajax.get-product-list')
               ->with(['products' => $products])
               ->render();
 
