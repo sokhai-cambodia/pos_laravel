@@ -37,7 +37,15 @@ class FrontEndController extends Controller
 
     public function store(Request $request)
     {
-        dd($request->all());
+        $request->validate([
+            'room_id' => 'required|min:1',
+            'invoice.*.product_id' => 'required|min:1',
+            'invoice.*.qty' => 'required|min:1',
+            'invoice.*.price' => 'required|min:1',
+            'invoice.*.discount' => 'required|min:1',
+            'invoice.*.unit_id' => 'required|min:1',
+        ]);
+
     }
 
     // AJAX FUNCTION
