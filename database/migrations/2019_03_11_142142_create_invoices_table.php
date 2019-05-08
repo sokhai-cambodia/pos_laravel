@@ -21,7 +21,6 @@ class CreateInvoicesTable extends Migration
             
             $table->bigIncrements('id');
             $table->integer('room_id');
-            $table->integer('user_id');
             $table->integer('branch_id');
             $table->enum('status', ['paid', 'unpaid'])->default('unpaid');
             $table->text('note')->nullable();

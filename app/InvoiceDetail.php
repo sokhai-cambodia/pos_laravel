@@ -9,6 +9,7 @@ class InvoiceDetail extends Model
 {
     use SoftDeletes;
 
+    public $timestamps = false;
     protected $table = 'invoice_details';
 
     protected $guarded = [];

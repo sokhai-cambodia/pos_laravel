@@ -13,3 +13,11 @@ Route::group(['prefix' => 'front-end', 'middleware' => ['auth']], function(){
     Route::get('get-list-category', 'OrderController@filterListCategory')->name('search-list-category');
 
 });
+
+
+Route::get('/pos/login', 'POSLoginController@index')->name('pos.login');
+Route::post('/pos/login', 'POSLoginController@login')->name('pos.login');
+Route::get('/pos/logout', 'POSLoginController@logout')->name('pos.logout');
+
+// CHOOSE BRANCH
+Route::get('/pos/choose-branch', 'FrontEndController@chooseBranch')->name('pos.login');

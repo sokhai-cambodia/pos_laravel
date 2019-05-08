@@ -33,6 +33,7 @@ class CreateUsersTable extends Migration
             $table->integer('created_by');
             $table->integer('updated_by')->nullable();
             $table->integer('deleted_by')->nullable();
+            $table->integer('use_branch_id')->nullable();
             $table->rememberToken();
             $table->timestamps();
             $table->softDeletes();

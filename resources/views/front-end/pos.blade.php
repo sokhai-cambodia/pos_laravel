@@ -69,6 +69,7 @@
                 @csrf
                 <div class="m-2 ">
                     <h5 class="p-3">Invoice-No: {{ $room->room_no }}</h5>
+                    <input type="hidden" name="room_id" value="{{ $room->id }}">
                 </div>
                 <!---------------table invoice---------------->
                 <table class="table" id="invoice-table">
@@ -272,6 +273,7 @@
             $('#invoice-table > tbody  > tr').each(function(ind, tr) {
                 $(tr).find('.no').text(ind + 1);
                 $(tr).find('.product_id').attr('name', 'invoice['+ ind +'][product_id]');
+                $(tr).find('.unit_id').attr('name', 'invoice['+ ind +'][unit_id]');
                 $(tr).find('.qty').attr('name', 'invoice['+ ind +'][qty]');
                 $(tr).find('.price').attr('name', 'invoice['+ ind +'][price]');
             });

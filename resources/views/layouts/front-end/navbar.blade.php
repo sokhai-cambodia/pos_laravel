@@ -29,7 +29,7 @@
                     <i class="fas fa-user-circle"></i>
                     {{ Auth::user()->getFullName() }}
                 </a>
-                <a href="{{ route('logout') }}" class="mr-3 py-4 text-white"><i class="fas fa-sign-out-alt"></i>Log-Out</a>
+                <a href="{{ route('pos.logout') }}" class="mr-3 py-4 text-white"><i class="fas fa-sign-out-alt"></i>Log-Out</a>
             </div>
         </nav>
     </header>
