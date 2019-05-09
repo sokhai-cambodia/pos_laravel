@@ -18,7 +18,7 @@ use App\User;
 
 class FrontEndController extends Controller
 {
-    
+
     public function index(Request $request)
     {
         $room_id = $request->room_id;
@@ -46,7 +46,7 @@ class FrontEndController extends Controller
 
         return view('pos.room')->with($data);
     }
-    
+
     public function showBranch()
     {
         if(Auth::user()->use_branch_id != null) {
@@ -87,7 +87,7 @@ class FrontEndController extends Controller
         {
 
             DB::transaction(function () use($request) {
-                
+
                 $invoice = Invoice::create([
                     'room_id' => $request->room_id,
                     'branch_id' => 1,
@@ -111,10 +111,10 @@ class FrontEndController extends Controller
                         'price' => $invDetail['price'],
                         'unit_id' => $invDetail['unit_id']
                     ]);
-                    
+
                     if($invoiceDetailProduct->stock_type == 'ingredient') {
                         $invoiceIngredientDetailProducts = ProductIngredient::where('product_id', $invoiceDetailProduct->id)->get();
-                        
+
                         foreach($invoiceIngredientDetailProducts as $iidProduct) {
 
                             InvoiceIngredientDetail::create([
@@ -176,29 +176,6 @@ class FrontEndController extends Controller
         ]);
     }
 
-    // filter search category
-    public function searchCategory(Request $request) {
-        if($request->ajax()){
-            $output='';
 
-            $categories = Category::where('name', 'like', '%' .$request->search. '%')->get();
-            if($categories){
-                foreach ($categories as $key => $category){
-                //     $output .='<div class="card tables get-category-list" data-id="{{ $category->id }}">
-                //     <img class="card-img-top" src="{{ $category->getPhoto() }}" alt="Card image" style="width:100%; height:150px">
-                //     <div class="text-center">
-                //         <span>{{ $category->name }}</span>
-                //     </div>
-                // </div>';
-                $output .= '<div>'.
-                    '<div>'. $category->name .'</div>'.
-                    '<div>'. $category->photo .'</div>'.
-
-                    '</div>';
-                }
-                return Response($output);
-            }
-        }
-    }
 
 }

@@ -58,6 +58,17 @@
     thead, tfoot {
     width: calc( 100% - 1em )
     }
+
+    /* total invoice */
+    .totalInvoice {
+        text-align: right;
+    }
+
+    td {
+        /* white-space: nowrap; */
+        overflow: hidden;
+        text-overflow: ellipsis;
+    }
 </style>
 @endsection
 @section('content')
@@ -79,12 +90,12 @@
                 <table class="table" id="invoice-table">
                     <thead>
                         <tr>
-                            <th scope="col">No</th>
-                            <th scope="col">Name</th>
-                            <th  scope="col">Qty</th>
-                            <th scope="col">Price</th>
-                            <th scope="col">Total</th>
-                            <th  scope="col">Action</th>
+                            <th >No</th>
+                            <th >Name</th>
+                            <th  >Qty</th>
+                            <th >Price</th>
+                            <th >Total</th>
+                            <th  >Action</th>
                         </tr>
                     </thead>
                     <tbody class="type_of_invoice get_type_category">
@@ -93,12 +104,16 @@
 
                     <tfoot>
                         <tr>
-                            <th scope="col" style="width: 50px;">No</th>
-                            <th >Name</th>
-                            <th style="text-align: center" style="width: 50px;">Qty</th>
-                            <th style="text-align: center">Price</th>
-                            <th style="text-align: center">Total</th>
-                            <th style="text-align: center" style="width: 50px;">Action</th>
+                            <td colspan="2" class="totalInvoice"><b>Total : </b></th>
+                            <td class="totalInvoice"><i>$9990.11</i></th>
+                        </tr>
+                        <tr>
+                            <td colspan="2" class="totalInvoice"><b>Discount :</b></th>
+                            <td class="totalInvoice"><i>%<i></th>
+                        </tr>
+                        <tr>
+                            <td colspan="2" class="totalInvoice"><b>Grand-Total : </b></th>
+                            <td class="totalInvoice"><i>$9990.11</i></th>
                         </tr>
                     </tfoot>
                 </table>
@@ -159,21 +174,7 @@
 
 // filter searchX category
     $(function () {
-
-        $('#search_category').on('keyup',function(){
-            $value=$(this).val();
-            $.ajax({
-                type : 'get',
-                url : "{{ route('front-end.search_category') }}",
-                data:{'front-end.search_category':$value},
-                success:function(data){
-                    $('.category').html(data);
-                }
-            });
-            })
-
-
-        // submit form
+        // // submit form
 
         $("#pay_btn").click(function(){
             $("#POSfrm").submit();
@@ -282,7 +283,4 @@
 
     });
 </script>
-<script type="text/javascript">
-    $.ajaxSetup({ headers: { 'csrftoken' : '{{ csrf_token() }}' } });
-    </script>
 @endsection
