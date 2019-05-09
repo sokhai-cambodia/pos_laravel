@@ -46,12 +46,12 @@
     overflow-x: hidden;
     margin-right: -15px;
     }
-    thead, tbody tr {
+    thead, tfoot, tbody tr {
     display:table;
     width:100%;
     table-layout:fixed;
     }
-    thead {
+    thead, tfoot {
     width: calc( 100% - 1em )
     }
 </style>
@@ -87,21 +87,15 @@
                     
                     </tbody>
                     
-
-                    </tbody>
                     <tfoot>
-                        <!-- <tr>
-                                <td colspan="2" class="calculate-detail"><i>Total</i></td>
-                                <td colspan="2" class="calculate-payment">$<i>0777036</i></td>
-                            </tr>
-                            <tr>
-                                <td colspan="2" class="calculate-detail"><i>Discount</i></td>
-                                <td colspan="2" class="calculate-payment">$<i>011111</i></td>
-                            </tr>
-                            <tr>
-                                <td colspan="2" class="calculate-detail"><i>Grand Total</i></td>
-                                <td colspan="2" class="calculate-payment">$<i>0.111102222</i></td>
-                            </tr> -->
+                        <tr>
+                            <th scope="col" style="width: 50px;">No</th>
+                            <th >Name</th>
+                            <th style="text-align: center" style="width: 50px;">Qty</th>
+                            <th style="text-align: center">Price</th>
+                            <th style="text-align: center">Total</th>
+                            <th style="text-align: center" style="width: 50px;">Action</th>
+                        </tr>
                     </tfoot>
                 </table>
                 </form>
