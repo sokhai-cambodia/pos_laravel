@@ -2,6 +2,7 @@
     <td scope="row" style="width: 50px;" class="no">1</td>
     <td>
         <input type="hidden" name="product_id[]" class="product_id" value="{{ $product->id }}">
+        <input type="hidden" name="unit_id[]" class="unit_id" value="{{ $product->unit_id }}">
         {{ $product->name }}
     </td>
     <td style="text-align: center" style="width: 50px;">

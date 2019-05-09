@@ -25,8 +25,11 @@
 
             {{-- <a class="text-white">Restaurant</a> --}}
             <div class="float-right">
-                <a class="py-4 m-3 text-white"><i class="fas fa-user-circle"></i>Users</a>
-                <a class="mr-3 py-4 text-white"><i class="fas fa-sign-out-alt"></i>Log-Out</a>
+                <a class="py-4 m-3 text-white">
+                    <i class="fas fa-user-circle"></i>
+                    {{ Auth::user()->getFullName() }}
+                </a>
+                <a href="{{ route('pos.logout') }}" class="mr-3 py-4 text-white"><i class="fas fa-sign-out-alt"></i>Log-Out</a>
             </div>
         </nav>
     </header>

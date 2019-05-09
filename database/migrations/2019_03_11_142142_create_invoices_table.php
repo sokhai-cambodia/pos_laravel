@@ -21,10 +21,12 @@ class CreateInvoicesTable extends Migration
             
             $table->bigIncrements('id');
             $table->integer('room_id');
-            $table->integer('user_id');
             $table->integer('branch_id');
             $table->enum('status', ['paid', 'unpaid'])->default('unpaid');
             $table->text('note')->nullable();
+            $table->float('sub_total', 8, 2);
+            $table->integer('discount')->default(0);
+            $table->float('total', 8, 2);
             $table->integer('created_by');
             $table->integer('updated_by')->nullable();
             $table->integer('deleted_by')->nullable();

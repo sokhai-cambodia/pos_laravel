@@ -1,16 +1,24 @@
 <?php
 
-Route::group(['prefix' => 'front-end', 'middleware' => ['auth']], function(){
+Route::group(['prefix' => 'pos', 'middleware' => ['auth']], function(){
 
-    Route::get('pos','FrontEndController@index')->name('front-end.pos');
-    Route::post('pos','FrontEndController@store')->name('front-end.store');
-    Route::get('room', 'FrontEndController@room')->name('front-end.room');
+    Route::get('','FrontEndController@index')->name('pos.pos');
+    Route::post('','FrontEndController@store')->name('pos.store');
+    Route::get('/room', 'FrontEndController@room')->name('pos.room');
 
     // AJAX ROUTE
-    Route::get('get-product-list', 'FrontEndController@getProductList')->name('front-end.get-product-list');
-    Route::get('get-product', 'FrontEndController@getProduct')->name('front-end.get-product');
+    Route::get('get-product-list', 'FrontEndController@getProductList')->name('pos.get-product-list');
+    Route::get('get-product', 'FrontEndController@getProduct')->name('pos.get-product');
 
     // Route::get('get-list-category', 'OrderController@filterListCategory')->name('search-list-category');
 
-    Route::get('search-category', 'FrontEndController@searchCategory')->name('front-end.search_category');
 });
+
+
+Route::get('/pos/login', 'POSLoginController@index')->name('pos.login');
+Route::post('/pos/login', 'POSLoginController@login')->name('pos.login');
+Route::get('/pos/logout', 'POSLoginController@logout')->name('pos.logout');
+
+// CHOOSE BRANCH
+Route::get('/pos/show-branch', 'FrontEndController@showBranch')->name('pos.show-branch');
+Route::get('/pos/choose-branch/{id}', 'FrontEndController@chooseBranch')->name('pos.choose-branch');

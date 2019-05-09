@@ -50,13 +50,13 @@
     overflow-x: hidden;
     margin-right: -15px;
     }
-    thead, tbody tr {
+    thead, tfoot, tbody tr {
     display:table;
     /* width:100%; */
     table-layout:fixed;
     }
-    thead {
-    /* width: calc( 100% - 1em ) */
+    thead, tfoot {
+    width: calc( 100% - 1em )
     }
 </style>
 @endsection
@@ -69,10 +69,11 @@
     <div class="container-fluid" id="pos-content">
         <div class="row" id="pos-row">
             <div class="col-12 col-sm-4 col-md-4" id="">
-                <form action="{{ route('front-end.store') }}" method="POST" id="POSfrm">
+                <form action="{{ route('pos.store') }}" method="POST" id="POSfrm">
                 @csrf
                 <div class="m-2 ">
                     <h5 class="p-3">Invoice-No: {{ $room->room_no }}</h5>
+                    <input type="hidden" name="room_id" value="{{ $room->id }}">
                 </div>
                 <!---------------table invoice---------------->
                 <table class="table" id="invoice-table">
@@ -90,21 +91,15 @@
 
                     </tbody>
 
-
-                    </tbody>
                     <tfoot>
                         <tr>
-                                <td class="calculate-detail"><i>Total</i></td>
-                                <td class="calculate-payment">$<i>0777036</i></td>
-                            </tr>
-                            <tr>
-                                <td class="calculate-detail"><i>Discount</i></td>
-                                <td class="calculate-payment">$<i>011111</i></td>
-                            </tr>
-                            <tr>
-                                <td  class="calculate-detail"><i>Grand Total</i></td>
-                                <td  class="calculate-payment">$<i>0.111102222</i></td>
-                            </tr>
+                            <th scope="col" style="width: 50px;">No</th>
+                            <th >Name</th>
+                            <th style="text-align: center" style="width: 50px;">Qty</th>
+                            <th style="text-align: center">Price</th>
+                            <th style="text-align: center">Total</th>
+                            <th style="text-align: center" style="width: 50px;">Action</th>
+                        </tr>
                     </tfoot>
                 </table>
                 </form>
@@ -190,7 +185,7 @@
             var category_id = $(this).attr('data-id');
 
             $.ajax({
-                url: "{{ route('front-end.get-product-list') }}",
+                url: "{{ route('pos.get-product-list') }}",
                 type: 'get',
                 dataType: "json",
                 data: {
@@ -242,7 +237,7 @@
             var product_id = $(this).attr('data-id');
             if(!existProduct(product_id)) {
                 $.ajax({
-                    url: "{{ route('front-end.get-product') }}",
+                    url: "{{ route('pos.get-product') }}",
                     type: 'get',
                     dataType: "json",
                     data: {
@@ -279,6 +274,7 @@
             $('#invoice-table > tbody  > tr').each(function(ind, tr) {
                 $(tr).find('.no').text(ind + 1);
                 $(tr).find('.product_id').attr('name', 'invoice['+ ind +'][product_id]');
+                $(tr).find('.unit_id').attr('name', 'invoice['+ ind +'][unit_id]');
                 $(tr).find('.qty').attr('name', 'invoice['+ ind +'][qty]');
                 $(tr).find('.price').attr('name', 'invoice['+ ind +'][price]');
             });

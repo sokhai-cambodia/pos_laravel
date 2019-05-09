@@ -19,7 +19,7 @@
     {{-- #Narbar --}}
     <div class="row offset-1">
         @foreach ($rooms as $room)
-    <a class="col-12 col-sm-4 col-md-2 text-center  bg-light tables" href="{{ route('front-end.pos', ['room_id' => $room->id]) }}" >{{ $room->room_no }}</a>
+    <a class="col-12 col-sm-4 col-md-2 text-center  bg-light tables" href="{{ route('pos.pos', ['room_id' => $room->id]) }}" >{{ $room->room_no }}</a>
         @endforeach
     </div>
 </div>
