@@ -185,4 +185,29 @@ class FrontEndController extends Controller
         ]);
     }
 
+    // filter search category
+    public function searchCategory(Request $request) {
+        if($request->ajax()){
+            $output='';
+
+            $categories = Category::where('name', 'like', '%' .$request->search. '%')->get();
+            if($categories){
+                foreach ($categories as $key => $category){
+                //     $output .='<div class="card tables get-category-list" data-id="{{ $category->id }}">
+                //     <img class="card-img-top" src="{{ $category->getPhoto() }}" alt="Card image" style="width:100%; height:150px">
+                //     <div class="text-center">
+                //         <span>{{ $category->name }}</span>
+                //     </div>
+                // </div>';
+                $output .= '<div>'.
+                    '<div>'. $category->name .'</div>'.
+                    '<div>'. $category->photo .'</div>'.
+
+                    '</div>';
+                }
+                return Response($output);
+            }
+        }
+    }
+
 }

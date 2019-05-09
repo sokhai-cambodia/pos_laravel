@@ -39,6 +39,10 @@
     height: 100% !important;
     }
     /* overflow table invoice  */
+
+    .table {
+        width: 100%;
+    }
     tbody {
     display:block;
     height:85%;
@@ -48,7 +52,7 @@
     }
     thead, tfoot, tbody tr {
     display:table;
-    width:100%;
+    /* width:100%; */
     table-layout:fixed;
     }
     thead, tfoot {
@@ -75,18 +79,18 @@
                 <table class="table" id="invoice-table">
                     <thead>
                         <tr>
-                            <th scope="col" style="width: 50px;">No</th>
-                            <th >Name</th>
-                            <th style="text-align: center" style="width: 50px;">Qty</th>
-                            <th style="text-align: center">Price</th>
-                            <th style="text-align: center">Total</th>
-                            <th style="text-align: center" style="width: 50px;">Action</th>
+                            <th scope="col">No</th>
+                            <th scope="col">Name</th>
+                            <th  scope="col">Qty</th>
+                            <th scope="col">Price</th>
+                            <th scope="col">Total</th>
+                            <th  scope="col">Action</th>
                         </tr>
                     </thead>
                     <tbody class="type_of_invoice get_type_category">
-                    
+
                     </tbody>
-                    
+
                     <tfoot>
                         <tr>
                             <th scope="col" style="width: 50px;">No</th>
@@ -106,7 +110,7 @@
                 <div class="mt-3 text-center ">
                     <div class="p-2">
                         <div class="md-form mt-0">
-                            <input class="form-control" id="list-product" type="text" placeholder="Category" aria-label="Search">
+                            <input class="form-control" name="search_category" id="search_category" type="text" placeholder="Category" aria-label="Search">
                         </div>
                     </div>
                 </div>
@@ -129,7 +133,7 @@
                 <div class="mt-3 text-center ">
                     <div class="p-2">
                         <div class="md-form mt-0">
-                            <input class="form-control" type="text" placeholder="Product" aria-label="Search">
+                            <input class="form-control" type="text"  name="product" placeholder="Product" aria-label="Search">
                         </div>
                     </div>
                 </div>
@@ -153,25 +157,28 @@
 @section('footer-src')
 <script>
 
-
-    function openNav() {
-        document.getElementById("mySidebar").style.width = "100px";
-        document.getElementById("main").style.marginRight = "100px";
-    }
-
-    function closeNav() {
-        document.getElementById("mySidebar").style.width = "0";
-        document.getElementById("main").style.marginRight = "0";
-    }
-// filter category
+// filter searchX category
     $(function () {
-        
+
+        $('#search_category').on('keyup',function(){
+            $value=$(this).val();
+            $.ajax({
+                type : 'get',
+                url : "{{ route('front-end.search_category') }}",
+                data:{'front-end.search_category':$value},
+                success:function(data){
+                    $('.category').html(data);
+                }
+            });
+            })
+
+
         // submit form
 
         $("#pay_btn").click(function(){
             $("#POSfrm").submit();
         });
-        
+
 
         // Get Product List
         $('.get-category-list').click(function(){
@@ -275,4 +282,7 @@
 
     });
 </script>
+<script type="text/javascript">
+    $.ajaxSetup({ headers: { 'csrftoken' : '{{ csrf_token() }}' } });
+    </script>
 @endsection

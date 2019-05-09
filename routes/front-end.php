@@ -10,7 +10,7 @@ Route::group(['prefix' => 'pos', 'middleware' => ['auth']], function(){
     Route::get('get-product-list', 'FrontEndController@getProductList')->name('pos.get-product-list');
     Route::get('get-product', 'FrontEndController@getProduct')->name('pos.get-product');
 
-    Route::get('get-list-category', 'OrderController@filterListCategory')->name('search-list-category');
+    // Route::get('get-list-category', 'OrderController@filterListCategory')->name('search-list-category');
 
 });
 
