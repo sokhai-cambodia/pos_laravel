@@ -15,6 +15,7 @@ use App\InvoiceIngredientDetail;
 use App\ProductIngredient;
 use App\Branch;
 use App\User;
+use App\ProductStock;
 
 class FrontEndController extends Controller
 {
@@ -87,10 +88,11 @@ class FrontEndController extends Controller
         {
 
             DB::transaction(function () use($request) {
-                
+                $branchId = Auth::user()->use_branch_id;
+
                 $invoice = Invoice::create([
                     'room_id' => $request->room_id,
-                    'branch_id' => 1,
+                    'branch_id' => $branchId,
                     'note' => 'test note',
                     'sub_total' => 0,
                     'discount' => 0,
@@ -120,13 +122,20 @@ class FrontEndController extends Controller
                             InvoiceIngredientDetail::create([
                                 'invoice_detail_id' => $invoiceDetail->id,
                                 'product_id' => $iidProduct->product_id,
-                                'product_ingredient_id' => $iidProduct->id,
+                                'product_ingredient_id' => $iidProduct->product_ingredient_id,
                                 'qty' => 1,
                                 'quantity_for_cut_stock' => $iidProduct->quantity_for_cut_stock,
                                 'unit_id' => $iidProduct->unit_id
                             ]);
+                            
+                            $qtyCutStock = $iidProduct->quantity_for_cut_stock * $invDetail['qty']; 
+                            ProductStock::cutStock($branchId, $iidProduct->product_ingredient_id, $qtyCutStock); 
+
                         }
 
+                    } else {
+                        $qtyCutStock = $invoiceDetailProduct->quantity_for_cut_stock * $invDetail['qty']; 
+                        ProductStock::cutStock($branchId, $invoiceDetailProduct->id, $qtyCutStock);
                     }
 
                 }
