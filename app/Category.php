@@ -13,7 +13,7 @@ class Category extends Model
     protected $table = 'categories';
 
     protected $guarded = [];
-   
+
     public function userCreatedBy()
     {
         return $this->belongsTo('App\User', 'created_by');

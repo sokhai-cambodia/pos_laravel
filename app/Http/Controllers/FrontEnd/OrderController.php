@@ -19,19 +19,6 @@ class OrderController extends Controller
     }
 
 
-    public function filterListCategory( Request $request) {
-        $category = Category::where('list_category', 'category')
-                            ->where('name', 'like', '%'.$request->search.'%')
-                            ->limit(10)
-                            ->get();
-        $response = array();
-        foreach($Category as $category) {
-            $response[] = ["value" => $category->id, "label" => $category->name];
-        }
-        return response()->json($response);
-
-    }
-
 
     public function create()
     {
