@@ -4,7 +4,7 @@ skinparam TitleFontSize 14
 title **Activity when customer order food**\n
 
 start
-:request;
+:Request;
 if(User have permission to access branch?) then(have permission)
     if(Valid room) then(valid)
         :Create invoice;
