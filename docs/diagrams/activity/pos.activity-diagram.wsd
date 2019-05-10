@@ -1,0 +1,36 @@
+@startuml
+skinparam titleBackgroundColor Aqua-CadetBlue
+skinparam TitleFontSize 14
+title **Activity when customer order food**\n
+
+start
+:request;
+if(User have permission to access branch?) then(have permission)
+    if(Valid room) then(valid)
+        :Create invoice;
+        repeat
+            if(Product stock type is product?) then(type=product)
+                :Stock out product;
+            else(type=ingredient) 
+                :Get all product ingredient by Product;
+                repeat
+                    :Stock out product;
+                repeat while(Have more data?)
+            endif
+        repeat while(Have more data?)
+        :Generate invoice;
+        :Print invoice;
+    else
+        (E)
+        detach
+    endif
+else
+    (E)
+    detach
+endif
+stop
+
+(E)
+:Throw error;
+
+@enduml
