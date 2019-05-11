@@ -86,8 +86,8 @@ class FrontEndController extends Controller
             'invoice.*.unit_id' => 'required|min:1',
         ]);
 
-        try
-        {
+        // try
+        // {
 
             DB::transaction(function () use($request) {
                 $branchId = Auth::user()->use_branch_id;
@@ -153,12 +153,12 @@ class FrontEndController extends Controller
 
             NotificationHelper::setSuccessNotification('created_success');
             return back();
-        }
-        catch (\Exception $e)
-        {
-            NotificationHelper::errorNotification($e);
-            return back()->withInput();
-        }
+        // }
+        // catch (\Exception $e)
+        // {
+        //     NotificationHelper::errorNotification($e);
+        //     return back()->withInput();
+        // }
 
     }
 

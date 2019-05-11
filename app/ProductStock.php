@@ -19,8 +19,11 @@ class ProductStock extends Model
         if($stock == null) return false;
 
         // update stock
-        $stock->qty = $stock->qty + $qty;
-        $stock->save();
+        
+        $qty = $stock->qty - $qty;
+        ProductStock::where('branch_id',  $branchId)
+        ->where('product_id', $productId)
+        ->update(['qty' => $qty]);
         return true;
     }
     
