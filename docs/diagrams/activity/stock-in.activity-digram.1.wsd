@@ -1,0 +1,34 @@
+@startuml
+skinparam titleBackgroundColor Aqua-CadetBlue
+skinparam TitleFontSize 14
+title **Stock In Product**\n
+
+start
+:Request;
+if(valid fromBranch?) then(valid)
+    :Create inventory transaction;
+    repeat
+        if(valid product?) then(valid)
+            if(exist stockProduct?) then(have)
+                :qty = qty + stockInQty;
+                :Stockin qty;
+            else(no have)
+                :Create stockProduct;
+                :Stockin;
+            endif
+        else(invalid)
+            (E)
+            detach
+        endif
+    repeat while(have more data?)
+    :Save transaction detail;
+else 
+    (E)
+    detach
+endif
+stop
+
+(E)
+:Throw error;
+
+@enduml

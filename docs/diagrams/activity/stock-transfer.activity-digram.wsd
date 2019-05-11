@@ -1,0 +1,46 @@
+@startuml
+skinparam titleBackgroundColor Aqua-CadetBlue
+skinparam TitleFontSize 14
+title **Stock Transfert Product**\n
+
+start
+:Request;
+if(valid fromBranch?) then(valid)
+    if(valid toBranch) then(valid)
+        :Create inventory transaction;
+        repeat
+            if(valid product?) then(valid)
+                if(exist stockProduct fromBranch?) then(have)
+                    :qty = qty - transferStockQty;
+                    :Cut from branch stock;
+                    if(exist stockProduct toBranch) then(have)
+                        :qty = qty + transferStockQty;
+                        :stockIn to branch = qty;
+                    else(no)
+                        :Create stock product;
+                        :Stockin to branch = transferStockQty;
+                    endif
+                else(no have)
+                    (E)
+                    detach
+                endif
+            else(invalid)
+                (E)
+                detach
+            endif
+        repeat while(have more data?)
+        :Save transaction detail;
+    else 
+        (E)
+        detach
+    endif
+else 
+    (E)
+    detach
+endif
+stop
+
+(E)
+:Throw error;
+
+@enduml

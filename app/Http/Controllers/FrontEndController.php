@@ -23,7 +23,9 @@ class FrontEndController extends Controller
     public function index(Request $request)
     {
         $room_id = $request->room_id;
-        $room = Room::where('id', $room_id)->first();
+        $room = Room::where('id', $room_id)
+                ->where('branch_id', Auth::user()->use_branch_id)
+                ->first();
         if($room == null) {
             NotificationHelper::setErrorNotification('Please select room', true);
             return redirect()->route('pos.room');
@@ -43,8 +45,8 @@ class FrontEndController extends Controller
         if(Auth::user()->use_branch_id == null) {
             return redirect()->route('pos.show-branch');
         }
-        $data['rooms'] = Room::all();
-
+        $data['rooms'] = Room::where('branch_id', Auth::user()->use_branch_id)->get();
+        
         return view('pos.room')->with($data);
     }
 
@@ -84,12 +86,20 @@ class FrontEndController extends Controller
             'invoice.*.unit_id' => 'required|min:1',
         ]);
 
-        try
-        {
+        // try
+        // {
 
             DB::transaction(function () use($request) {
                 $branchId = Auth::user()->use_branch_id;
 
+                // Check Invalid room
+                $room = Room::find($request->room_id);
+                if($room == null) {
+                    NotificationHelper::setErrorNotification('invalid room', true);
+                    return redirect()->route('pos.pos');
+                }
+
+                // Create Invoice
                 $invoice = Invoice::create([
                     'room_id' => $request->room_id,
                     'branch_id' => $branchId,
@@ -100,7 +110,8 @@ class FrontEndController extends Controller
                     'created_by' => Auth::id(),
                     'status' => 'paid'
                 ]);
-
+                
+                // Create Invoice Detail
                 foreach($request->invoice as $invDetail) {
 
                     $invoiceDetailProduct = Product::find($invDetail['product_id']);
@@ -118,7 +129,7 @@ class FrontEndController extends Controller
                         $invoiceIngredientDetailProducts = ProductIngredient::where('product_id', $invoiceDetailProduct->id)->get();
 
                         foreach($invoiceIngredientDetailProducts as $iidProduct) {
-
+                            
                             InvoiceIngredientDetail::create([
                                 'invoice_detail_id' => $invoiceDetail->id,
                                 'product_id' => $iidProduct->product_id,
@@ -137,19 +148,17 @@ class FrontEndController extends Controller
                         $qtyCutStock = $invoiceDetailProduct->quantity_for_cut_stock * $invDetail['qty'];
                         ProductStock::cutStock($branchId, $invoiceDetailProduct->id, $qtyCutStock);
                     }
-
                 }
-                // TODO Update Stock
             });
 
             NotificationHelper::setSuccessNotification('created_success');
             return back();
-        }
-        catch (\Exception $e)
-        {
-            NotificationHelper::errorNotification($e);
-            return back()->withInput();
-        }
+        // }
+        // catch (\Exception $e)
+        // {
+        //     NotificationHelper::errorNotification($e);
+        //     return back()->withInput();
+        // }
 
     }
 
