@@ -23,7 +23,9 @@ class FrontEndController extends Controller
     public function index(Request $request)
     {
         $room_id = $request->room_id;
-        $room = Room::where('id', $room_id)->first();
+        $room = Room::where('id', $room_id)
+                ->where('branch_id', Auth::user()->use_branch_id)
+                ->first();
         if($room == null) {
             NotificationHelper::setErrorNotification('Please select room', true);
             return redirect()->route('pos.room');
@@ -43,8 +45,8 @@ class FrontEndController extends Controller
         if(Auth::user()->use_branch_id == null) {
             return redirect()->route('pos.show-branch');
         }
-        $data['rooms'] = Room::all();
-
+        $data['rooms'] = Room::where('branch_id', Auth::user()->use_branch_id)->get();
+        
         return view('pos.room')->with($data);
     }
 
