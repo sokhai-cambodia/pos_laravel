@@ -154,7 +154,6 @@ class FrontEndController extends Controller
     }
 
     // AJAX FUNCTION
-
     public function getProduct(Request $request) {
         $product = Product::find($request->product_id);
 

@@ -42,18 +42,20 @@
 
     .table {
         width: 100%;
+        overflow-y: scroll;
+        overflow-x: hidden;
     }
     tbody {
     display:block;
     height:85%;
-    overflow-y:auto;
+    overflow-y:scroll;
     overflow-x: hidden;
-    margin-right: -15px;
+    /* margin-right: -15px; */
     }
     thead, tfoot, tbody tr {
     display:table;
     /* width:100%; */
-    table-layout:fixed;
+    /* table-layout:fixed; */
     }
     thead, tfoot {
     width: calc( 100% - 1em )
@@ -66,8 +68,8 @@
 
     td {
         /* white-space: nowrap; */
-        overflow: hidden;
-        text-overflow: ellipsis;
+        /* overflow: hidden;
+        text-overflow: ellipsis; */
     }
 </style>
 @endsection
@@ -87,7 +89,7 @@
                     <input type="hidden" name="room_id" value="{{ $room->id }}">
                 </div>
                 <!---------------table invoice---------------->
-                <table class="table" id="invoice-table">
+                <table class="table" id="invoice-table" style="overflow-y:scroll">
                     <thead>
                         <tr>
                             <th >No</th>

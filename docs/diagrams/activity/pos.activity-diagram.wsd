@@ -11,7 +11,7 @@ if(User have permission to access branch?) then(have permission)
         repeat
             if(Product stock type is product?) then(type=product)
                 :Stock out product;
-            else(type=ingredient) 
+            else(type=ingredient)
                 :Get all product ingredient by Product;
                 repeat
                     :Stock out product;
