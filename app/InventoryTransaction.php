@@ -11,4 +11,19 @@ class InventoryTransaction extends Model
 
     protected $guarded = [];
     
+    public function userCreatedBy()
+    {
+        return $this->belongsTo('App\User', 'created_by');
+    }
+
+    public function userUpdatedBy()
+    {
+        return $this->belongsTo('App\User', 'updated_by');
+    }
+
+    public function userDeletedBy()
+    {
+        return $this->belongsTo('App\User', 'deleted_by');
+    }
+
 }

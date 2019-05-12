@@ -1,5 +1,4 @@
 @extends('layouts.cms.template', compact('title','icon'))
-{{-- @include('cms.report.header') --}}
 
 @section('header-src')
 <style>
@@ -23,33 +22,33 @@
                     
                 <div class="col-sm-3">
                     <div class="form-group">
-                        <select class="browser-default custom-select" name=branch>
+                        <select class="form-control" name=branch>
                             <option value="">All Branch</option>
                             @foreach ($branches as $branch)
-                                <option value="{{ $branch->id }}">{{ $branch->name }}</option>
+                                <option value="{{ $branch->id }}" {{ UtilHelper::selected($branch->id, $f_branch) }}>{{ $branch->name }}</option>
                             @endforeach
                         </select>
                     </div>
                 </div>
-                
+                    
                 <div class="col-sm-3">
                     <div class="form-group">
-                        <select class="browser-default custom-select">
+                        <select class="browser-default custom-select" name="stock_type">
                                 <option value="">All Stock Type</option>
                                 @foreach ($stockTypes as $sKey => $sVal)
-                                    <option value="{{ $sKey }}">{{ $sVal }}</option>
+                                    <option value="{{ $sKey }}" {{ UtilHelper::selected($sKey, $f_stock_type) }}>{{ $sVal }}</option>
                                 @endforeach
                         </select>
                     </div>
                 </div>
                 <div class="col-sm-2">
                     <div class="form-group">
-                        <input class="form-control date" type="text" placeholder="Select your date" name="start_date" value="{{ Request::get('date') }}"/>
+                        <input class="form-control date" type="text" placeholder="Select your date" name="start_date" value="{{ $f_start_date }}"/>
                     </div>
                 </div>
                 <div class="col-sm-2">
                     <div class="form-group">
-                        <input class="form-control date" type="text" placeholder="Select your date" name="end_date" value="{{ Request::get('date') }}"/>
+                        <input class="form-control date" type="text" placeholder="Select your date" name="end_date" value="{{ $f_end_date }}"/>
                     </div>
                 </div>
                 <div class="col-sm-2">
@@ -69,74 +68,55 @@
     </div>
     <div class="container">
         <div class="row">
-            <div class="col-md-2">
-                <select class="browser-default custom-select">
-                    <option selected>Short By</option>
-                    <option value="3">Daily</option>
-                    <option value="1">Month</option>
-                    <option value="2">Year</option>
-                </select>
-            </div>
-            <div class="col-md-10 offset-4">
-                <div class="row offset-4">
-                    <div class="col-md-6">
-                        <div class="row">
-                            <div class="col-md-4">
-                                <button id="export_pdf" class="btn waves-effect waves-light hor-grd btn-grd-light ">PDF<i class="fas fa-file-pdf" style="margin-left:10px;"></i></button>
-                            </div>
-                            <div class="col-md-4">
-                                <button id="export_excel" class="btn waves-effect waves-light hor-grd btn-grd-light ">Excel<i class="fas fa-file-exel" style="margin-left:10px;"></i></button>
-                            </div>
-                            <div class="col-md-4">
-                                <button id="print_report" class="btn waves-effect waves-light hor-grd btn-grd-light ">Print<i class="fas fa-print" style="margin-left:10px;"></i></button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+            <div class="col-sm-4 col-sm-offset-8">
+                <button id="export_pdf" class="btn waves-effect waves-light hor-grd btn-grd-light ">PDF<i class="fas fa-file-pdf" style="margin-left:10px;"></i></button>
+                <button id="export_excel" class="btn waves-effect waves-light hor-grd btn-grd-light ">Excel<i class="fas fa-file-exel" style="margin-left:10px;"></i></button>
+                <button id="print_report" class="btn waves-effect waves-light hor-grd btn-grd-light ">Print<i class="fas fa-print" style="margin-left:10px;"></i></button>
             </div>
         </div>
     </div>
     <div class="card-block">
         {{-- Report --}}
         <div id="print_area">
+            <div class="text-center">
+                <h3>Stock Report</h3>
+                <h4>From {{ $f_start_date }} to {{ $f_end_date }}</h4>
+                <h4>Type: {{ $f_stock_type == '' ? 'All Type' : $stockTypes[$f_stock_type] }}</h4>
+                <h4>Branch: {{ $f_branch == '' ? 'All Branch' : $branch->name }}</h4>
+                
+            </div>
             <table class="table" id="export_area">
-                <span class="my-2">Report for:<b>...</b></span>
                 <thead>
                     <tr>
-                        <th>Date</th>
-                        <th>Type:</th>
-                        <th>Employee</th>
+                        <th>No</th>
+                        <th>Date:</th>
+                        <th>Type</th>
                         <th>Product</th>
-                        <th>Category</th>
-                        <th>Quantity</th>
-                        <th>Total</th>
-                        <th>Price</th>
-                        <th>Quantity</th>
-                        <th>Total</th>
+                        <th>Qty</th>
+                        <th>By User</th>
                     </tr>
                 </thead>
                 <tbody>
-                    @for ($i = 1; $i <= 30; $i++)
+                    @php 
+                        $i = 1;
+                    @endphp
+                    @foreach ($stocks as $stock)
                         <tr>
-                            <th>{{ $i }}</th>
-                            <td>Mark</td>
-                            <td>@mdo</td>
-                            <td>Otto</td>
-                            <td>@mdo</td>
-                            <td>@mdo</td>
-                            <td>Otto</td>
-                            <td>Otto</td>
-                            <td>@mdo</td>
-                            <td>Otto</td>
+                            <th>{{ $i++ }}</th>
+                            <td>{{ $stock->date }}</td>
+                            <td>{{ $stock->type }}</td>
+                            <td>{{ $stock->name }}</td>
+                            <td>{{ $stock->quantity }}</td>
+                            <td>{{ $stock->fullName }}</td>
                         </tr>
-                    @endfor
+                    @endforeach
                 </tbody>
             </table>
         </div>
         {{-- !end report --}}
         {{-- pagenation --}}
         <nav aria-label="Page navigation example">
-            <ul class="pagination justify-content-center">
+            {{-- <ul class="pagination justify-content-center">
                 <li class="page-item disabled">
                     <a class="page-link" href="#" tabindex="-1">Previous</a>
                 </li>
@@ -146,7 +126,8 @@
                 <li class="page-item">
                     <a class="page-link" href="#">Next</a>
                 </li>
-            </ul>
+            </ul> --}}
+            {{ $stocks->appends(request()->input())->links() }}
         </nav>
         {{--! end pagenation --}}
     </div>
@@ -154,20 +135,19 @@
 <!-- Default ordering table end -->
 @endsection
 @section('footer-src')
-@include('cms.report.footer')
 <script>
     $( document ).ready(function() {
 
         $('.date').datepicker({  
 
-            format: 'mm-dd-yyyy'
+            format: 'yyyy-mm-dd'
 
         });  
 
         $("#print_report").click(function(){
             // https://www.jqueryscript.net/other/Print-Specified-Area-Of-A-Page-PrintArea.html
             $("#print_area").printArea({
-                mode:"iframe",
+                mode: "popup", //"iframe", "popup"
                 popTitle: 'Sample Print',
                 popClose: true,
             });
