@@ -213,6 +213,11 @@
                     </a>
                     <ul class="pcoded-submenu">
                         <li class="">
+                            <a href="{{ route('report.stock') }}" class="waves-effect waves-dark">
+                                <span class="pcoded-mtext">Stock Report</span>
+                            </a>
+                        </li>
+                        <li class="">
                             <a href="{{ route('report.daily') }}" class="waves-effect waves-dark">
                                 <span class="pcoded-mtext">Daily Report</span>
                             </a>

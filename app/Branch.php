@@ -4,7 +4,7 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
-
+use DB;
 class Branch extends Model
 {
     use SoftDeletes;
@@ -13,14 +13,18 @@ class Branch extends Model
 
     protected $guarded = [];
 
-  // User
-  public function users()
-  {
-      return $this->belongsToMany('App\User', 'branch_users', 'branch_id', 'user_id');
-  }
+    
+    public static function getBranchByAuth() {
+        return Branch::all();
+    }
+
+    
+    // User
+    public function users()
+    {
+        return $this->belongsToMany('App\User', 'branch_users', 'branch_id', 'user_id');
+    }
  
-
-
     public function userCreatedBy()
     {
         return $this->belongsTo('App\User', 'created_by');
