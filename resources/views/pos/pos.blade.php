@@ -73,7 +73,9 @@
 
     .tableBodyScroll tbody {
   display: block;
-  max-height: 300px;
+  max-height: 320px;
+  min-height: 320px;
+  margin-bottom: 10px;
   overflow-y: scroll;
 }
 
@@ -82,6 +84,14 @@ tbody tr {
   display: table;
   width: 100%;
   table-layout: fixed;
+}
+
+.bottomFooter {
+    position: absolute;
+    width: 100%;
+    bottom: -10%;
+    left: 0;
+    padding: 1em
 }
 </style>
 @endsection
@@ -101,7 +111,7 @@ tbody tr {
                     <input type="hidden" name="room_id" value="{{ $room->id }}">
                 </div>
                 <!---------------table invoice---------------->
-                <table class="table tableBodyScroll" id="invoice-table" style="overflow-y:scroll;height:100%;">
+                <table class="table tableBodyScroll" id="invoice-table" style="overflow-y:scroll;height:100%;position:relative;">
                     <thead>
                         <tr>
                             <th >No</th>
@@ -114,7 +124,7 @@ tbody tr {
                     </thead>
                     <tbody class="type_of_invoice get_type_category">
 
-                        @for($i = 0; $i < 1; $i++)
+                        {{-- @for($i = 0; $i < 3; $i++)
                             <tr>
                                 <td>papap</td>
                                 <td>papap</td>
@@ -123,13 +133,13 @@ tbody tr {
                                 <td>papap</td>
                                 <td>papap</td>
                             </tr>
-                        @endfor
+                        @endfor --}}
                     </tbody>
 
-                    <tfoot>
+                    <tfoot class="bottomFooter">
                         <tr>
                             <td colspan="2" class="totalInvoice"><b>Total : </b></th>
-                            <td class="totalInvoice"><i>$9990.11</i></th>
+                            <td class="totalInvoice"><i>$00.00</i></th>
                         </tr>
                     </tfoot>
                 </table>
