@@ -89,7 +89,7 @@ tbody tr {
 .bottomFooter {
     position: absolute;
     width: 100%;
-    bottom: -10%;
+    bottom: -8%;
     left: 0;
     padding: 1em
 }
@@ -138,8 +138,8 @@ tbody tr {
 
                     <tfoot class="bottomFooter">
                         <tr>
-                            <td colspan="2" class="totalInvoice"><b>Total : </b></th>
-                            <td class="totalInvoice"><i>$00.00</i></th>
+                            <td colspan="2" class="totalInvoice"><b>Sub-Total : </b></th>
+                            <td><i id="totalPrice">$00.00</i></th>
                         </tr>
                     </tfoot>
                 </table>
@@ -304,7 +304,23 @@ tbody tr {
                 $(tr).find('.unit_id').attr('name', 'invoice['+ ind +'][unit_id]');
                 $(tr).find('.qty').attr('name', 'invoice['+ ind +'][qty]');
                 $(tr).find('.price').attr('name', 'invoice['+ ind +'][price]');
+
             });
+            calculateTotalPrices();
+        }
+
+        // total prices
+        function calculateTotalPrices() {
+            var sub_total = 0;
+            $('#invoice-table > tbody  > tr').each(function(ind, tr) {
+                var qty = $(tr).find('.qty').val();
+                var price = $(tr).find('.price').val();
+                qty = isNaN(qty) ? 0 : qty;
+                price = isNaN(price) ? 0 : price;
+                sub_total += (qty * price);
+            });
+
+            $("#totalPrice").text('$' + parseFloat(sub_total).toFixed(2));
         }
 
     });
