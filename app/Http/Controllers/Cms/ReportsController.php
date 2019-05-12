@@ -4,11 +4,30 @@ namespace App\Http\Controllers\Cms;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use App\Branch;
 
 class ReportsController extends Controller
 {
     
     private $icon = 'icon-layers';
+
+    public function stock() {
+        $branches = Branch::getBranchByAuth();
+        $stockTypes = [ 
+            'adjust_add' => 'Adjust Add', 
+            'adjust_sub' => 'Adjust Sub', 
+            'stock_in' => 'Stock In', 
+            'transfer' => 'Transfer', 
+            'wasted' => 'Wasted', 
+        ];
+        $data = [
+            'title' => 'Stock Report',
+            'icon' => $this->icon,
+            'branches' => $branches,
+            'stockTypes' => $stockTypes
+        ];
+        return view('cms.report.stock')->with($data);
+    }
 
     public function daily() {
         $data = [

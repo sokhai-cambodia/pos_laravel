@@ -1,5 +1,6 @@
 <script data-cfasync="false" src="{{ asset('plugin/cms/assets/js/email-decode.min.js') }}"></script>
-<script src="{{ asset('plugin/cms/bower_components/jquery/js/jquery.min.js') }}"></script>
+{{-- <script src="{{ asset('plugin/cms/bower_components/jquery/js/jquery.min.js') }}"></script> --}}
+<script src="{{ asset('plugin/cms/assets/js/jquery.js') }}"></script>
 <script src="{{ asset('plugin/cms/bower_components/jquery-ui/js/jquery-ui.min.js') }}"></script>
 <script src="{{ asset('plugin/cms/bower_components/popper.js/js/popper.min.js') }}"></script>
 <script src="{{ asset('plugin/cms/bower_components/bootstrap/js/bootstrap.min.js') }}"></script>
@@ -47,6 +48,7 @@
     $('.dropify').dropify();
 </script>
 <script src="{{ asset('plugin/cms/assets/js/rocket-loader.min.js') }}" data-cf-settings="f9fca66bca566c2e4fe58b6c-|49" defer=""></script>
-
+<script src="{{ asset('plugin/cms/assets/js/bootstrap-datepicker.js') }}"></script>
+  
 
 <!-- Custom js -->
