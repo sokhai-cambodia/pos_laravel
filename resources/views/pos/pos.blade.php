@@ -45,13 +45,11 @@
         overflow-y: scroll;
         overflow-x: hidden;
     }
-    tbody {
-    display:block;
-    height:85%;
-    overflow-y:scroll;
-    overflow-x: hidden;
-    /* margin-right: -15px; */
+
+    thead, tbody {
+        display:block;
     }
+
     thead, tfoot, tbody tr {
     display:table;
     /* width:100%; */
@@ -60,17 +58,31 @@
     thead, tfoot {
     width: calc( 100% - 1em )
     }
+    tbody {
+        display: block;
+        min-height:100%;
+        overflow-y:auto;
+        overflow-x: hidden;
+        /* margin-right: -15px; */
+        }
 
     /* total invoice */
     .totalInvoice {
         text-align: right;
     }
 
-    td {
-        /* white-space: nowrap; */
-        /* overflow: hidden;
-        text-overflow: ellipsis; */
-    }
+    .tableBodyScroll tbody {
+  display: block;
+  max-height: 300px;
+  overflow-y: scroll;
+}
+
+.tableBodyScroll thead,
+tbody tr {
+  display: table;
+  width: 100%;
+  table-layout: fixed;
+}
 </style>
 @endsection
 @section('content')
@@ -89,7 +101,7 @@
                     <input type="hidden" name="room_id" value="{{ $room->id }}">
                 </div>
                 <!---------------table invoice---------------->
-                <table class="table" id="invoice-table" style="overflow-y:scroll">
+                <table class="table tableBodyScroll" id="invoice-table" style="overflow-y:scroll;height:100%;">
                     <thead>
                         <tr>
                             <th >No</th>
@@ -102,19 +114,21 @@
                     </thead>
                     <tbody class="type_of_invoice get_type_category">
 
+                        @for($i = 0; $i < 1; $i++)
+                            <tr>
+                                <td>papap</td>
+                                <td>papap</td>
+                                <td>papap</td>
+                                <td>papap</td>
+                                <td>papap</td>
+                                <td>papap</td>
+                            </tr>
+                        @endfor
                     </tbody>
 
                     <tfoot>
                         <tr>
                             <td colspan="2" class="totalInvoice"><b>Total : </b></th>
-                            <td class="totalInvoice"><i>$9990.11</i></th>
-                        </tr>
-                        <tr>
-                            <td colspan="2" class="totalInvoice"><b>Discount :</b></th>
-                            <td class="totalInvoice"><i>%<i></th>
-                        </tr>
-                        <tr>
-                            <td colspan="2" class="totalInvoice"><b>Grand-Total : </b></th>
                             <td class="totalInvoice"><i>$9990.11</i></th>
                         </tr>
                     </tfoot>
