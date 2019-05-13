@@ -214,8 +214,8 @@ tbody tr {
             </div>
             <div class="modal-body">
                 <div class="row">
+                    <form>
                     <div class="col-md-6">
-                        <form>
                             <div class="form-group">
                                 <label for="sub_total" class="col-form-label">Sub-Total:</label>
                                 <input type="text" class="form-control" id="sub_total">
@@ -229,8 +229,8 @@ tbody tr {
                                 <input class="form-control" id="grand_total" />
                             </div>
 
-                        </form>
-                    </div>
+                        </div>
+                    </form>
 
                 </div>
                 <div class="form-group">
