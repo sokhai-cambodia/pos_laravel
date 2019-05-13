@@ -1,11 +1,15 @@
 @extends('layouts.cms.template', compact('title','icon'))
-@include('cms.report.header')
-@section('content')
+
+@section('header-src')
 <style>
     .report_header {
     background: grey;
     }
+   
 </style>
+@endsection
+
+@section('content')
 <!-- Default ordering table start -->
 <div class="card">
     <div class="card-header">
@@ -13,41 +17,40 @@
     </div>
     <div class="card-block">
         <form  method="GET">
+
             <div class="form-group row">
+                    
                 <div class="col-sm-3">
                     <div class="form-group">
-                        <select class="form-control" name='branch'>
+                        <select class="form-control" name='from_branch'>
                             <option value="">All Branch</option>
                             @foreach ($branches as $branch)
-                                <option value="{{ $branch->id }}" {{ UtilHelper::selected($branch->id, $f_branch) }}>{{ $branch->name }}</option>
+                                <option value="{{ $branch->id }}" {{ UtilHelper::selected($branch->id, $f_from_branch) }}>{{ $branch->name }}</option>
                             @endforeach
                         </select>
                     </div>
                 </div>
-
+                    
                 <div class="col-sm-3">
                     <div class="form-group">
-                        <select class="form-control" name='room'>
-                            <option value="">All Room</option>
-                            @foreach ($rooms as $room)
-                                <option value="{{ $room->id }}" {{ UtilHelper::selected($room->id, $f_room) }}>{{ $room->room_no }}</option>
+                        <select class="form-control" name='to_branch'>
+                            <option value="">All Branch</option>
+                            @foreach ($branches as $branch)
+                                <option value="{{ $branch->id }}" {{ UtilHelper::selected($branch->id, $f_to_branch) }}>{{ $branch->name }}</option>
                             @endforeach
                         </select>
                     </div>
                 </div>
-
                 <div class="col-sm-2">
                     <div class="form-group">
-                        <input class="form-control date" type="text" placeholder="Select your date" name="date" value="{{ $f_date }}"/>
+                        <input class="form-control date" type="text" placeholder="Select your date" name="start_date" value="{{ $f_start_date }}"/>
                     </div>
                 </div>
-
                 <div class="col-sm-2">
                     <div class="form-group">
-                        <input class="form-control" type="text" placeholder="Invoice No" name="invoice_no" value="{{ $f_invoice_no }}"/>
+                        <input class="form-control date" type="text" placeholder="Select your date" name="end_date" value="{{ $f_end_date }}"/>
                     </div>
                 </div>
-
                 <div class="col-sm-2">
                     <div class="form-group">
                         <button class="btn waves-effect waves-light hor-grd btn-grd-primary ">Search<i class="fas fa-search" style="margin-left:10px;"></i></button>
@@ -76,41 +79,36 @@
         {{-- Report --}}
         <div id="print_area">
             <div class="text-center">
-                <h3>Daily Report For {{ $f_date }}</h3>
-                <h4>Branch: {{ $f_branch == '' ? 'All Branch' : $branch->name }}</h4>
-                <h4>Room: {{ $f_room == '' ? 'All Room' : $room->room_no }}</h4>
-                {{-- <h4>Type: {{ $f_stock_type == '' ? 'All Type' : $stockTypes[$f_stock_type] }}</h4> --}}
+                <h3>Transfer Stock Report</h3>
+                <h4>From Branch: {{ $f_from_branch == '' ? 'All Branch' : $from_branch->name }}</h4>
+                <h4>To Branch: {{ $f_to_branch == '' ? 'All Branch' : $to_branch->name }}</h4>
+                <h4>From {{ $f_start_date }} to {{ $f_end_date }}</h4>
+               
                 
             </div>
             <table class="table" id="export_area">
                 <thead>
                     <tr>
                         <th>No</th>
-                        <th>Date</th>
-                        <th>Branch</th>
-                        <th>Room</th>
-                        <th>Invoice No</th>
-                        <th>Sub Total($)</th>
-                        <th>Discount(%)</th>
-                        <th>Total($)</th>
-                        <th>Action</th>
+                        <th>Date:</th>
+                        <th>Type</th>
+                        <th>Product</th>
+                        <th>Qty</th>
+                        <th>By User</th>
                     </tr>
                 </thead>
                 <tbody>
                     @php 
                         $i = 1;
                     @endphp
-                    @foreach ($invoices as $invoice)
+                    @foreach ($stocks as $stock)
                         <tr>
                             <th>{{ $i++ }}</th>
-                            <td>{{ $invoice->date }}</td>
-                            <td>{{ $invoice->branch_name }}</td>
-                            <td>{{ $invoice->room_no }}</td>
-                            <td>{{ $invoice->invoice_no }}</td>
-                            <td>{{ $invoice->sub_total }}</td>
-                            <td>{{ $invoice->discount }}</td>
-                            <td>{{ $invoice->total }}</td>
-                            <td>Action</td>
+                            <td>{{ $stock->date }}</td>
+                            <td>{{ $stock->type }}</td>
+                            <td>{{ $stock->name }}</td>
+                            <td>{{ $stock->quantity }}</td>
+                            <td>{{ $stock->fullName }}</td>
                         </tr>
                     @endforeach
                 </tbody>
@@ -119,7 +117,7 @@
         {{-- !end report --}}
         {{-- pagenation --}}
         <nav aria-label="Page navigation example">
-            {{ $invoices->appends(request()->input())->links() }}
+            {{ $stocks->appends(request()->input())->links() }}
         </nav>
         {{--! end pagenation --}}
     </div>
@@ -127,18 +125,19 @@
 <!-- Default ordering table end -->
 @endsection
 @section('footer-src')
-@include('cms.report.footer')
 <script>
     $( document ).ready(function() {
-        
+
         $('.date').datepicker({  
+
             format: 'yyyy-mm-dd'
+
         });  
-        
+
         $("#print_report").click(function(){
             // https://www.jqueryscript.net/other/Print-Specified-Area-Of-A-Page-PrintArea.html
             $("#print_area").printArea({
-                mode:"iframe",
+                mode: "popup", //"iframe", "popup"
                 popTitle: 'Sample Print',
                 popClose: true,
             });

@@ -218,6 +218,11 @@
                             </a>
                         </li>
                         <li class="">
+                            <a href="{{ route('report.transfer-stock') }}" class="waves-effect waves-dark">
+                                <span class="pcoded-mtext">Transfer Stock Report</span>
+                            </a>
+                        </li>
+                        <li class="">
                             <a href="{{ route('report.daily') }}" class="waves-effect waves-dark">
                                 <span class="pcoded-mtext">Daily Report</span>
                             </a>

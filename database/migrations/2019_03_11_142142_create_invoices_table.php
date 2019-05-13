@@ -20,6 +20,7 @@ class CreateInvoicesTable extends Migration
             $table->collation = 'utf8_unicode_ci';
             
             $table->bigIncrements('id');
+            $table->string('invoice_no', 20)->index();
             $table->integer('room_id');
             $table->integer('branch_id');
             $table->enum('status', ['paid', 'unpaid'])->default('unpaid');
