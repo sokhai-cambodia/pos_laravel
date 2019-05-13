@@ -188,12 +188,64 @@ tbody tr {
     </div>
 </div>
 <div class="button">
-    <button id="pay_btn" type="button" class="btn btn-success btn-lg btn-invoice"><i class="far fa-money-bill-alt"></i>Pay</button>
+     <!-- pay button popup trigger modal-->
+    <button id="pay_btn" type="button" class="btn btn-success btn-lg btn-invoice" data-toggle="modal" data-target="#exampleModalCenter">
+        <i class="far fa-money-bill-alt"></i>Pay
+    </button>
+    {{-- !pay button popup --}}
     <button id="get_button" type="button" class="btn btn-warning btn-lg btn-invoice"><i class="far fa-money-bill-alt"></i>Pay Later</button>
     <button type="button" class="btn btn-secondary btn-lg btn-invoice"><i class="fas fa-print"></i>Print</button>
     <button type="button" class="btn btn-danger btn-lg btn-invoice"><i class="fas fa-window-close"></i>Close</button>
+
 </div>
 
+
+
+    <!-- button Modal -->
+    <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+            <div class="modal-header">
+
+                <h5 class="modal-title" id="exampleModalCenterTitle">Invoice Infomation</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="row">
+                    <div class="col-md-6">
+                        <form>
+                            <div class="form-group">
+                                <label for="sub_total" class="col-form-label">Sub-Total:</label>
+                                <input type="text" class="form-control" id="sub_total">
+                            </div>
+                            <div class="form-group">
+                                <label for="discount" class="col-form-label">Discount:</label>
+                                <input type="text" class="form-control" id="discount">
+                            </div>
+                            <div class="form-group">
+                                <label for="grand_total" class="col-form-label">Grand-Total:</label>
+                                <input class="form-control" id="grand_total" />
+                            </div>
+
+                        </form>
+                    </div>
+
+                </div>
+                <div class="form-group">
+                    <label for="descriptions" class="col-form-label">Descriptions</label>
+                    <textarea class="form-control" id="descriptions"></textarea>
+                </div>
+
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary">Save changes</button>
+            </div>
+            </div>
+        </div>
+    </div>
 @endsection
 @section('footer-src')
 <script>
@@ -202,9 +254,9 @@ tbody tr {
     $(function () {
         // // submit form
 
-        $("#pay_btn").click(function(){
-            $("#POSfrm").submit();
-        });
+        // $("#pay_btn").click(function(){
+        //     $("#POSfrm").submit();
+        // });
 
 
         // Get Product List
@@ -294,6 +346,7 @@ tbody tr {
                     return false;
                 }
             });
+            calculateTotalPrices();
             return $result;
         }
 
