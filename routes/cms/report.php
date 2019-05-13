@@ -6,6 +6,6 @@ Route::group(['prefix' => 'report'], function(){
     Route::get('/month', 'Cms\ReportsController@month')->name('report.month');
     Route::get('/year', 'Cms\ReportsController@year')->name('report.year');
     Route::get('/stock', 'Cms\ReportsController@stock')->name('report.stock');
-
+    Route::get('/transfer-stock', 'Cms\ReportsController@transferStock')->name('report.transfer-stock');
 
 });
