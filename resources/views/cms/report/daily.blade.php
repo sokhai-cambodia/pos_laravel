@@ -16,26 +16,39 @@
             <div class="form-group row">
                 <div class="col-sm-3">
                     <div class="form-group">
-                        <input id="dropper-default" class="form-control" type="text" placeholder="Select your date" name="date" value="{{ Request::get('date') }}"/>
-                    </div>
-                </div>
-                <div class="col-sm-3">
-                    <div class="form-group">
-                        <select  class="js-example-basic-multiple" multiple="single" style="width:100%;">
-                            <option value="AL">Alabama</option>
-                            <option value="WY">Doe</option>
-                            <option value="WY">Coming</option>
-                            <option value="WY">Hanry</option>
-                            <option value="WY">John </option>
+                        <select class="form-control" name='branch'>
+                            <option value="">All Branch</option>
+                            @foreach ($branches as $branch)
+                                <option value="{{ $branch->id }}" {{ UtilHelper::selected($branch->id, $f_branch) }}>{{ $branch->name }}</option>
+                            @endforeach
                         </select>
                     </div>
                 </div>
+
                 <div class="col-sm-3">
                     <div class="form-group">
-                        <input type="text" name="product" class="form-control" value="{{ Request::get('product') }}" placeholder="Search Product">
+                        <select class="form-control" name='room'>
+                            <option value="">All Room</option>
+                            @foreach ($rooms as $room)
+                                <option value="{{ $room->id }}" {{ UtilHelper::selected($room->id, $f_room) }}>{{ $room->room_no }}</option>
+                            @endforeach
+                        </select>
                     </div>
                 </div>
-                <div class="col-sm-3">
+
+                <div class="col-sm-2">
+                    <div class="form-group">
+                        <input class="form-control date" type="text" placeholder="Select your date" name="date" value="{{ $f_date }}"/>
+                    </div>
+                </div>
+
+                <div class="col-sm-2">
+                    <div class="form-group">
+                        <input class="form-control" type="text" placeholder="Invoice No" name="invoice_no" value="{{ $f_invoice_no }}"/>
+                    </div>
+                </div>
+
+                <div class="col-sm-2">
                     <div class="form-group">
                         <button class="btn waves-effect waves-light hor-grd btn-grd-primary ">Search<i class="fas fa-search" style="margin-left:10px;"></i></button>
                     </div>
@@ -52,30 +65,10 @@
     </div>
     <div class="container">
         <div class="row">
-            <div class="col-md-2">
-                <select class="browser-default custom-select">
-                    <option selected>Short By</option>
-                    <option value="3">Daily</option>
-                    <option value="1">Month</option>
-                    <option value="2">Year</option>
-                </select>
-            </div>
-            <div class="col-md-10 offset-4">
-                <div class="row offset-4">
-                    <div class="col-md-6">
-                        <div class="row">
-                            <div class="col-md-4">
-                                <button id="export_pdf" class="btn waves-effect waves-light hor-grd btn-grd-light ">PDF<i class="fas fa-file-pdf" style="margin-left:10px;"></i></button>
-                            </div>
-                            <div class="col-md-4">
-                                <button id="export_excel" class="btn waves-effect waves-light hor-grd btn-grd-light ">Excel<i class="fas fa-file-exel" style="margin-left:10px;"></i></button>
-                            </div>
-                            <div class="col-md-4">
-                                <button id="print_report" class="btn waves-effect waves-light hor-grd btn-grd-light ">Print<i class="fas fa-print" style="margin-left:10px;"></i></button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+            <div class="col-sm-4 col-sm-offset-8">
+                <button id="export_pdf" class="btn waves-effect waves-light hor-grd btn-grd-light ">PDF<i class="fas fa-file-pdf" style="margin-left:10px;"></i></button>
+                <button id="export_excel" class="btn waves-effect waves-light hor-grd btn-grd-light ">Excel<i class="fas fa-file-exel" style="margin-left:10px;"></i></button>
+                <button id="print_report" class="btn waves-effect waves-light hor-grd btn-grd-light ">Print<i class="fas fa-print" style="margin-left:10px;"></i></button>
             </div>
         </div>
     </div>
@@ -86,50 +79,41 @@
                 <span class="my-2">Report for:<b>...</b></span>
                 <thead>
                     <tr>
+                        <th>No</th>
                         <th>Date</th>
-                        <th>Type:</th>
-                        <th>Employee</th>
-                        <th>Product</th>
-                        <th>Category</th>
-                        <th>Quantity</th>
+                        <th>Branch</th>
+                        <th>Room</th>
+                        <th>Invoice No</th>
+                        <th>Sub Total</th>
+                        <th>Discount</th>
                         <th>Total</th>
-                        <th>Price</th>
-                        <th>Quantity</th>
-                        <th>Total</th>
+                        <th>Action</th>
                     </tr>
                 </thead>
                 <tbody>
-                    @for ($i = 1; $i <= 30; $i++)
+                    @php 
+                        $i = 1;
+                    @endphp
+                    @foreach ($invoices as $invoice)
                         <tr>
-                            <th>{{ $i }}</th>
-                            <td>Mark</td>
-                            <td>@mdo</td>
-                            <td>Otto</td>
-                            <td>@mdo</td>
-                            <td>@mdo</td>
-                            <td>Otto</td>
-                            <td>Otto</td>
-                            <td>@mdo</td>
-                            <td>Otto</td>
+                            <th>{{ $i++ }}</th>
+                            <td>{{ $invoice->date }}</td>
+                            <td>{{ $invoice->branch_name }}</td>
+                            <td>{{ $invoice->room_no }}</td>
+                            <td>{{ $invoice->invoice_id }}</td>
+                            <td>{{ $invoice->sub_total }}</td>
+                            <td>{{ $invoice->discount }}</td>
+                            <td>{{ $invoice->total }}</td>
+                            <td>Action</td>
                         </tr>
-                    @endfor
+                    @endforeach
                 </tbody>
             </table>
         </div>
         {{-- !end report --}}
         {{-- pagenation --}}
         <nav aria-label="Page navigation example">
-            <ul class="pagination justify-content-center">
-                <li class="page-item disabled">
-                    <a class="page-link" href="#" tabindex="-1">Previous</a>
-                </li>
-                <li class="page-item"><a class="page-link" href="#">1</a></li>
-                <li class="page-item"><a class="page-link" href="#">2</a></li>
-                <li class="page-item"><a class="page-link" href="#">3</a></li>
-                <li class="page-item">
-                    <a class="page-link" href="#">Next</a>
-                </li>
-            </ul>
+            {{ $invoices->appends(request()->input())->links() }}
         </nav>
         {{--! end pagenation --}}
     </div>
@@ -140,6 +124,11 @@
 @include('cms.report.footer')
 <script>
     $( document ).ready(function() {
+        
+        $('.date').datepicker({  
+            format: 'yyyy-mm-dd'
+        });  
+        
         $("#print_report").click(function(){
             // https://www.jqueryscript.net/other/Print-Specified-Area-Of-A-Page-PrintArea.html
             $("#print_area").printArea({
