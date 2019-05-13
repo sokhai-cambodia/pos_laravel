@@ -75,8 +75,14 @@
     <div class="card-block">
         {{-- Report --}}
         <div id="print_area">
+            <div class="text-center">
+                <h3>Daily Report For {{ $f_date }}</h3>
+                <h4>Branch: {{ $f_branch == '' ? 'All Branch' : $branch->name }}</h4>
+                <h4>Room: {{ $f_room == '' ? 'All Room' : $room->room_no }}</h4>
+                {{-- <h4>Type: {{ $f_stock_type == '' ? 'All Type' : $stockTypes[$f_stock_type] }}</h4> --}}
+                
+            </div>
             <table class="table" id="export_area">
-                <span class="my-2">Report for:<b>...</b></span>
                 <thead>
                     <tr>
                         <th>No</th>
@@ -84,9 +90,9 @@
                         <th>Branch</th>
                         <th>Room</th>
                         <th>Invoice No</th>
-                        <th>Sub Total</th>
-                        <th>Discount</th>
-                        <th>Total</th>
+                        <th>Sub Total($)</th>
+                        <th>Discount(%)</th>
+                        <th>Total($)</th>
                         <th>Action</th>
                     </tr>
                 </thead>
@@ -100,7 +106,7 @@
                             <td>{{ $invoice->date }}</td>
                             <td>{{ $invoice->branch_name }}</td>
                             <td>{{ $invoice->room_no }}</td>
-                            <td>{{ $invoice->invoice_id }}</td>
+                            <td>{{ $invoice->invoice_no }}</td>
                             <td>{{ $invoice->sub_total }}</td>
                             <td>{{ $invoice->discount }}</td>
                             <td>{{ $invoice->total }}</td>

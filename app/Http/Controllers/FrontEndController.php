@@ -101,6 +101,7 @@ class FrontEndController extends Controller
 
                 // Create Invoice
                 $invoice = Invoice::create([
+                    'invoice_no' => $this->generateInvoiceNo(),
                     'room_id' => $request->room_id,
                     'branch_id' => $branchId,
                     'note' => 'test note',
@@ -110,20 +111,29 @@ class FrontEndController extends Controller
                     'created_by' => Auth::id(),
                     'status' => 'paid'
                 ]);
-                
+
+                // Invoice Variable
+                $sub_total = 0;
+                $discount = 15;
+                $total = 0;
+
                 // Create Invoice Detail
                 foreach($request->invoice as $invDetail) {
 
                     $invoiceDetailProduct = Product::find($invDetail['product_id']);
+                    
+                    $sub_total += ($invDetail['qty'] * $invoiceDetailProduct->price);
 
                     $invoiceDetail = InvoiceDetail::create([
                         'invoice_id' => $invoice->id,
-                        'product_id' => $invDetail['product_id'],
+                        'product_id' => $invoiceDetailProduct->id,
                         'quantity' => $invDetail['qty'],
                         'quantity_for_cut_stock' => $invoiceDetailProduct->quantity_for_cut_stock,
-                        'price' => $invDetail['price'],
+                        'price' =>  $invoiceDetailProduct->price,
                         'unit_id' => $invDetail['unit_id']
                     ]);
+                    
+
 
                     if($invoiceDetailProduct->stock_type == 'ingredient') {
                         $invoiceIngredientDetailProducts = ProductIngredient::where('product_id', $invoiceDetailProduct->id)->get();
@@ -149,6 +159,14 @@ class FrontEndController extends Controller
                         ProductStock::cutStock($branchId, $invoiceDetailProduct->id, $qtyCutStock);
                     }
                 }
+
+                // Update Invoice Total
+                $total = (100 - $discount) / 100 * $sub_total;
+                $invoice->sub_total = $sub_total;
+                $invoice->discount = $discount;
+                $invoice->total = $total;
+                $invoice->save();
+
             });
 
             NotificationHelper::setSuccessNotification('created_success');
@@ -191,6 +209,14 @@ class FrontEndController extends Controller
             'status' => 1,
             'data' => $data
         ]);
+    }
+
+    // ############# PRIVATE FUNCTION ###############
+
+    private function generateInvoiceNo($prefix = 'Inv-', $len = 12) {
+        $invoice = Invoice::orderBy('id', 'desc')->first();
+        $inv_no = $invoice->id + 1;
+        return str_pad($prefix, $len - strlen($inv_no), "0").''.$inv_no;
     }
 
 

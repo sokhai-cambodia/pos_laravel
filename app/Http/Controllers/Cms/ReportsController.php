@@ -80,6 +80,9 @@ class ReportsController extends Controller
         $branches = Branch::getBranchByAuth();
         $rooms = Room::all();
 
+        $branch = Branch::find($f_branch);
+        $room = Room::find($f_room);
+
         $data = [
             'title' => 'Daily Report',
             'icon' => $this->icon,
@@ -89,7 +92,9 @@ class ReportsController extends Controller
             'f_branch' => $f_branch,
             'f_date' => $f_date,
             'f_room' => $f_room,
-            'f_invoice_no' => $f_invoice_no
+            'f_invoice_no' => $f_invoice_no,
+            'branch' => $branch,
+            'room' => $room
         ];
         return view('cms.report.daily')->with($data);
     }
@@ -203,7 +208,7 @@ class ReportsController extends Controller
         }
 
         if($invoice_id != '') {
-            $whereData[] = ['i.id', 'like', '%'.$invoice_id.'%'];
+            $whereData[] = ['i.invoice_no', 'like', '%'.$invoice_id.'%'];
         }
 
         if($date != null) {
@@ -216,12 +221,14 @@ class ReportsController extends Controller
                 ->join('users AS u', 'u.id', '=', 'i.created_by')
                 ->select(
                     'i.id AS invoice_id',
+                    'i.invoice_no',
                     'b.name AS branch_name',
                     'r.room_no',
                     'i.sub_total',
                     'i.discount',
                     'i.total',
-                    DB::raw("DATE_FORMAT(i.created_at, '%Y-%m-%d') AS date"),
+                    'i.created_at AS date',
+                    // DB::raw("DATE_FORMAT(i.created_at, '%Y-%m-%d') AS date"),
                     DB::raw("CONCAT(u.last_name, ' ', u.first_name) AS fullName")
                 )
                 ->where($whereData)
