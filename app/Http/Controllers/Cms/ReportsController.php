@@ -59,7 +59,7 @@ class ReportsController extends Controller
         $f_end_date = isset($request->end_date) ? $request->end_date : date("Y-m-d");
         $f_branch = isset($request->branch) ? $request->branch : '';
         $f_stock_type = isset($request->stock_type) ? $request->stock_type : '';
-        $stocks = $this->getInventoryTransaction($f_start_date, $f_end_date, $f_branch, $f_stock_type, 30);
+        $stocks = $this->getInventoryTransaction($f_start_date, $f_end_date, $f_branch, $f_stock_type, 3);
        
         $branch = Branch::find($f_branch);
         $stockTypes = [ 
