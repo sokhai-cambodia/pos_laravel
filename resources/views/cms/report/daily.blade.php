@@ -1,11 +1,34 @@
 @extends('layouts.cms.template', compact('title','icon'))
-@include('cms.report.header')
+{{-- @include('cms.report.header') --}}
 @section('content')
 <style>
     .report_header {
     background: grey;
     }
 </style>
+
+
+ <!-- animation modal Dialogs start -->
+ <div class="modal fade" id="view-info" tabindex="-1" role="dialog">
+    <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title">View User Information</h4>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body" id="model-body">
+                
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default waves-effect " data-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+<!--animation modal  Dialogs ends -->
+
 <!-- Default ordering table start -->
 <div class="card">
     <div class="card-header">
@@ -110,7 +133,11 @@
                             <td>{{ $invoice->sub_total }}</td>
                             <td>{{ $invoice->discount }}</td>
                             <td>{{ $invoice->total }}</td>
-                            <td>Action</td>
+                            <td>
+                                <button class="btn waves-effect waves-light hor-grd btn-grd-light view-info" data-id="{{ $invoice->invoice_id }}">
+                                    View Detail<i class="fas fa-print" style="margin-left:10px;"></i>
+                                </button>
+                            </td>
                         </tr>
                     @endforeach
                 </tbody>
@@ -127,7 +154,7 @@
 <!-- Default ordering table end -->
 @endsection
 @section('footer-src')
-@include('cms.report.footer')
+{{-- @include('cms.report.footer') --}}
 <script>
     $( document ).ready(function() {
         
@@ -184,6 +211,27 @@
 
             });
         });
+
+        // open modal
+        // $('#view-info').modal('show');
+        $('body').on('click', '.view-info', function() {
+            var invoice_id = $(this).attr('data-id');
+            $.ajax({
+                type:'GET',
+                url:"{{ route('report.invoice-detail') }}",
+                data: {
+                    invoice_id: invoice_id
+                },
+                success:function(data) {
+                    if(data.status == 1) {
+                        $('#model-body').html(data.data);
+                        $('#view-info').modal('show');
+                    }
+                }
+            });  
+            
+        });
+
     });
 </script>
 @endsection

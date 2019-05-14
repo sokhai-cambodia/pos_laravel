@@ -31,7 +31,7 @@
 <link rel="stylesheet" type="text/css" href="{{ asset('plugin/cms/assets/css/jquery-ui.css') }}">
 
 {{-- script onlline --}}
-<link rel="stylesheet" type="text/css" media="screen" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
+{{-- <link rel="stylesheet" type="text/css" media="screen" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css"> --}}
 <link rel="stylesheet" type="text/css" media="screen" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
 
 <link rel="stylesheet" type="text/css" href="{{ asset('plugin/cms/assets/css/bootstrap-datepicker.css') }}">
