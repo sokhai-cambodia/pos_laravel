@@ -214,21 +214,40 @@ tbody tr {
             </div>
             <div class="modal-body">
                 <div class="row">
-                    <form>
-                    <div class="col-md-6">
-                            <div class="form-group">
-                                <label for="sub_total" class="col-form-label">Sub-Total:</label>
-                                <input type="text" class="form-control" id="sub_total">
-                            </div>
-                            <div class="form-group">
-                                <label for="discount" class="col-form-label">Discount:</label>
-                                <input type="text" class="form-control" id="discount">
-                            </div>
-                            <div class="form-group">
-                                <label for="grand_total" class="col-form-label">Grand-Total:</label>
-                                <input class="form-control" id="grand_total" />
-                            </div>
-
+                    <form class="col-md-6">
+                        <div class="form-group">
+                            <label for="total" class="col-form-label">Total:</label>
+                            <input type="text" class="form-control" id="total" value="calculateTotalPrices()">
+                        </div>
+                    </form>
+                    <form class="col-md-6">
+                        <div class="form-group">
+                            <label for="discount" class="col-form-label">Discount:</label>
+                            <input type="text" class="form-control" id="discount">
+                        </div>
+                    </form>
+                    <form class="col-md-6">
+                        <div class="form-group">
+                            <label for="sub_total" class="col-form-label">Sub-Total:</label>
+                            <input type="text" class="form-control" id="sub_total">
+                        </div>
+                    </form>
+                    <form class="col-md-6">
+                        <div class="form-group">
+                            <label for="case_recieve" class="col-form-label">Case Recieve :</label>
+                            <input type="text" class="form-control" id="case_recieve">
+                        </div>
+                    </form>
+                    <form class="col-md-6">
+                        <div class="form-group">
+                            <label for="case_return" class="col-form-label">Case Return :</label>
+                            <input type="text" class="form-control" id="case_return" />
+                        </div>
+                    </form>
+                    <form class="col-md-6">
+                        <div class="form-group">
+                            <label for="grand_total" class="col-form-label">Grand-Total:</label>
+                            <input class="form-control" id="grand_total" />
                         </div>
                     </form>
 
