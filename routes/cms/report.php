@@ -8,4 +8,6 @@ Route::group(['prefix' => 'report'], function(){
     Route::get('/stock', 'Cms\ReportsController@stock')->name('report.stock');
     Route::get('/transfer-stock', 'Cms\ReportsController@transferStock')->name('report.transfer-stock');
 
+    // ################## AJAX ROUTE ##################
+    Route::get('/invoice-detail', 'Cms\ReportsController@getInvoiceDetail')->name('report.invoice-detail');
 });

@@ -114,6 +114,33 @@ class ReportsController extends Controller
         return view('cms.report.year')->with($data);
     }
 
+
+    // ################## AJAX FUNCTION ##################
+
+    public function getInvoiceDetail(Request $request) {
+        $invoice_details = DB::table('inventory_transactions AS it')
+        ->join('inventory_transaction_details AS itd', 'itd.inventory_transaction_id', '=', 'it.id')
+        ->join('products AS p', 'p.id', '=', 'itd.product_id')
+        ->join('users AS u', 'u.id', '=', 'it.created_by')
+        ->select(
+            'it.id',
+            'it.type',
+            'p.name',
+            'itd.quantity',
+            DB::raw("DATE_FORMAT(it.created_at, '%Y-%m-%d') AS date"),
+            DB::raw("CONCAT(u.last_name, ' ', u.first_name) AS fullName")
+        );
+        $data = view('cms.report.ajax.invoice-detail')->with([
+            'invoice_details' => $invoice_details,
+            ])->render();
+
+        return response()->json([
+            'status' => 1,
+            'data' => 'test'
+        ]);
+    }
+
+
     // ################## PRIVATE FUNCTION ##################
     private function getInventoryTransaction($start_date, $end_date, $branch, $stock_type, $limit=30) {
         
