@@ -6,7 +6,7 @@
         {{ $product->name }}
     </td>
     <td style="text-align: center" style="width: 50px;">
-        <input type="number"  name="qty[]" class="form-control qty" style="width: 50px;"  value="1">
+        <input type="number"  name="qty[]" class="form-control qty" style="width: 50px;"  value="1" min="1">
     </td>
     <td style="text-align: center">
         <input type="hidden" name="price[]" class="price" value="{{ $product->price }}">

@@ -78,6 +78,7 @@ class FrontEndController extends Controller
 
     public function store(Request $request)
     {
+      
         $request->validate([
             'room_id' => 'required|min:1',
             'invoice.*.product_id' => 'required|min:1',
@@ -104,19 +105,21 @@ class FrontEndController extends Controller
                     'invoice_no' => $this->generateInvoiceNo(),
                     'room_id' => $request->room_id,
                     'branch_id' => $branchId,
-                    'note' => 'test note',
+                    'note' => $request->note,
                     'sub_total' => 0,
-                    'discount' => 0,
+                    'discount' => $request->discount,
                     'total' => 0,
+                    'cash_recieve' => $request->cash_recieve,
+                    'cash_return' => $request->cash_return,
                     'created_by' => Auth::id(),
-                    'status' => 'paid'
+                    'status' => $request->pay_type
                 ]);
 
                 // Invoice Variable
                 $sub_total = 0;
-                $discount = 15;
+                $discount = $request->discount;
                 $total = 0;
-
+  
                 // Create Invoice Detail
                 foreach($request->invoice as $invDetail) {
 
