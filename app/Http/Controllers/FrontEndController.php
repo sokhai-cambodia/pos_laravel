@@ -50,6 +50,11 @@ class FrontEndController extends Controller
         return view('pos.room')->with($data);
     }
 
+    public function printInvoice()
+    {
+        return view('pos.print-invoice');
+    }
+
     public function showBranch()
     {
         if(Auth::user()->use_branch_id != null) {
@@ -87,8 +92,8 @@ class FrontEndController extends Controller
             'invoice.*.unit_id' => 'required|min:1',
         ]);
 
-        // try
-        // {
+        try
+        {
 
             DB::transaction(function () use($request) {
                 $branchId = Auth::user()->use_branch_id;
@@ -173,13 +178,13 @@ class FrontEndController extends Controller
             });
 
             NotificationHelper::setSuccessNotification('created_success');
-            return back();
-        // }
-        // catch (\Exception $e)
-        // {
-        //     NotificationHelper::errorNotification($e);
-        //     return back()->withInput();
-        // }
+            return redirect()->route('pos.print-invoice');
+        }
+        catch (\Exception $e)
+        {
+            NotificationHelper::errorNotification($e);
+            return back()->withInput();
+        }
 
     }
 
