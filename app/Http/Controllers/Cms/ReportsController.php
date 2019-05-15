@@ -100,9 +100,30 @@ class ReportsController extends Controller
     }
 
     public function month() {
+        $f_branch = isset($request->branch) ? $request->branch : '';
+        $f_invoice_no = isset($request->invoice_no) ? $request->invoice_no : '';
+        $f_room = isset($request->room) ? $request->room : '';
+        $f_date = isset($request->date) ? $request->date : date("Y-m");
+        
+        $invoices = $this->getInvoicesByMonth($f_branch, $f_room, $f_date, $f_invoice_no, 30);
+        $branches = Branch::getBranchByAuth();
+        $rooms = Room::all();
+
+        $branch = Branch::find($f_branch);
+        $room = Room::find($f_room);
+
         $data = [
             'title' => 'Monthly Report',
-            'icon' => $this->icon
+            'icon' => $this->icon,
+            'invoices' => $invoices,
+            'branches' => $branches,
+            'rooms' => $rooms,
+            'f_branch' => $f_branch,
+            'f_date' => $f_date,
+            'f_room' => $f_room,
+            'f_invoice_no' => $f_invoice_no,
+            'branch' => $branch,
+            'room' => $room
         ];
         return view('cms.report.month')->with($data);
     }
@@ -239,6 +260,49 @@ class ReportsController extends Controller
 
         if($date != null) {
             $whereData[] = [ DB::raw("DATE_FORMAT(i.created_at, '%Y-%m-%d')"), $date ];
+        }
+
+        $data = DB::table('invoices AS i')
+                ->join('branches AS b', 'b.id', '=', 'i.branch_id')
+                ->join('rooms AS r', 'r.id', '=', 'i.room_id')
+                ->join('users AS u', 'u.id', '=', 'i.created_by')
+                ->select(
+                    'i.id AS invoice_id',
+                    'i.invoice_no',
+                    'b.name AS branch_name',
+                    'r.room_no',
+                    'i.sub_total',
+                    'i.discount',
+                    'i.total',
+                    'i.created_at AS date',
+                    // DB::raw("DATE_FORMAT(i.created_at, '%Y-%m-%d') AS date"),
+                    DB::raw("CONCAT(u.last_name, ' ', u.first_name) AS fullName")
+                )
+                ->where($whereData)
+                ->orderBy('i.id')
+                ->paginate($limit);
+
+        return $data;
+    }
+
+    private function getInvoicesByMonth($branch, $room, $date, $invoice_id, $limit=30) {
+        
+        $whereData = [];
+
+        if($branch != '') {
+            $whereData[] = ['i.branch_id', $branch];
+        }
+
+        if($room != '') {
+            $whereData[] = ['i.room_id', $room];
+        }
+
+        if($invoice_id != '') {
+            $whereData[] = ['i.invoice_no', 'like', '%'.$invoice_id.'%'];
+        }
+
+        if($date != null) {
+            $whereData[] = [ DB::raw("DATE_FORMAT(i.created_at, '%Y-%m')"), $date ];
         }
 
         $data = DB::table('invoices AS i')
