@@ -15,10 +15,10 @@
         @foreach ($invoice_details as $invoice_detail)
             <tr>
                 <th>{{ $i++ }}</th>
-                <td>{{ $invoice_detail->date }}</td>
-                <td>{{ $invoice_detail->branch_name }}</td>
-                <td>{{ $invoice_detail->room_no }}</td>
-                <td>{{ $invoice_detail->invoice_no }}</td>
+                <td>{{ $invoice_detail->product_name }}</td>
+                <td>{{ $invoice_detail->unit_name }}</td>
+                <td>{{ $invoice_detail->quantity }}</td>
+                <td>{{ $invoice_detail->price }}</td>
             </tr>
         @endforeach
     </tbody>

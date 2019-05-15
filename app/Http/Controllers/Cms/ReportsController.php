@@ -118,25 +118,24 @@ class ReportsController extends Controller
     // ################## AJAX FUNCTION ##################
 
     public function getInvoiceDetail(Request $request) {
-        $invoice_details = DB::table('inventory_transactions AS it')
-        ->join('inventory_transaction_details AS itd', 'itd.inventory_transaction_id', '=', 'it.id')
-        ->join('products AS p', 'p.id', '=', 'itd.product_id')
-        ->join('users AS u', 'u.id', '=', 'it.created_by')
+        $invoice_details = DB::table('invoice_details AS id')
+        ->join('products AS p', 'p.id', '=', 'id.product_id')
+        ->join('units AS u', 'u.id', '=', 'id.unit_id')
+        ->where('id.invoice_id', $request->invoice_id)
         ->select(
-            'it.id',
-            'it.type',
-            'p.name',
-            'itd.quantity',
-            DB::raw("DATE_FORMAT(it.created_at, '%Y-%m-%d') AS date"),
-            DB::raw("CONCAT(u.last_name, ' ', u.first_name) AS fullName")
-        );
+            'p.name AS product_name',
+            'u.name AS unit_name',
+            'id.quantity',
+            'id.price'
+        )
+        ->get();
         $data = view('cms.report.ajax.invoice-detail')->with([
             'invoice_details' => $invoice_details,
             ])->render();
 
         return response()->json([
             'status' => 1,
-            'data' => 'test'
+            'data' => $data
         ]);
     }
 
