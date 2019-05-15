@@ -116,7 +116,7 @@
                         <th>Sub Total($)</th>
                         <th>Discount(%)</th>
                         <th>Total($)</th>
-                        <th>Action</th>
+                        <th class="no_print">Action</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -133,7 +133,7 @@
                             <td>{{ $invoice->sub_total }}</td>
                             <td>{{ $invoice->discount }}</td>
                             <td>{{ $invoice->total }}</td>
-                            <td>
+                            <td class="no_print">
                                 <button class="btn waves-effect waves-light hor-grd btn-grd-light view-info" data-id="{{ $invoice->invoice_id }}">
                                     View Detail<i class="fas fa-print" style="margin-left:10px;"></i>
                                 </button>
@@ -164,11 +164,13 @@
         
         $("#print_report").click(function(){
             // https://www.jqueryscript.net/other/Print-Specified-Area-Of-A-Page-PrintArea.html
+            $(".no_print").hide();
             $("#print_area").printArea({
-                mode:"iframe",
+                mode:"popup",
                 popTitle: 'Sample Print',
                 popClose: true,
             });
+            $(".no_print").show();
         });
 
         // https://www.jqueryscript.net/table/export-table-json-csv-txt-pdf.html?fbclid=IwAR3ZQ6gnktILOahyibt3Hm3YnEmDAalN8f2mz2CGg9QdzduniqqNSF1UyOk
