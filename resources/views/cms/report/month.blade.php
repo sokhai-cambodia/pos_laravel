@@ -99,7 +99,7 @@
         {{-- Report --}}
         <div id="print_area">
             <div class="text-center">
-                <h3>Daily Report For {{ $f_date }}</h3>
+                <h3>Monthly Report For {{ $f_date }}</h3>
                 <h4>Branch: {{ $f_branch == '' ? 'All Branch' : $branch->name }}</h4>
                 <h4>Room: {{ $f_room == '' ? 'All Room' : $room->room_no }}</h4>
                 {{-- <h4>Type: {{ $f_stock_type == '' ? 'All Type' : $stockTypes[$f_stock_type] }}</h4> --}}
