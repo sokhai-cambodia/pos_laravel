@@ -19,7 +19,7 @@
                 </button>
             </div>
             <div class="modal-body" id="model-body">
-                
+
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-default waves-effect " data-dismiss="modal">Close</button>
@@ -103,7 +103,7 @@
                 <h4>Branch: {{ $f_branch == '' ? 'All Branch' : $branch->name }}</h4>
                 <h4>Room: {{ $f_room == '' ? 'All Room' : $room->room_no }}</h4>
                 {{-- <h4>Type: {{ $f_stock_type == '' ? 'All Type' : $stockTypes[$f_stock_type] }}</h4> --}}
-                
+
             </div>
             <table class="table" id="export_area">
                 <thead>
@@ -120,7 +120,7 @@
                     </tr>
                 </thead>
                 <tbody>
-                    @php 
+                    @php
                         $i = 1;
                     @endphp
                     @foreach ($invoices as $invoice)
@@ -157,11 +157,11 @@
 {{-- @include('cms.report.footer') --}}
 <script>
     $( document ).ready(function() {
-        
-        $('.date').datepicker({  
+
+        $('.date').datepicker({
             format: 'yyyy-mm-dd'
-        });  
-        
+        });
+
         $("#print_report").click(function(){
             // https://www.jqueryscript.net/other/Print-Specified-Area-Of-A-Page-PrintArea.html
             $(".no_print").hide();
@@ -230,8 +230,8 @@
                         $('#view-info').modal('show');
                     }
                 }
-            });  
-            
+            });
+
         });
 
     });
