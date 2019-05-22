@@ -42,17 +42,15 @@
             <div class="form">
                 <div class="d-flex justify-content-around">
                     <div><div class="form-group">
-                            <label for="date">Date : </label>
-                            <span>Date</span>
+                            <label for="date">Date: {{ $invoice->created_at }}</label>
+                            
                         </div>
                         <div class="form-group">
-                            <label for="cashier">Cashier : </label>
-                            <span>Cashier</span>
+                            <label for="cashier">Cashier: {{ $invoice->userCreatedBy->getFullName() }}</label>
                         </div>
                     </div>
                     <div class="form-group">
-                        <label for="invoice_id">Invoice-ID : </label>
-                        <span>Invoice-ID</span>
+                        <label for="invoice_id">Invoice-No: {{ $invoice->invoice_no }}</label>
                     </div>
                 </div>
 
@@ -62,42 +60,40 @@
             {{-- table invoice --}}
             <table class="table table-sm mb-2">
                 <thead>
-                <tr>
-                    <th scope="col">Des</th>
-                    <th scope="col">Qty</th>
-                    <th scope="col">Pri</th>
-                    <th scope="col">Total</th>
-                </tr>
+                    <tr>
+                        <th scope="col">No</th>
+                        <th scope="col">Name</th>
+                        <th scope="col">Qty</th>
+                        <th scope="col">Price</th>
+                        <th scope="col">Total</th>
+                    </tr>
                 </thead>
                 <tbody>
-                <tr>
-                    <th>1</th>
-                    <td>1</td>
-                    <td>1</td>
-                    <td>@1</td>
-                </tr>
-                <tr>
-                    <th>1</th>
-                    <td>1</td>
-                    <td>1</td>
-                    <td>@1</td>
-                </tr>
+                    @php 
+                        $no = 1;
+                    @endphp
+                    @foreach ($invoice_details as $invoice_detail)
+                        <tr>
+                            <th>{{ $no++ }}</th>
+                            <td>{{ $invoice_detail->product_name }}</td>
+                            <td>{{ $invoice_detail->quantity }}</td>
+                            <td>{{ $invoice_detail->price }}</td>
+                            <td>{{ $invoice_detail->total }}</td>
+                        </tr>
+                    @endforeach
                 </tbody>
             </table>
             <hr>
             {{-- Calculate product price  --}}
             <div class="form text-right">
                     <div class="form-group">
-                        <label for="sub-total">Sub-Total : </label>
-                        <span>Sub-Total</span>
+                        <label for="sub-total">Sub Total: {{ $invoice->sub_total }}</label>
                     </div>
                     <div class="form-group">
-                        <label for="discount">Discount : </label>
-                        <span>Discount</span>
+                        <label for="discount">Discount: {{ $invoice->discount }}</label>
                     </div>
                     <div class="form-group">
-                        <label for="Total">Total : </label>
-                        <span>Total</span>
+                        <label for="Total">Total: {{ $invoice->total }}</label>
                     </div>
                 </div>
             {{-- footer --}}
@@ -123,7 +119,12 @@
 <script>
     $( document ).ready(function() {
         $("#print_invoice").click(function(){
-            console.log('work');
+            printInvoice();
+        });
+
+        printInvoice();
+
+        function printInvoice() {
             // https://www.jqueryscript.net/other/Print-Specified-Area-Of-A-Page-PrintArea.html
             // $(".no_print").hide();
             $("#print_area").printArea({
@@ -137,7 +138,7 @@
 
             });
             // $(".no_print").show();
-        });
+        }
     })
 </script>
 @endsection

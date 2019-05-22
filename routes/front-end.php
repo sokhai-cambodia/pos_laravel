@@ -5,7 +5,7 @@ Route::group(['prefix' => 'pos', 'middleware' => ['auth']], function(){
     Route::get('','FrontEndController@index')->name('pos.pos');
     Route::post('','FrontEndController@store')->name('pos.store');
     Route::get('/room', 'FrontEndController@room')->name('pos.room');
-    Route::get('print-invoice','FrontEndController@printInvoice')->name('pos.print-invoice');
+    Route::get('print-invoice/{id}','FrontEndController@printInvoice')->name('pos.print-invoice');
 
     // AJAX ROUTE
     Route::get('get-product-list', 'FrontEndController@getProductList')->name('pos.get-product-list');

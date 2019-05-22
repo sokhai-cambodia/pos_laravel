@@ -50,9 +50,21 @@ class FrontEndController extends Controller
         return view('pos.room')->with($data);
     }
 
-    public function printInvoice()
+    public function printInvoice($id)
     {
-        return view('pos.print-invoice');
+        $data['invoice'] = Invoice::find($id);
+        $data['invoice_details'] = DB::table('invoice_details AS iv')
+                                    ->join('products AS p', 'p.id', '=', 'iv.product_id')
+                                    ->select(
+                                        'p.name AS product_name',
+                                        'iv.quantity',
+                                        'iv.price',
+                                        DB::raw('iv.price * iv.quantity AS total')
+
+                                    )
+                                    ->where('iv.invoice_id', $id)
+                                    ->get();
+        return view('pos.print-invoice')->with($data);
     }
 
     public function showBranch()
@@ -95,7 +107,7 @@ class FrontEndController extends Controller
         try
         {
 
-            DB::transaction(function () use($request) {
+            $invoice = DB::transaction(function () use($request) {
                 $branchId = Auth::user()->use_branch_id;
 
                 // Check Invalid room
@@ -174,11 +186,15 @@ class FrontEndController extends Controller
                 $invoice->discount = $discount;
                 $invoice->total = $total;
                 $invoice->save();
+                
+                return $invoice;
 
             });
 
             NotificationHelper::setSuccessNotification('created_success');
-            return redirect()->route('pos.print-invoice');
+            return redirect()->route('pos.print-invoice', ['id' => $invoice->id]);
+
+            
         }
         catch (\Exception $e)
         {
