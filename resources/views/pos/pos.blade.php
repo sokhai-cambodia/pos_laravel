@@ -220,12 +220,6 @@
     <button type="button" class="btn btn-warning btn-lg btn-invoice" id="btn-unpay-invoice">
         <i class="far fa-money-bill-alt"></i>Pay Later
     </button>
-    <button type="button" class="btn btn-secondary btn-lg btn-invoice">
-        <i class="fas fa-print"></i>Print
-    </button>
-    <button type="button" class="btn btn-danger btn-lg btn-invoice">
-        <i class="fas fa-window-close"></i>Close
-    </button>
 </div>
 @endsection
 @section('footer-src')
@@ -233,16 +227,16 @@
     // filter searchX category
         $(function () {
             // // submit form
-    
+
             $("#pay_btn").click(function(){
                 $("#POSfrm").submit();
             });
-    
-    
+
+
             // Get Product List
             $('.get-category-list').click(function(){
                 var category_id = $(this).attr('data-id');
-    
+
                 $.ajax({
                     url: "{{ route('pos.get-product-list') }}",
                     type: 'get',
@@ -257,7 +251,7 @@
                     }
                 });
             });
-    
+
             $('body').on('click', '.btn-delete', function() {
                 var tr = $(this).closest('tr')
                 swal({
@@ -291,7 +285,7 @@
                     }
                 })
             });
-    
+
             $('body').on('click', '.product-list', function() {
                 var product_id = $(this).attr('data-id');
                 if(!existProduct(product_id)) {
@@ -310,9 +304,9 @@
                         }
                     });
                 }
-    
+
             });
-    
+
             function existProduct(id) {
                 $result = false;
                 $('#invoice-table > tbody  > tr').each(function(ind, tr) {
@@ -329,7 +323,7 @@
                 calculateTotalPrices();
                 return $result;
             }
-    
+
             function generateInvoiceItemNo() {
                 $('#invoice-table > tbody  > tr').each(function(ind, tr) {
                     $(tr).find('.no').text(ind + 1);
@@ -337,11 +331,11 @@
                     $(tr).find('.unit_id').attr('name', 'invoice['+ ind +'][unit_id]');
                     $(tr).find('.qty').attr('name', 'invoice['+ ind +'][qty]');
                     $(tr).find('.price').attr('name', 'invoice['+ ind +'][price]');
-    
+
                 });
                 calculateTotalPrices();
             }
-    
+
             // total prices
             function calculateTotalPrices() {
                 var sub_total = 0;
@@ -352,47 +346,47 @@
                     price = isNaN(price) ? 0 : price;
                     sub_total += (qty * price);
                 });
-    
+
                 $("#totalPrice").text('$' + parseFloat(sub_total).toFixed(2));
                 $("#sub_total").val(parseFloat(sub_total).toFixed(2));
                 calculateInvoicePrice();
             }
-    
+
             function calculateInvoicePrice() {
                 var sub_total = $("#sub_total").val();
                 var discount = $("#discount").val();
                 var cash_recieve = $("#cash_recieve").val();
-                
+
                 var total = (100 - discount) / 100 * sub_total;
                 var cash_return = cash_recieve - total;
-    
+
                 $("#total").val(total.toFixed(2));
                 $("#cash_return").val(cash_return.toFixed(2));
             }
-    
+
             $("#discount").keyup(function(){
                 calculateInvoicePrice();
             });
-    
+
             $("#cash_recieve").keyup(function(){
                 calculateInvoicePrice();
             });
 
             $("#btn-pay-invoice").click(function(){
                 $("#pay_type").val('paid');
-                $('#invoice_modal').modal('show'); 
+                $('#invoice_modal').modal('show');
             });
 
             $("#btn-unpay-invoice").click(function(){
                 $("#pay_type").val('unpaid');
-                $('#invoice_modal').modal('show'); 
+                $('#invoice_modal').modal('show');
             });
 
 
             $('body').on('change', '.qty', function() {
                 calculateTotalPrices();
             });
-    
+
         });
 </script>
 @endsection

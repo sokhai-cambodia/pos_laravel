@@ -113,7 +113,31 @@
         </div>
     </div>
 </div>
+<button  type="button" id="print_invoice" class="btn btn-secondary btn-lg btn-invoice fixed-bottom" >
+    <i class="fas fa-print"></i>Print
+</button>
 @endsection
-
 @section('footer-src')
+{{-- @include('cms.report.footer') --}}
+{{-- <script src="{{ asset('plugin/cms/assets/js/jquery.PrintArea.js') }}"></script> --}}
+<script>
+    $( document ).ready(function() {
+        $("#print_invoice").click(function(){
+            console.log('work');
+            // https://www.jqueryscript.net/other/Print-Specified-Area-Of-A-Page-PrintArea.html
+            // $(".no_print").hide();
+            $("#print_area").printArea({
+                mode: "popup",
+                // popHt: 768, // popup window height
+                // popWd: 1024, // popup window width
+                // popX: 200,  // popup window screen X position
+                // popY: 100,  //popup window screen Y position
+                popTitle: "Sample",// popup window title element
+                popClose: true,  // popup window close after printing
+
+            });
+            // $(".no_print").show();
+        });
+    })
+</script>
 @endsection

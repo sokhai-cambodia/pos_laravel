@@ -14,6 +14,9 @@
 <script src="{{ asset('plugin/front-end/js/order.js') }}"></script>
 <script src="{{ asset('plugin/cms/assets/js/swal.js') }}"></script>
 <script src="{{ asset('plugin/front-end/js/bootstrap.min.js') }}"></script>
+<!-- PrintArea -->
+<script src="{{ asset('plugin/cms/assets/js/jquery.PrintArea.js') }}"></script>
+
 
 {{-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script> --}}
 {{-- <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script> --}}
