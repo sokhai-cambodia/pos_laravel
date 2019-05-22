@@ -122,7 +122,7 @@
             printInvoice();
         });
 
-        printInvoice();
+        // printInvoice();
 
         function printInvoice() {
             // https://www.jqueryscript.net/other/Print-Specified-Area-Of-A-Page-PrintArea.html
@@ -137,6 +137,8 @@
                 popClose: true,  // popup window close after printing
 
             });
+
+            window.location.replace("{{ route('pos.room') }}");
             // $(".no_print").show();
         }
     })
