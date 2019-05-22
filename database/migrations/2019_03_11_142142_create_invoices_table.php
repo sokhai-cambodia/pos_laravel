@@ -28,7 +28,7 @@ class CreateInvoicesTable extends Migration
             $table->float('sub_total', 8, 2);
             $table->float('discount', 8, 2)->default(0);
             $table->float('total', 8, 2);
-            $table->float('cash_recieve', 8, 2);
+            $table->float('cash_receive', 8, 2);
             $table->float('cash_return', 8, 2);
             $table->integer('created_by');
             $table->integer('updated_by')->nullable();

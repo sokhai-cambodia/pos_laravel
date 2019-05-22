@@ -114,7 +114,7 @@ class FrontEndController extends Controller
                     'sub_total' => 0,
                     'discount' => $request->discount,
                     'total' => 0,
-                    'cash_recieve' => $request->cash_recieve,
+                    'cash_receive' => $request->cash_receive,
                     'cash_return' => $request->cash_return,
                     'created_by' => Auth::id(),
                     'status' => $request->pay_type

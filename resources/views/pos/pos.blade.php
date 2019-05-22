@@ -123,8 +123,8 @@
                                         <input type="number" class="form-control" id="total" name="total" value="0" min="0" step="0.01" readonly>
                                     </div>
                                     <div class="form-group">
-                                        <label for="cash_recieve" class="col-form-label">Case Recieve :</label>
-                                        <input type="number" class="form-control" id="cash_recieve" name="cash_recieve" value="0" min="0" step="0.01">
+                                        <label for="cash_receive" class="col-form-label">Case Recieve :</label>
+                                        <input type="number" class="form-control" id="cash_receive" name="cash_receive" value="0" min="0" step="0.01">
                                     </div>
                                     <div class="form-group">
                                         <label for="cash_return" class="col-form-label">Case Return :</label>
@@ -355,10 +355,10 @@
             function calculateInvoicePrice() {
                 var sub_total = $("#sub_total").val();
                 var discount = $("#discount").val();
-                var cash_recieve = $("#cash_recieve").val();
+                var cash_receive = $("#cash_receive").val();
 
                 var total = (100 - discount) / 100 * sub_total;
-                var cash_return = cash_recieve - total;
+                var cash_return = cash_receive - total;
 
                 $("#total").val(total.toFixed(2));
                 $("#cash_return").val(cash_return.toFixed(2));
@@ -368,7 +368,7 @@
                 calculateInvoicePrice();
             });
 
-            $("#cash_recieve").keyup(function(){
+            $("#cash_receive").keyup(function(){
                 calculateInvoicePrice();
             });
 
