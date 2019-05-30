@@ -82,7 +82,7 @@
     .bottomFooter {
     position: absolute;
     width: 100%;
-    bottom: -8%;
+    bottom: -45%;
     left: 0;
     padding: 1em
     }

@@ -239,7 +239,7 @@ class FrontEndController extends Controller
 
     private function generateInvoiceNo($prefix = 'Inv-', $len = 12) {
         $invoice = Invoice::orderBy('id', 'desc')->first();
-        $inv_no = $invoice->id + 1;
+        $inv_no = isset($invoice->id) ?  $invoice->id + 1 : 1;
         return str_pad($prefix, $len - strlen($inv_no), "0").''.$inv_no;
     }
 

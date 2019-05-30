@@ -8,8 +8,7 @@
         font-size: 12px;
         min-width: 350px;
         max-width: 350px;
-        padding:20px;
-        height: 500px;
+       
         overflow-y: scroll;
     }
     th, td {
@@ -138,7 +137,7 @@
 
             });
 
-            window.location.replace("{{ route('pos.room') }}");
+            // window.location.replace("{{ route('pos.room') }}");
             // $(".no_print").show();
         }
     })
