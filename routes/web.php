@@ -80,6 +80,9 @@ Route::group(['prefix' => 'cms', 'middleware' => ['auth']], function(){
 
     // STOCK
     require_once __DIR__.'/cms/stock.php';
+
+    // PAYMENT
+    require_once __DIR__.'/cms/payment.php';
 });
 
 Route::group(['prefix' => 'front-end', 'middleware' => ['auth']], function () {
