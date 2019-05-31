@@ -13,6 +13,15 @@
                     </a>
 
                 </li>
+                <li class="">
+                    <a href="{{ route('payment.create') }}" class="waves-effect waves-dark">
+                        <span class="pcoded-micon">
+                            <i class="feather feather icon-home"></i>
+                        </span>
+                        <span class="pcoded-mtext">Payment</span>
+                    </a>
+
+                </li>
 
 
             </ul>
