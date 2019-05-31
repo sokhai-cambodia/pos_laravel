@@ -1,145 +1,206 @@
-@extends('layouts.front-end.template')
-@section('header-src')
-<style>
-    .container {
-        margin-top:70px;
-    }
-    .print-invoice {
-        font-size: 12px;
-        min-width: 350px;
-        max-width: 350px;
-       
-        overflow-y: scroll;
-    }
-    th, td {
-        text-align: center;
-    }
-    hr{
-        border: 2px solid gray;
-        border-radius: 3px;
-    }
-</style>
-@endsection
-
-@section('content')
-<div class="container">
-    {{-- Navbar --}}
-    @include('layouts.front-end.navbar')
-    {{-- #Narbar --}}
-    <div style="height:100%; position:relative">
-        <div id="print_area" class="m-auto print-invoice">
-            {{-- logo and header --}}
-            <div class="text-center">
-                <div >
-                    <img class=" mx-2 logo" src="http://localhost:8000/plugin/front-end/image/logo.jpg" alt="">
-                    <span >Koh Andet Eco Resort</span>
+<!DOCTYPE html>
+<html lang="en" >
+    <head>
+        <meta charset="UTF-8">
+        <title>POS Receipt Template Html Css</title>
+        <style>
+            #invoice-POS {
+            /* box-shadow: 0 0 1in -0.25in rgba(0, 0, 0, 0.5); */
+            padding: 2mm;
+            margin: 0 auto;
+            /* width: 44mm; */
+            width: 70mm;
+            background: #FFF;
+            }
+            #invoice-POS ::selection {
+            background: #f31544;
+            color: black;
+            }
+            #invoice-POS ::moz-selection {
+            background: #f31544;
+            color: black;
+            }
+            #invoice-POS h1 {
+            font-size: 1.5em;
+            color: black;
+            }
+            #invoice-POS h2 {
+            font-size: .9em;
+            }
+            #invoice-POS h3 {
+            font-size: 1.2em;
+            font-weight: 300;
+            line-height: 2em;
+            }
+            #invoice-POS p {
+            font-size: .7em;
+            color: black;
+            line-height: 1.2em;
+            }
+            #invoice-POS #top, #invoice-POS #mid, #invoice-POS #bot {
+            /* Targets all id with 'col-' */
+            border-bottom: 1px solid #EEE;
+            }
+            #invoice-POS #top {
+            min-height: 100px;
+            }
+            #invoice-POS #mid {
+            min-height: 80px;
+            }
+            #invoice-POS #bot {
+            min-height: 50px;
+            }
+            
+            #invoice-POS .info {
+            display: block;
+            margin-left: 0;
+            }
+            #invoice-POS .title {
+            float: right;
+            }
+            #invoice-POS .title p {
+            text-align: right;
+            }
+            #invoice-POS table {
+            width: 100%;
+            border-collapse: collapse;
+            }
+            #invoice-POS .tabletitle {
+            font-size: .6em;
+            color: black;
+            background: #EEE;
+            }
+            #invoice-POS .service {
+            border-bottom: 1px solid #EEE;
+            }
+            #invoice-POS .item {
+            width: 35mm;
+            }
+            #invoice-POS .itemtext {
+            font-size: .6em;
+            color: black;
+            }
+            #invoice-POS #legalcopy {
+            margin-top: 5mm;
+            }
+        </style>
+    </head>
+    <body>
+        <div id="invoice-POS">
+            <center id="top">
+                <div class="logo">
+                    <img  src="{{ asset(FileHelper::getInvoiceLogo()) }}"  style="width: 60px; height: 60px;">
                 </div>
-                <small>Tatai District, Koh Kong Province, Cambodia</small>
+                <div class="info">
+                    <h2>Koh Andet Eco Resort</h2>
+                    <p>Tatai District, Koh Kong Province, Cambodia</p>
+                </div>
+                <!--End Info-->
+            </center>
+            <!--End InvoiceTop-->
+            <div id="mid">
+                <div class="info">
+                    <!-- <h2>Contact Info</h2> -->
+                    <p> 
+                        Date: {{ $invoice->created_at }}</br>
+                        Cashier: {{ $invoice->userCreatedBy->getFullName() }}</br>
+                        Invoice-No: {{ $invoice->invoice_no }}</br>
+                    </p>
+                </div>
             </div>
             <hr>
-            {{-- invoice info --}}
-            <div class="form">
-                <div class="d-flex justify-content-around">
-                    <div><div class="form-group">
-                            <label for="date">Date: {{ $invoice->created_at }}</label>
+            <!--End Invoice Mid-->
+            <div id="bot">
+                <div id="table">
+                    <table>
+                        <tr class="tabletitle">
+                            <td class="item">
+                                <h2>Item</h2>
+                            </td>
+                            <td class="Hours">
+                                <h2>Qty</h2>
+                            </td>
+                            <td class="Rate">
+                                <h2>Price</h2>
+                            </td>
+                            <td class="Rate">
+                                <h2>Total</h2>
+                            </td>
                             
-                        </div>
-                        <div class="form-group">
-                            <label for="cashier">Cashier: {{ $invoice->userCreatedBy->getFullName() }}</label>
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <label for="invoice_id">Invoice-No: {{ $invoice->invoice_no }}</label>
-                    </div>
-                </div>
-
-
-            </div>
-            <hr>
-            {{-- table invoice --}}
-            <table class="table table-sm mb-2">
-                <thead>
-                    <tr>
-                        <th scope="col">No</th>
-                        <th scope="col">Name</th>
-                        <th scope="col">Qty</th>
-                        <th scope="col">Price</th>
-                        <th scope="col">Total</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    @php 
-                        $no = 1;
-                    @endphp
-                    @foreach ($invoice_details as $invoice_detail)
-                        <tr>
-                            <th>{{ $no++ }}</th>
-                            <td>{{ $invoice_detail->product_name }}</td>
-                            <td>{{ $invoice_detail->quantity }}</td>
-                            <td>{{ $invoice_detail->price }}</td>
-                            <td>{{ $invoice_detail->total }}</td>
                         </tr>
-                    @endforeach
-                </tbody>
-            </table>
-            <hr>
-            {{-- Calculate product price  --}}
-            <div class="form text-right">
-                    <div class="form-group">
-                        <label for="sub-total">Sub Total: {{ $invoice->sub_total }}</label>
-                    </div>
-                    <div class="form-group">
-                        <label for="discount">Discount: {{ $invoice->discount }}</label>
-                    </div>
-                    <div class="form-group">
-                        <label for="Total">Total: {{ $invoice->total }}</label>
-                    </div>
+                        @foreach ($invoice_details as $invoice_detail)
+                        <tr class="service">
+                            <td class="tableitem">
+                                <p class="itemtext">{{ $invoice_detail->product_name }}</p>
+                            </td>
+                            <td class="tableitem">
+                                <p class="itemtext">{{ $invoice_detail->quantity }}</p>
+                            </td>
+                            <td class="tableitem">
+                                <p class="itemtext">{{ $invoice_detail->price }}</p>
+                            </td>
+                            <td class="tableitem">
+                                <p class="itemtext">{{ $invoice_detail->total }}</p>
+                            </td>
+                        </tr>
+                        @endforeach
+                        
+                        <tr class="service">
+                                <td class="tableitem">
+                                    <b class="itemtext"></b>
+                                </td>
+                                <td class="tableitem">
+                                    <b class="itemtext"></b>
+                                </td>
+                            <td class="tableitem">
+                                <b class="itemtext">Sub Total</b>
+                            </td>
+                            <td class="tableitem">
+                                <b class="itemtext">{{ $invoice->sub_total }}</b>
+                            </td>
+                        </tr>
+                        <tr class="service">
+                                <td class="tableitem">
+                                    <b class="itemtext"></b>
+                                </td>
+                                <td class="tableitem">
+                                    <b class="itemtext"></b>
+                                </td>
+                            <td class="tableitem">
+                                <b class="itemtext">Discount</b>
+                            </td>
+                            <td class="tableitem">
+                                <b class="itemtext">{{ $invoice->discount }}</b>
+                            </td>
+                        </tr>
+                        <tr class="service">
+                                <td class="tableitem">
+                                    <b class="itemtext"></b>
+                                </td>
+                                <td class="tableitem">
+                                    <b class="itemtext"></b>
+                                </td>
+                            <td class="tableitem">
+                                <b class="itemtext">Total</b>
+                            </td>
+                            <td class="tableitem">
+                                <b class="itemtext">{{ $invoice->total }}</b>
+                            </td>
+                        </tr>
+                    </table>
+                    
                 </div>
-            {{-- footer --}}
-            <div class="footer mt-4 text-center">
-                <div>
-
-                    <span>THANK YOU<br/>
-                        ENJOY YOUR JOURNEY
-                    </span>
+                
+                <!--End Table-->
+                <div id="legalcopy">
+                    <p class="legal">
+                        <strong>THANK YOU AND ENJOY YOUR JOURNEY!</strong>
+                        
+                    </p>
                 </div>
             </div>
-
+            <!--End InvoiceBot-->
         </div>
-    </div>
-</div>
-<button  type="button" id="print_invoice" class="btn btn-secondary btn-lg btn-invoice fixed-bottom" >
-    <i class="fas fa-print"></i>Print
-</button>
-@endsection
-@section('footer-src')
-{{-- @include('cms.report.footer') --}}
-{{-- <script src="{{ asset('plugin/cms/assets/js/jquery.PrintArea.js') }}"></script> --}}
-<script>
-    $( document ).ready(function() {
-        $("#print_invoice").click(function(){
-            printInvoice();
-        });
-
-        // printInvoice();
-
-        function printInvoice() {
-            // https://www.jqueryscript.net/other/Print-Specified-Area-Of-A-Page-PrintArea.html
-            // $(".no_print").hide();
-            $("#print_area").printArea({
-                mode: "popup",
-                // popHt: 768, // popup window height
-                // popWd: 1024, // popup window width
-                // popX: 200,  // popup window screen X position
-                // popY: 100,  //popup window screen Y position
-                popTitle: "Sample",// popup window title element
-                popClose: true,  // popup window close after printing
-
-            });
-
-            // window.location.replace("{{ route('pos.room') }}");
-            // $(".no_print").show();
-        }
-    })
-</script>
-@endsection
+        <!--End Invoice-->
+    </body>
+</html>

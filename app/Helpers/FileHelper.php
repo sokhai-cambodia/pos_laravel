@@ -17,6 +17,10 @@ Class FileHelper
         return  asset(env('DASHBOARD_IMAGE_PATH', 'assets/cms/dashboard.png'));
     }
 
+    public static function getInvoiceLogo() {
+        return  asset(env('INVOICE_IMAGE_PATH', 'assets/pos/logo.jpg'));
+    }
+
     public static function upload($file, $pathName = '') {
         $pathName = $pathName == '' ? FileHelper::getDefaultPathName() : $pathName;
         $fileNewName = time().$file->getClientOriginalName();
